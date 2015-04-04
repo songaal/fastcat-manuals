@@ -34,22 +34,22 @@ Fastcatsearch는 대용량문서를 빠른 시간안에 색인 및 검색이 가
 #### 단일서버구성
 문서량이 작을 경우에는 색인노드,검색노드,데이터노드를 동일한 단일서버에 구성할 수 있다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcatsearch-console/master/src/main/webapp/resources/assets/img/fastcat-cat.png)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/img/325.jpg)
 
 #### 분산서버구성
 
 ##### 장애대비 이중화 구성
 2대 이상의 데이터노드를 구성시 1대 서버장애시 나머지 서버로 검색서비스가 가능하다.
-![](https://raw.githubusercontent.com/fastcat-co/fastcatsearch-console/master/src/main/webapp/resources/assets/img/fastcat-cat.png)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/img/327.jpg)
 
 ##### 데이터파티셔닝 구성
 문서량이 많아서 2대 이상의 서버에 문서를 나누어 색인후 검색시 병합하여 검색한다.
-![](https://raw.githubusercontent.com/fastcat-co/fastcatsearch-console/master/src/main/webapp/resources/assets/img/fastcat-cat.png)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/img/326.jpg)
 
 ##### 복합부하분산구성
 장애대비 이중화 + 부하분산 + 데이터파티셔닝을 모두 포함한 구성이다.
 예시에서는 검색노드 2대, 데이터노드 3대로 총 5대의 서버로 구성하였다.
-![](https://raw.githubusercontent.com/fastcat-co/fastcatsearch-console/master/src/main/webapp/resources/assets/img/fastcat-cat.png)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/img/328.jpg)
 
 
 검색엔진설치
