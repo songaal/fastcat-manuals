@@ -110,7 +110,7 @@ pn.setTotal(100);
 ### 공통 라이브러리 예제
 검색페이지 작성시 검색에 사용되는 공통적인 함수들을 모아놓고 각 페이지에서 include하여 사용하도록 한다.
 
-[예제소스보기](https://)
+[예제소스보기](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-jsp/ko/sample.zip)
 
 총괄적인 검색로직을 기술한 페이지로, 검색을 위한 옵션등을 조정해 놓으며, 기타 필요한 함수들을 정의함.
 
@@ -272,12 +272,12 @@ search 페이지는 전체적인 레이아웃을 출력하며, search_item 페�
 자동완성 구현을 위해서는 하나의 자동완성용 컬렉션을 구성해야 하며, 자소분리 검색과 초성검색이 기능하도록 하기 위해 Source-Modifier 를 이용한다.
 보통은 다음과 같이 keyword 항목과 search 항목으로 검색스키마를 구성한다.
 
-![](https://)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-jsp/ko/img/264.jpg)
 
 
 실제 데이터는 KEYWORD 필드에 집어 넣으며, SEARCH 필드에는 KEYWORD 에서 가공된 데이터를 입력하도록 Source-Modifier 를 구성한다, 다음은 색인된 결과이다. (모디파이어가 제대로 작동하지 않았다면 Search 필드는 공백으로 나온다)
 
-![](https://)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-jsp/ko/img/213.jpg)
 
 따라서 검색 식은 다음과 같이 검색하면, 자소분리 및 초성검색이 구현된다.
 ```
