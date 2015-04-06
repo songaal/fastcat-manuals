@@ -11,9 +11,6 @@
 6. 상황별 조치
 
 
-
-
-
 1. 구성
 ---
 
@@ -98,7 +95,7 @@ root  27351  3749  0 11:33 pts/13   00:01:44 /usr/lib/jvm/java-7-oracle/bin/java
 
 증분 색인이 진행 중일 경우 검색엔진 정지시 해당 색인 전체가 손상될 염려가 있으므로, 관리도구상단의 Task리스트 에서 증분 색인 수행중이 아님을 확인한 후 검색엔진을 재시작 하도록 한다.
 
-![](http://)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/op-manual/ko/img/219.jpg)
 
 ### 중단절차
 
