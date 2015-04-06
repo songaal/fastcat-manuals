@@ -3,14 +3,14 @@
 
 목차
 ---
-1. 구성
-2. 구동
-3. 운영상태 확인
-4. 중단
-5. 모니터링
-6. 상황별조치
+1. [구성](#구성)
+2. [구동](#구동)
+3. [운영상태확인](#운영상태확인)
+4. [중단](#중단)
+5. [모니터링](#모니터링)
+6. [상황별조치](#상황별조치)
 
-
+<a name="구성"></a>
 1. 구성
 ---
 
@@ -54,7 +54,7 @@ fastcatsearch 검색엔진 설치 시 다음과 같은 디렉토리가 구축되
 
 
 
-
+<a name="구동"></a>
 2. 구동
 ----
 
@@ -72,8 +72,8 @@ daemon_account=fastcat
 `java_path`는 java가 사용자의 PATH에 걸려있지 않을 경우 설정해주며,
 `daemon_account`는 서비스등록하여 자동구동시 사용되는 계정이름이다.
 
-
-3. 운영상태 확인
+<a name="운영상태확인"></a>
+3. 운영상태확인
 ----------
 
 `*nix` 운영체제 에서 검색엔진의 프로세스 상태는 다음과 같이 확인 가능하다.
@@ -88,6 +88,7 @@ $ ps -ef | grep java | grep fastcatsearch | grep Bootstrap
 root  27351  3749  0 11:33 pts/13   00:01:44 /usr/lib/jvm/java-7-oracle/bin/java -Xmx1g -server -Dlogback.configurationFile=........
 ```
 
+<a name="중단"></a>
 4. 중단
 ---
 
@@ -125,7 +126,7 @@ $ kill -9 <PID>
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/op-manual/ko/img/220.jpg)
 
 
-
+<a name="모니터링"></a>
 5. 모니터링
 ----------
 
@@ -196,7 +197,7 @@ Update Time이 최신인지 확인
 에러로그중 시스템에 이상을 줄 만한 에러는 OutOfMemory Error 또는 Heap space error이다.
 메모리관련에러발생시 검색엔진을 재시동하도록 한다.
 
-
+<a name="상황별조치"></a>
 6. 상황별조치
 ------------
 
