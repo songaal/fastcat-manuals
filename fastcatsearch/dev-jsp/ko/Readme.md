@@ -1,7 +1,17 @@
 jsp 개발자 매뉴얼
 ==============
 
-준비사항
+목차
+---
+1. [준비사항](#준비사항)
+2. [API 라이브러리](#API 라이브러리)
+3. [검색 페이지](#검색 페이지)
+4. [search_item 페이지 예제](#search_item 페이지 예제)
+5. [기타서비스 페이지](#기타서비스 페이지)
+
+
+<a name="준비사항"></a>
+1. 준비사항
 ------
 
 ### 하드웨어 요구사항
@@ -14,8 +24,8 @@ jsp 상에서 fastcatsearch 엔진을 이용하기 위해서는 다음과 같은
 - json 혹은 xml 라이브러리 (json 권장)
 - socket 사용가능
 
-
-API 라이브러리
+<a name="API 라이브러리"></a>
+2. API 라이브러리
 -----------
 common.jsp 는 SearchParameter 를 이용해서 다음과 같이 검색엔진과 통신한다.
 
@@ -100,8 +110,8 @@ pn.setTotal(100);
 ```
 
 
-
-검색 페이지
+<a name="검색 페이지"></a>
+3. 검색 페이지
 --------
 
 ### search 페이지
@@ -211,11 +221,13 @@ public JSONObject searchSample(Map cfg, String stype, String searchStr, String o
 }
 ```
 
-search_ _item_ _*  페이지 예제
+
+<a name="search_item 페이지 예제"></a>
+4. search_item 페이지 예제
 ---------------------------
 
-search_item 페이지는 각각 검색 컬렉션 별 로 제작하도록 한다, (search_item_bbs.php / search_item_new.php 등)
-검색엔진과 통신해서 가지고 온 데이터를 이용해 화면에 출력해 주는 역할을 한다. ᅟ
+search_item 페이지는 각각 검색 컬렉션 별 로 제작하도록 한다. (search_item_bbs.jsp / search_item_new.jsp 등)
+검색엔진과 통신해서 가지고 온 데이터를 이용해 화면에 출력해 주는 역할을 한다.
 search 페이지는 전체적인 레이아웃을 출력하며, search_item 페이지는 검색결과 각각의 항목을 출력하는 역할로, 예제는 다음과 같다.
 
 ```java
@@ -263,8 +275,8 @@ search 페이지는 전체적인 레이아웃을 출력하며, search_item 페�
     <% } %>
 ```
 
-
-기타서비스 페이지
+<a name="기타서비스 페이지"></a>
+5. 기타서비스 페이지
 -------------
 
 ### 검색어 자동완성
