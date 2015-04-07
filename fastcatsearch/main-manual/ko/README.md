@@ -1768,12 +1768,7 @@ JDBC URL 템플릿 예약어
 |${dbname}|접속할 DB명|
 
  
-
- 
-
- 
-
-  
+<span></span>
 
 
 
