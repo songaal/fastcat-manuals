@@ -61,7 +61,7 @@ fastcatsearch 검색엔진 설치 시 다음과 같은 디렉토리가 구축되
 리눅스에서는 `bin/fastcatsearch start`이며, 윈도우즈에서는 `fastcatsearch.bat`이다.
 
 ### 스크립트 설정
-bin/environment.sh 를 열면 아래와 같은 내용을 볼수 있다.
+`bin/environment.sh` 를 열면 아래와 같은 내용을 볼수 있다.
 ```
 heap_memory_size=768m
 java_path=
