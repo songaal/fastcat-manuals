@@ -49,7 +49,7 @@ php를 이용한 검색은 commons-library 를 거쳐 communicator 를 통해 �
 
 fastcat_api.php 는 SearchQueryStringer / FastcatCommunicator / PageNavigator 의 3개 클래스로 이루어진다.
 
-[fastcat_api.php 소스보기](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/sample.zip)
+[fastcat_api.php 소스보기](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/fastcat_api.php)
 
 ###SearchQueryStringer
 
@@ -108,7 +108,7 @@ $pn->setTotal({총게시물갯수});
 
 검색페이지 작성시 검색에 사용되는 공통적인 함수들을 모아놓고 각 페이지에서 include하여 사용하도록 한다.
 
-[예제소스보기](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/sample.zip)
+[예제소스보기](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/commons.php)
 
 총괄적인 검색로직을 기술한 라이브러리로, 검색을 위한 옵션등을 조정해 놓으며, 기타 필요한 함수들을 정의함.
 
