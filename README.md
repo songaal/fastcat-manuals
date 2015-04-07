@@ -1,25 +1,17 @@
-# fastcat-manuals
+Fastcat Manuals
+===============
 
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
+Products
+--------
 
-```java
-public final TokenStream tokenStream(final String fieldName,
-                                       final Reader reader, AnalyzerOption analyzerOption) throws IOException {
-    TokenStreamComponents components = reuseStrategy.getReusableComponents(fieldName);
-    
-    final Reader r = initReader(fieldName, reader);
-    if (components == null) {
-      components = createComponents(fieldName, r);
-      reuseStrategy.setReusableComponents(fieldName, components);
-    } else {
-      components.setReader(r);
-    }
-    components.setAnalyzerOption(analyzerOption);
-    
-    return components.getTokenStream();
-  }
-```
+- 실시간 검색
+- 검색어통계분석
+- 언어 분석기
+- 웹 수집
+- 문서파일필터
+- 문서분류기
+- 실시간 빅데이터분석
+- 클라우드 PaaS
+- 표절검색
+
+
