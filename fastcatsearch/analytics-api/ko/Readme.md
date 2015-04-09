@@ -52,9 +52,9 @@ URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 |용도구분|파라메터|역할|예|기타|
 |-------|-------|---|-|----|
 |Click-through Rate|siteId|siteId 값|www|conf/sites.xml 의 siteId|
-||keyword|검색키워드|USB메모리||
-||clickId|클릭문서 아이디|462496566|어떠한 문서를 클릭했는지 정보를 기록한다.|
-||clickType|클릭문서 타입|view_blog|Attibute설정에 입력해둔 클릭타입ID를 사용한다.|
+| |keyword|검색키워드|USB메모리||
+| |clickId|클릭문서 아이디|462496566|어떠한 문서를 클릭했는지 정보를 기록한다.|
+| |clickType|클릭문서 타입|view_blog|Attibute설정에 입력해둔 클릭타입ID를 사용한다.|
  
 ###1.3. 통계 데이터의 처리
 
