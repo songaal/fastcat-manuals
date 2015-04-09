@@ -49,8 +49,8 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 호출 API는 다음과 같다.
 URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 
-|용도구분|파라메터|역할|예|기타|
-|-------|-------|---|-|----|
+| 용도구분 | 파라메터 | 역할 | 예 | 기타 |
+|---------|---------|------|----|------|
 | Click-through Rate | siteId | siteId 값 | www | conf/sites.xml 의 siteId |
 | | keyword | 검색키워드 | USB메모리 | |
 | | clickId | 클릭문서 아이디 | 462496566 |어떠한 문서를 클릭했는지 정보를 기록한다. |
@@ -61,7 +61,7 @@ URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 실시간 인기 키워드는 5분마다 1번씩 집계되며, 나머지 일별 통계는 1일 1회 (0시) 집계 된다.
  
 2. 통계결과 API
-------------
+--------------
 
 인기키워드, 연관검색어의 API
 
