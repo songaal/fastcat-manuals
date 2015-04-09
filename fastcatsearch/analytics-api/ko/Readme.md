@@ -1,9 +1,18 @@
+Analytics-API 매뉴얼
+===================
+
+목차
+----
+1. [통계입력 API](#통계입력 API)
+2. [통계결과 API](#통계결과 API)
+
+
 1. 통계입력 API
 --------------
 
 이 장에서는 통계데이터의 입력방법과 그 역할에 대해 설명한다.
 
-###검색통계데이터 입력
+###1.1. 검색통계데이터 입력
 
 검색 클라이언트 에서 검색 직후에 검색결과를 통계서버에 전달 해 주어야 한다, fastcat-analytics 는 전달 방법으로 http 프로토콜을 이용하며, 전달 방법은 다음과 같다.
 
@@ -33,12 +42,11 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 ※ 예: `http://localhost:8050/service/keyword/hit/post?type=search&siteId=www&categoryId=cat1&searchService=totalSearch&keyword=12인치 노트북&prev=최신 노트북&resptime=130&category=가전/컴퓨터&page=1&sort=가격순&age=30대&service=통합검색&login=일반&gender=남성`
 
  
-###클릭통계데이터 입력
+###1.2. 클릭통계데이터 입력
 
 사용자가 검색결과문서를 클릭한 내용은 어떠한 문서가 검색키워드의 결과로 적합한지를 결정하는데 도움을 줄 수 있다. fastcat-analytics는 사용자의 클릭로그를 분석하여 통계내는 기능을 제공한다.
 
 호출 API는 다음과 같다.
-
 URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 
 |용도구분|파라메터|역할|예|기타|
@@ -48,7 +56,7 @@ URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 ||clickId|클릭문서 아이디|462496566|어떠한 문서를 클릭했는지 정보를 기록한다.|
 ||clickType|클릭문서 타입|view_blog|Attibute설정에 입력해둔 클릭타입ID를 사용한다.|
  
-###통계 데이터의 처리
+###1.3. 통계 데이터의 처리
 
 실시간 인기 키워드는 5분마다 1번씩 집계되며, 나머지 일별 통계는 1일 1회 (0시) 집계 된다.
  
@@ -57,9 +65,9 @@ URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 
 인기키워드, 연관검색어의 API
 
-###인기키워드
+###2.1. 인기키워드
 
-####실시간 인기키워드
+####2.1.1. 실시간 인기키워드
 
 URI : `/service/keyword/popular/rt.xml`
 
@@ -102,7 +110,7 @@ URI : `/service/keyword/popular/rt.xml`
     </response>
 ```
  
-####인기검색어
+####2.1.2. 인기검색어
 
 URI : `/service/keyword/popular.xml`
 표 2 서비스용 인기검색어 파라미터 목록
@@ -164,9 +172,7 @@ URI : `/service/keyword/popular.xml`
 |ln|가져올 키워드 갯수|O|
  
 **덤프용 인기검색어**
-
 일자 기간별 인기검색어를 일괄적으로 내려받아야 할때 사용한다.
-
 URI : `/service/keyword/popular/dump.xml`
 
 표. 덤프용 인기검색어 파라미터 목록
@@ -179,8 +185,7 @@ URI : `/service/keyword/popular/dump.xml`
 |to|끝일자. 형식은 yyyy.MM.dd|O|
 |ln|가져올 키워드 상위 N개의 갯수.|O|
  
-**연관검색어**
-
+####2.1.3. 연관검색어
 URI : `/service/keyword/relate.xml`
 
 표 3 연관검색어 파라미터 목록
