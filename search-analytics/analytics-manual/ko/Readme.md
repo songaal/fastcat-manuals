@@ -19,13 +19,14 @@
 로그분석기는 검색 시스템 내 키워드의 검색수, 클릭수 등을 기반으로 하여, 입력된 키워드에 대한 유저들의 반응 기대치를 분석하는데 초점을 맞춘 시스템이다.
 
 검색엔진과는 별도로 독립된 서버로 운영되며, 날짜와 시간별로 유입되는 키워드를 집계하고, 일/주/월/년별로 통계를 수행한다.
- 
+
 ###1.2. 시스템 구성
 
 로그분석기는 웹서버등으로부터 API를 통해 검색관련 데이터를 제공받아 주기적으로 통계를 수행한다.
 통계데이터는 외부 DB에 저장하고 관리도구를 통해 해당 DB를 조회함으로써 통계결과를 제공한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/390.jpg =300x200)
+
+<img src="https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/390.jpg" width="500px"/>
 
 #### 호출흐름도
 
