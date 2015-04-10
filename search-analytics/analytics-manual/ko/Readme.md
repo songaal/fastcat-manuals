@@ -25,7 +25,7 @@
 로그분석기는 웹서버등으로부터 API를 통해 검색관련 데이터를 제공받아 주기적으로 통계를 수행한다.
 통계데이터는 외부 DB에 저장하고 관리도구를 통해 해당 DB를 조회함으로써 통계결과를 제공한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/390.jpg | width=300px)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/390.jpg =300x200)
 
 #### 호출흐름도
 
