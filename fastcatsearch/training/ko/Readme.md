@@ -8,7 +8,7 @@
 `예상소요시간 1h`
 
 #### 참조 매뉴얼
-- [fastcatsearch 설치매뉴얼] (http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
+- [fastcatsearch 설치매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_install_ko)
 
 #### 검색엔진설치 및 구동
 
@@ -34,7 +34,7 @@
 `예상소요시간 1h`
 
 #### 참조매뉴얼
-- [fastcat-analytics 설치매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
+- [로그분석기 통합매뉴얼 > 2.로그분석기 설치](http://fastcat.co/document.html?c=search-analytics&d=search-analytics_main_ko)
 
 1. 포트설정 및 구동
 2. 사이트 및 카테고리 설정
@@ -58,8 +58,8 @@
 `예상소요시간 30m`
 
 #### 참조 매뉴얼
-- [검색쿼리API매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
-- [fastcat-analytics API 매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
+- [쿼리API](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_query_ko)
+- [로그분석기 API 매뉴얼](http://fastcat.co/document.html?c=search-analytics&d=search-analytics_api_ko)
 
 
 #### 검색엔진API
@@ -77,8 +77,8 @@
 
 `예상소요시간 1h`
 #### 참조매뉴얼
-- [JSP개발가이드](http://localhost/document.html?c=fastcatsearch&d=fastcatsearch_dev_jsp_ko)
-
+- [JSP개발가이드](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_dev_jsp_ko)
+- [PHP개발가이드](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_dev_php_ko)
 1. 검색기능
 2. 인기검색어 기능
 3. 연관검색어 기능
@@ -101,7 +101,7 @@
 
 `예상소요시간 30m`
 #### 참조매뉴얼
-- [fastcatsearch 운영 매뉴얼](http://localhost/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
+- [fastcatsearch 운영 매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_op_ko)
 
 1. 운영상태 확인
 2. 중단 및 주의사항
