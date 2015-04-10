@@ -25,15 +25,15 @@
 로그분석기는 웹서버등으로부터 API를 통해 검색관련 데이터를 제공받아 주기적으로 통계를 수행한다.
 통계데이터는 외부 DB에 저장하고 관리도구를 통해 해당 DB를 조회함으로써 통계결과를 제공한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/390.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/390.jpg)
  
-**호출흐름도**
+#### 호출흐름도
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/419.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/419.jpg)
  
 ###1.3. 제공기능
  
-**제공기능리스트**
+#### 제공기능리스트
 
 |기능|관리도구 데이터조회|HTTP API 제공|
 |----|----------------|-------------|
@@ -44,22 +44,21 @@
 |검색비율|O||
 |검색유입률|O||
 |클릭유입률|O||
- 
-**기능상세**
- 
-실시간 인기검색어
 
+#### 기능상세
+
+##### 실시간 인기검색어
 - 최근 유입된 검색키워드를 기반으로 상위 10개의 인기검색어 제공
 - 검색횟수, 순위등락폭, 검색횟수변동량 제공
  
-연관검색어
+##### 연관검색어
 
 - 자주 유입되는 연관성이 있는 키워드 조합을 연관검색어로 제공
 - 키워드 검색기능
 - 연관검색어 편집기능
 - 데이터 다운로드 기능
  
-검색횟수 및 응답시간 추이
+##### 검색횟수 및 응답시간 추이
 
 - 검색횟수 데이터 및 추이 그래프
 - 응답시간 데이터 및 추이 그래프
@@ -68,7 +67,7 @@
 - 카테고리별 조회기능
 - 데이터 다운로드 기능
  
-검색어 순위
+##### 검색어 순위
 
 - 특정기간의 상위 인기 검색어 리스트
 - 검색횟수, 순위등락폭, 검색횟수변동량 제공
@@ -77,7 +76,7 @@
 - 카테고리별 조회기능
 - 데이터 다운로드 기능
  
-검색비율
+##### 검색비율
 
 - 특정기간내 검색횟수와 검색비율 제공
 - 임의기간 설정기능
@@ -86,7 +85,7 @@
 - 검색타입별 조회기능
 - 검색타입간의 순위제공 기능
  
-검색유입률
+##### 검색유입률
 
 - 임의기간 검색유입건수 제공
 - 유입서비스별 검색횟수와 비율 제공
@@ -105,18 +104,20 @@
 
 HTTP Rest 방식의 통신을 이용하여 JSON 형태의 결과를 외부에 제공함으로써 유용한 통계자료를 번거로운 작업없이 빠르게 활용할 수 있도록 도와준다.
  
-**실시간 인기검색어**
+##### 실시간 인기검색어
 
 최근 로그분석기로 유입된 검색키워드를 기반으로 통계를 생성하여 검색어 순위와 등락폭을 제공
  
-**검색어 순위**
+##### 검색어 순위
 
 일/주/월/년별 상위 인기 검색어 리스트 제공. 운영자가 설정한 카테고리별로 제공
  
-**연관검색어**
+##### 연관검색어
 
 자주 유입되는 연관성이 있는 키워드 조합을 연관검색어로 제공
- 
+
+
+
 2. 로그분석기 설치
 ----------------
 
@@ -272,7 +273,7 @@ $ mv -r target/analytics-*  [설치위치]/
 
 로그분석기 설치 후 웹브라우저에서 http://[관리도구서버 IP]:[관리도구 PORT]/analytics 으로 접속하면 다음과 같이 관리도구의 로그인 화면으로 접속된다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/391.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/391.jpg)
 
 기본 아이디 패스워드는 아래와 같다. 패스워드 수정은 "시스템설정관리 > 사용자설정" 항목을 참고한다.
 
@@ -285,7 +286,7 @@ $ mv -r target/analytics-*  [설치위치]/
 
 관리를 마치고 로그아웃하려면 우측 상단의 "사람모양 아이콘" 을 눌러서 Log Out 을 클릭한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/394.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/394.jpg)
 
  
 **사이트선택**
@@ -297,14 +298,14 @@ $ mv -r target/analytics-*  [설치위치]/
 처음 설치해서 사이트가 없을 경우 "시스템설정관리 > 사이트설정" 항목으로 이동하여 사이트를 먼저 추가해준다.
 ```
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/392.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/392.jpg)
  
 ###4.2. 대시보드
 
 대시보드는 리포트 하위의 통계정보를 한눈에 정리해서 볼 수 있는 기능이다.
 대시보드는 "주" 또는 "월" 을 선택하여 해당기간의 데이터를 그래프와 수치로 확인할 수 있다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/393.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/393.jpg)
 
 대시보드는 크게 아래의 4가지로 나누어진다.
 
@@ -363,7 +364,7 @@ Count : 검색횟수
 Max Time : 최대응답시간
 Average Time : 평균응답시간
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/395.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/395.jpg)
  
 ###4.4. 검색어순위
 
@@ -383,7 +384,7 @@ COUNT : 검색횟수
 RANK CHANGE : 순위변동량. UP = 상승. DN = 하강. EQ = 동일. NEW = 신규.
 COUNT CHANGE : 검색횟수변동량
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/396.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/396.jpg)
  
 ####4.4.2. 기간별 검색어순위
 
@@ -401,7 +402,7 @@ COUNT CHANGE : 검색횟수변동량
 |Monthly 	|월간 순위|
 |Yearly 	|년간 순위|
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/397.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/397.jpg)
 
 ###4.5. 검색비율
 
@@ -431,7 +432,7 @@ TYPE : 타입명
 HIT COUNT : 검색횟수
 RATIO : 검색비율
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/398.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/398.jpg)
 
 ###4.6. 검색유입률/클릭유입률
 
@@ -466,7 +467,7 @@ Click-through Rate : 클릭유입률이며, Click-through Count 를 Search PV �
 클릭타입설정은 "사이트설정 > 속성설정" 항목을 참고한다.
 ```
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/399.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/399.jpg)
  
 ####4.6.2. 상세 클릭유입
 
@@ -497,7 +498,7 @@ Click-through count : 클릭횟수
 Click-through Rate : 클릭횟수비율
 타입이름 : 타입별 클릭횟수
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/400.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/400.jpg)
  
 ####4.6.3. 키워드 클릭유입
 
@@ -513,7 +514,7 @@ Click-through Rate : 클릭횟수비율
 Click Target : 클릭한 문서의 아이디
 타입명 : 문서클릭타입별 클릭횟수
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/401.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/401.jpg)
  
 ###4.7. 키워드서비스
 
@@ -535,7 +536,7 @@ Exact Match : 조회시 완전일치여부
 `Edit` : 편집모드로 이동한다.
 `Apply` : 수정사항을 모두 저장한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/402.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/402.jpg)
  
 5. 사이트 설정관리
 ----------------
@@ -581,7 +582,7 @@ Target-file Path : CTR데이터를 파일로 만들때 파일명.
 Minimum Click Count : 클릭횟수가 이 수치 이상일때 통계에 반영한다.
 File Daily Decay-factor : CTR데이터를 파일로 만들때 일간 클릭횟수에 이 수치를 곱해서 더한다. 즉, 에전 데이터에 대해 클릭횟수를 감소시키는 역할을 한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/403.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/403.jpg)
  
 ###5.2. 카테고리 설정
 
@@ -601,7 +602,7 @@ Use Popular Keyword : 해당 카테고리에서 검색어순위 통계를 생성
 Use Relate Keyword : 해당 카테고리에서 연관검색어 통계를 생성할지 여부
 모든 수정을 마치면 `Update Settings` 를 클릭하여 저장한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/404.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/404.jpg)
  
 ###5.3. 속성(Attribute)설정
 
@@ -627,7 +628,7 @@ IsPrime : 선택되면 검색유입률과 클릭유입률 그래프의 대표 �
 ID : 속성아이디
 Name : 속성라벨명
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/405.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/405.jpg)
  
 ###5.4. 통계실행
 
@@ -642,7 +643,7 @@ Relate Keyword : 연관검색어 통계작업
 Click-through Rate : CTR 통계작업
 Click-through Rate File : CTR 통계 파일생성작업
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/406.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/406.jpg)
  
 ###5.5. 고급통계실행
 
@@ -650,7 +651,7 @@ Click-through Rate File : CTR 통계 파일생성작업
 평상시에는 사용할 일이 없지만, 통계저장 DB가 사라졌거나, 초기 데이터 입력시등에 사용될 수 있다.
 기간선택은 일자별 기간범위를 지정할 수 있다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/407.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/407.jpg)
  
 6. 시스템 설정관리
 ----------------
@@ -661,11 +662,11 @@ Click-through Rate File : CTR 통계 파일생성작업
 
 운영자별로 계정을 만들어 사용할 수 있다. 권한설정 기능은 제공하지 않는다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/408.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/408.jpg)
 
 `New User` 를 클릭하여 새로운 사용자추가한다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/409.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/409.jpg)
  
 ###6.2. 시스템 설정
 
@@ -691,7 +692,7 @@ Click-through Rate File : CTR 통계 파일생성작업
 |tcp_receive_buffer_size|네트워크 수신 버퍼 사이즈|
 |tcp_send_buffer_size|네트워크 전송 버퍼 사이즈|
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/410.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/410.jpg)
  
 ###6.3. 사이트 설정
 
@@ -700,11 +701,11 @@ Click-through Rate File : CTR 통계 파일생성작업
 `Add New Site` : 사이트 추가
 `-` : 사이트 삭제
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/411.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/411.jpg)
 
 사이트추가시 팝업이 나타나며, ID와 사이트명을 입력하고 Create Site 를 누른다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/412.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/412.jpg)
 
  
 ###6.4. 작업결과
@@ -732,7 +733,7 @@ DAILY_CLICK : 일별 클릭율 통계
 MONTHLY_CLICK : 월별 클릭율 통계
 CTR_CLICK_FILE : 일별 클릭율 파일 생성 작업
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/413.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/413.jpg)
 
 일별 항목을 클릭시 세부 데이터가 표시된다.
 
@@ -747,13 +748,13 @@ Explain : 작업 상세 로그
 
 로그분석기의 시스템에러를 확인할 수 있으며, 내부 통계작업시의 에러도 포함된다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/415.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/415.jpg)
  
 ###6.6. 원본로그파일
 
 로그분석기에서 API를 통해 입력받는 원본 로그파일은 관리도구를 통해 조회가 가능하다.
 로그파일은 일별로 유지되기 때문에, 달력형태로 일별 로그파일을 확인해볼 수 있다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/analytics-manual/ko/img/416.jpg)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/416.jpg)
 
 파일명을 클릭하면 로그데이터가 팝업창에 나타난다.
