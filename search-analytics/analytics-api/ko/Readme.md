@@ -74,7 +74,7 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 		<td>millisecond 단위로 전달</td>
 </tr>
 <tr>
-	<td rowspan=8>비율통계</td>
+	<td rowspan=7>비율통계</td>
 		<td>category</td>
 		<td>타입별 분류 입력</td>
 		<td>가전/컴퓨터</td>
@@ -127,12 +127,12 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 호출 API는 다음과 같다.
 URL : `http://[서버 IP]:[서버 PORT]/service/ctr/click/post`
 
-|용도구분			 |파라메터		|역할			|예			|기타		|
-|-------------------|-----------|--------------|-------------|--------|
-|Click-through Rate	|siteId		|siteId 값		|www		 | conf/sites.xml 의 siteId |
-|					|keyword	|검색키워드		 |USB메모리	|		|
-|					|clickId	|클릭문서 아이디	|462496566	|어떠한 문서를 클릭했는지 정보를 기록한다. |
-|					|clickType	|클릭문서 타입	|view_blog	|Attibute설정에 입력해둔 클릭타입ID를 사용한다. |
+|용도구분			|파라메터	|역할				|예			|기타											|
+|-------------------|-----------|-------------------|-----------|-----------------------------------------------|
+|Click-through Rate	|siteId		|siteId 값			|www		| conf/sites.xml 의 siteId						|
+|					|keyword	|검색키워드			|USB메모리	|												|
+|					|clickId	|클릭문서 아이디	|462496566	|어떠한 문서를 클릭했는지 정보를 기록한다.		|
+|					|clickType	|클릭문서 타입		|view_blog	|Attibute설정에 입력해둔 클릭타입ID를 사용한다.	|
  
 ###1.3. 통계 데이터의 처리
 
@@ -152,7 +152,7 @@ URI : `/service/keyword/popular/rt.xml`
 표 1 실시간 인기검색어 파라미터 목록
 
 |Parameter	|설명			|Nullable	|
-|-----------|-------------|----------|
+|-----------|---------------|-----------|
 |siteId		|사이트 ID		|N			|
 |categoryId	|카테고리 ID	|Y			|
  
@@ -194,12 +194,12 @@ URI : `/service/keyword/popular.xml`
 
 표 2 서비스용 인기검색어 파라미터 목록
 
-|Parameter	|설명			|필수	|
-|-----------|-------------|-----|
-|siteId		|사이트 ID		|O	|
-|categoryId	|카테고리 ID	|X	|
-|timeType	|일자별 = D<br/>주간별 = W<br/> 월별 = M<br/>년도별 = Y|O|
-|interval	|이전 시간대.<br/>timeType이 D일때 interval이 1이면 이전날짜.<br/> timeType이 W일때 interval이 1이면 이전주.	|O	|
+|Parameter	|설명																											|필수	|
+|-----------|---------------------------------------------------------------------------------------------------------------|-------|
+|siteId		|사이트 ID																										|O		|
+|categoryId	|카테고리 ID																									|X		|
+|timeType	|일자별 = D<br/>주간별 = W<br/> 월별 = M<br/>년도별 = Y															|O		|
+|interval	|이전 시간대.<br/>timeType이 D일때 interval이 1이면 이전날짜.<br/> timeType이 W일때 interval이 1이면 이전주.	|O		|
  
 ##### 샘플 이전일 일간 인기검색어 요청URL
 
@@ -241,14 +241,14 @@ URI : `/service/keyword/popular.xml`
  
 표. 날짜조회용 인기검색어 파라미터 목록
 
-|Parameter		|설명					|필수	|
-|---------------|---------------------|-----|
-|siteId			|사이트 ID				|O	|
-|categoryId		|카테고리 ID			|X	|
-|interval		| 날짜 조회용은 고정값 0	|O	|
-|timeId			|특정조회일자. 형식은 [Type]yyyyMMdd.<br/>예) D20140705, W201428, M201407, Y2014|O|
-|sn				|시작번호. 1부터 시작.	|O	|
-|ln				|가져올 키워드 갯수		|O	|
+|Parameter		|설명																				|필수	|
+|---------------|-----------------------------------------------------------------------------------|-------|
+|siteId			|사이트 ID																			|O		|
+|categoryId		|카테고리 ID																		|X		|
+|interval		| 날짜 조회용은 고정값 0															|O		|
+|timeId			|특정조회일자. 형식은 [Type]yyyyMMdd.<br/>예) D20140705, W201428, M201407, Y2014	|O		|
+|sn				|시작번호. 1부터 시작.																|O		|
+|ln				|가져올 키워드 갯수																	|O		|
  
 ##### 덤프용 인기검색어
 
@@ -258,13 +258,13 @@ URI : `/service/keyword/popular/dump.xml`
 
 표. 덤프용 인기검색어 파라미터 목록
 
-|Parameter	|설명							|필수|
-|-----------|-----------------------------|---|
-|siteId		|사이트 ID						|O	|
-|categoryId	|카테고리 ID					|X	|
-|from		|시작일자. 형식은 yyyy.MM.dd		|O	|
-|to			|끝일자. 형식은 yyyy.MM.dd		|O	|
-|ln			|가져올 키워드 상위 N개의 갯수.		|O	|
+|Parameter	|설명								|필수	|
+|-----------|-----------------------------------|-------|
+|siteId		|사이트 ID							|O		|
+|categoryId	|카테고리 ID						|X		|
+|from		|시작일자. 형식은 yyyy.MM.dd		|O		|
+|to			|끝일자. 형식은 yyyy.MM.dd			|O		|
+|ln			|가져올 키워드 상위 N개의 갯수.		|O		|
  
 ####2.1.3. 연관검색어
 
@@ -273,9 +273,9 @@ URI : `/service/keyword/relate.xml`
 표 3 연관검색어 파라미터 목록
 
 |Parameter  |설명			|Nullable	|
-|-----------|-------------|-----------|
+|-----------|---------------|-----------|
 |siteId		|사이트 ID		|N			|
-|keyword	|기준 검색어		|N			|
+|keyword	|기준 검색어	|N			|
  
 ##### 샘플요청URL
 
