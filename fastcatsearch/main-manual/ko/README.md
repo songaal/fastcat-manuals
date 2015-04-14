@@ -450,12 +450,9 @@ $ mv -r fastcatsearch-console [설치위치]/
 
 컬렉션별 실시간 검색요청건수를 막대 그래프로 보여준다. 컬렉션별로 각각 다른 색깔로 표현하며 평균 QPS와, 현재 Realtime QPS를 보여준다.
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/382.jpg) : QPS 측정을 시작한다.
-
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/383.jpg) : QPS 측정을 잠시 멈춘다.
-
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/384.jpg) : 측정값을 지운다.
-
+- ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/382.jpg) : QPS 측정을 시작한다.
+- ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/383.jpg) : QPS 측정을 잠시 멈춘다.
+- ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/384.jpg) : 측정값을 지운다.
 - Current Time : 현재시각
 - Time Elapsed : 모니터링이 시작한뒤로 부터 소요된 시간
 - Average QPS : 모니터링이 시작한 뒤로부터 측정된 평균 QPS (초당 요청쿼리건수)
