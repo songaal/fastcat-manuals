@@ -118,7 +118,10 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 </tr>
 </table>
 
-※ 예: `http://localhost:8050/service/keyword/hit/post?type=search&siteId=www&categoryId=cat1&searchService=totalSearch&keyword=12인치 노트북&prev=최신 노트북&resptime=130&category=가전/컴퓨터&page=1&sort=가격순&age=30대&service=통합검색&login=일반&gender=남성`
+##### 예시
+```
+http://localhost:8050/service/keyword/hit/post?type=search&siteId=www&categoryId=cat1&searchService=totalSearch&keyword=12인치 노트북&prev=최신 노트북&resptime=130&category=가전/컴퓨터&page=1&sort=가격순&age=30대&service=통합검색&login=일반&gender=남성
+```
  
 ###1.2. 클릭통계데이터 입력
 
