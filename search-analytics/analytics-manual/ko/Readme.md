@@ -36,15 +36,15 @@
  
 #### 제공기능리스트
 
-|기능|관리도구 데이터조회|HTTP API 제공|
-|----|----------------|-------------|
-|실시간 인기검색어|O|O|
-|연관검색어|O|O|
-|검색횟수 및 응답시간 추이|O||
-|검색어 순위|O|O|
-|검색비율|O||
-|검색유입률|O||
-|클릭유입률|O||
+|기능						|관리도구 데이터조회	|HTTP API 제공	|
+|---------------------------|-----------------------|---------------|
+|실시간 인기검색어			|O						|O				|
+|연관검색어					|O						|O				|
+|검색횟수 및 응답시간 추이	|O						|				|
+|검색어 순위				|O						|O				|
+|검색비율					|O						|				|
+|검색유입률					|O						|				|
+|클릭유입률					|O						|				|
 
 #### 기능상세
 
@@ -133,11 +133,11 @@ Java 1.6이상이 설치된 모든 운영체제에 설치가 가능하다.
 
 ##### 하드웨어사양
 
-|구분|최소사양|권장사양|
-|----|-------|-------|
-|CPU|Pentium 4|Intel Xeon 1.8GHz이상|
-|Memory|2G|4G|
-|Disk|10GB|100GB|
+|구분	|최소사양	|권장사양				|
+|-------|-----------|-----------------------|
+|CPU	|Pentium 4	|Intel Xeon 1.8GHz이상	|
+|Memory	|2G			|4G						|
+|Disk	|10GB		|100GB					|
  
 ###2.2. 소스빌드
 
@@ -145,11 +145,11 @@ Java 1.6이상이 설치된 모든 운영체제에 설치가 가능하다.
 
 ##### 소스빌드 준비환경
 
-|구 분|내 용|
-|-----|-----|
-|Java|JDK 1.6 이상|
-|Maven|Ver 2.0 이상|
-|기타|인터넷 접속 가능환경<br/> Maven 빌드시 의존 라이브러리를 받아올 수 있도록 인터넷 환경 필요|
+|구 분	|내 용																						|
+|-------|-------------------------------------------------------------------------------------------|
+|Java	|JDK 1.6 이상																				|
+|Maven	|Ver 2.0 이상																				|
+|기타	|인터넷 접속 가능환경<br/> Maven 빌드시 의존 라이브러리를 받아올 수 있도록 인터넷 환경 필요	|
  
 ####2.2.2. 다운로드와 빌드
  
@@ -216,10 +216,10 @@ $ mv -r target/analytics-*  <설치위치>/
 
 ##### 포트수정 설정파일
 
-|구분|통신 PORT|설정파일|항목|
-|----|---------|-------|----|
-|API 통신|8050|analytics/conf/system.properties|servicePort=8050|
-|웹관리도구|8081|analytics/conf/system.properties|admin.web.port=8081|
+|구분		|통신 PORT	|설정파일							|항목					|
+|-----------|-----------|-----------------------------------|-----------------------|
+|API 통신	|8050		|analytics/conf/system.properties	|servicePort=8050		|
+|웹관리도구	|8081		|analytics/conf/system.properties	|admin.web.port=8081	|
 
 ```
 ##### 포트오픈시 점검사항
@@ -275,10 +275,10 @@ $ mv -r target/analytics-*  <설치위치>/
 
 기본 아이디 패스워드는 아래와 같다. 패스워드 수정은 "시스템설정관리 > 사용자설정" 항목을 참고한다.
 
-|구분|기본값|
-|----|-----|
-|아이디|admin|
-|패스워드|1111|
+|구분		|기본값	|
+|-----------|-------|
+|아이디		|admin	|
+|패스워드	|1111	|
 
 ##### 로그아웃
 
@@ -347,13 +347,13 @@ $ mv -r target/analytics-*  <설치위치>/
 카테고리선택 : 선택시 해당 카테고리의 검색추이를 볼 수 있으며, 전체선택시 카테고리구분없이 본다.
 기간선택 : 사용자가 원하는 날짜 범위를 선택한다.
 
-|구분|설명|
-|----|----|
-|Hourly| 	시간별 데이터. X축이 1시간을 나타낸다.|
-|Daily| 	일별 데이터. X축이 1일을 나타낸다.|
-|Weekly| 	주별 데이터. X축이 1주를 나타낸다.|
-|Monthly| 	월별 데이터. X축이 1개월을 나타낸다.|
-|Yearly| 	년별 데이터. X축이 1년을 나타낸다.|
+|구분		|설명									|
+|-----------|---------------------------------------|
+|Hourly		|시간별 데이터. X축이 1시간을 나타낸다.	|
+|Daily		|일별 데이터. X축이 1일을 나타낸다.		|
+|Weekly		|주별 데이터. X축이 1주를 나타낸다.		|
+|Monthly	|월별 데이터. X축이 1개월을 나타낸다.	|
+|Yearly		|년별 데이터. X축이 1년을 나타낸다.		|
 
 키워드 : 특정 키워드의 검색추이만 보여준다. 비워놓으면 키워드구분없이 모든 키워드의 데이터를 본다.
 `Download` : 선택한 구간의 검색추이 데이터를 CSV형식의 파일로 내려받는다.
@@ -396,12 +396,12 @@ $ mv -r target/analytics-*  <설치위치>/
 - 카테고리선택 : 선택시 해당 카테고리의 검색추이를 볼 수 있으며, 전체선택시 카테고리구분없이 본다.
 - 기간선택 : 사용자가 원하는 기간을 선택한다. 범위선택은 제공하지 않는다.
  
-|구분|설명|
-|----|----|
-|Daily 		|하루 순위|
-|Weekly 	|주간 순위|
-|Monthly 	|월간 순위|
-|Yearly 	|년간 순위|
+|구분		|설명		|
+|-----------|-----------|
+|Daily 		|하루 순위	|
+|Weekly 	|주간 순위	|
+|Monthly 	|월간 순위	|
+|Yearly 	|년간 순위	|
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/397.jpg)
 
@@ -419,12 +419,12 @@ $ mv -r target/analytics-*  <설치위치>/
 
 기간선택 : 사용자가 원하는 날짜 범위를 선택한다.
 
-|구분|설명|
-|----|----|
-|Daily	 	|일자별 범위의 검색비율을 본다|
-|Weekly 	|주별 범위 검색비율을 본다|
-|Monthly 	|월별 범위 검색비율을 본다|
-|Yearly 	|년별 범위 검색비율을 본다|
+|구분		|설명							|
+|-----------|-------------------------------|
+|Daily	 	|일자별 범위의 검색비율을 본다	|
+|Weekly 	|주별 범위 검색비율을 본다		|
+|Monthly 	|월별 범위 검색비율을 본다		|
+|Yearly 	|년별 범위 검색비율을 본다		|
  
 ##### 데이터 테이블 설명
 
@@ -446,12 +446,12 @@ $ mv -r target/analytics-*  <설치위치>/
 
 기간선택 : 사용자가 원하는 날짜 범위를 선택한다.
 
-|구분|설명|
-|----|----|
-|Daily 		|일별 데이터. X축이 1일을 나타낸다.|
-|Weekly 	|주별 데이터. X축이 1주를 나타낸다.|
-|Monthly 	|월별 데이터. X축이 1개월을 나타낸다.|
-|Yearly 	|년별 데이터. X축이 1년을 나타낸다.|
+|구분		|설명									|
+|-----------|---------------------------------------|
+|Daily 		|일별 데이터. X축이 1일을 나타낸다.		|
+|Weekly 	|주별 데이터. X축이 1주를 나타낸다.		|
+|Monthly 	|월별 데이터. X축이 1개월을 나타낸다.	|
+|Yearly 	|년별 데이터. X축이 1년을 나타낸다.		|
 
 ```
 유입률통계는 카테고리별로 계산하지 않고 사이트 전체로 통계를 내므로 카테고리 선택은 제공하지 않는다.
@@ -675,25 +675,25 @@ Recent Log Using Size에 5로 입력시 이전 30분의 데이터로 실시간 �
 
 전체 시스템에서 사용되는 고급 항목을 설정한다.
 
-|항목|설명|
-|----|----|
-|action-base-package|액션 클래스의 BASE 패키지 명.|
-|admin.web.port|관리도구의 웹서비스 PORT.|
-|db.option|통계저장 DB JDBC URL의 추가옵션|
-|db.password|통계저장 DB 사용자 암호.|
-|db.rankList|검색어 순위통계시 구분할 종류명<br/> all,new,hot,down,empty등으로 컴마구분 나열|
-|db.type|통계저장 DB 타입|
-|db.url|통계저장 DB JDBC URL|
-|db.user|통계저장 DB 사용자 아이디|
-|download.characterEncoding|다운로드 파일 인코딩|
-|download.delimiter|CSV형식의 파일 다운로드시 구분자|
-|download.fileExt|다운로드 파일 확장자|
-|servicePort|서비스 포트번호|
-|statistics.encoding|통계 로그파일 인코딩|
-|statistics.rootId|Root 카테고리 아이디|
-|statistics.runKeySize|중간 통계파일의 Key Size|
-|tcp_receive_buffer_size|네트워크 수신 버퍼 사이즈|
-|tcp_send_buffer_size|네트워크 전송 버퍼 사이즈|
+|항목						|설명																				|
+|---------------------------|-----------------------------------------------------------------------------------|
+|action-base-package		|액션 클래스의 BASE 패키지 명.														|
+|admin.web.port				|관리도구의 웹서비스 PORT.															|
+|db.option					|통계저장 DB JDBC URL의 추가옵션													|
+|db.password				|통계저장 DB 사용자 암호.															|
+|db.rankList				|검색어 순위통계시 구분할 종류명<br/> all,new,hot,down,empty등으로 컴마구분 나열	|
+|db.type					|통계저장 DB 타입																	|
+|db.url						|통계저장 DB JDBC URL																|
+|db.user					|통계저장 DB 사용자 아이디															|
+|download.characterEncoding	|다운로드 파일 인코딩																|
+|download.delimiter			|CSV형식의 파일 다운로드시 구분자													|
+|download.fileExt			|다운로드 파일 확장자																|
+|servicePort				|서비스 포트번호																	|
+|statistics.encoding		|통계 로그파일 인코딩																|
+|statistics.rootId			|Root 카테고리 아이디																|
+|statistics.runKeySize		|중간 통계파일의 Key Size															|
+|tcp_receive_buffer_size	|네트워크 수신 버퍼 사이즈															|
+|tcp_send_buffer_size		|네트워크 전송 버퍼 사이즈															|
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/410.jpg)
  
