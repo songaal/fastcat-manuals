@@ -7,7 +7,7 @@
 
 #### 버전 <= 1.4.2
 ```
-$ analytics/bin/daemon.sh start
+$ analytics/bin/start.sh
 ```
 
 ### 버전 >= 1.4.3
@@ -21,7 +21,7 @@ $ analytics/bin/analytics.sh start
 
 #### 버전 <= 1.4.2
 ```
-$ analytics/bin/daemon.sh stop
+$ analytics/bin/stop.sh
 ```
 
 ### 버전 >= 1.4.3
