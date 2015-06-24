@@ -30,15 +30,16 @@ servicePort=8090
 |---|-------|-------|-------------------------------|
 |1	|cn		|O		|컬렉션명						|
 |2	|fl		|O		|가져올 필드리스트				|
-|3	|se		|		|검색조건						|
+|3	|se		|		|검색조건					|
 |4	|ft		|		|필터조건						|
 |5	|ra		|		|정렬조건						|
 |6	|gr		|		|그룹조건						|
-|7	|sn		|O		|검색결과 시작번호				|
-|8	|ln		|O		|검색결과 갯수					|
-|9	|so		|		|검색옵션						|
-|10	|ht		|		|검색 키워드 하이라이트 태그	|
-|11	|ud		|		|사용자데이터					|
+|7	|gf		|		|그룹필터조건						|
+|8	|sn		|O		|검색결과 시작번호				|
+|9	|ln		|O		|검색결과 갯수					|
+|10	|so		|		|검색옵션						|
+|11	|ht		|		|검색 키워드 하이라이트 태그	|
+|12	|ud		|		|사용자데이터					|
 
 ### 출력 결과 필드
 
@@ -190,7 +191,7 @@ Name: 필터조건, Filter
 
 Format: `field-index-id:filter_type:filter-keyword[;filter-keyword][:boost-score],.. `
 
-Description: 검색조건을 통해 만들어진 결과리스트에 필터를 수행하여 최종검색결과리스가 생성된다.
+Description: 검색조건을 통해 만들어진 결과리스트에 필터를 수행하여 최종검색결과리스트가 생성된다.
 여러 필터조건을 적용할 경우 조건들을 `,` 로 연결한다.
 필터타입은 일반타입과 BOOST 타입으로 나뉘며, BOOST 는 검색된 문서에 BOOST 점수를 더해준다.
 BOOST 필터사용시 점수로 정렬하면 BOOST 된 문서가 결과상위에 출현하게 된다.
@@ -262,11 +263,11 @@ price 필드로 내림차순 정렬후 문서점수가 높은순으로 정렬한
  
 ### gr
 
-Name: 조건, Group
+Name: 그룹조건, Group
 
 Format: `field-index-id:group-function[(parameters)]:sort-type[:count-limit-size]`
 
-Description: 그룹핑은 검색결과와는 별도의 그룹핑결과로 따로 제공한다. 검색조건과 필터조건이 모두 적용된 최종결과리스트에 대해서 group 필드에 대해서 group-function을 수행한다.
+Description: 그룹핑은 검색결과내에 그룹핑결과를 추가로 제공한다. 검색조건과 필터조건이 모두 적용된 최종결과리스트에 대해서 group 필드값에 group-function을 수행한다.
 
 표. group-function
 
@@ -301,6 +302,23 @@ category필드를 그룹핑하여 갯수를 계산한다.
 
     gr=category:COUNT:COUNT_DESC:10
  
+ 
+### gf
+
+Name: 그룹핑 필터조건, GroupFilter
+
+Format: `field-index-id:filter_type:filter-keyword[;filter-keyword][:boost-score],.. `
+
+Description: 필터조건인 ft와 동일한 문법을 제공한다. 일반 필터조건과의 차이점은 gf는 그룹핑 결과생성후에 적용되어, 그룹핑 결과를 제한하지 않는다는 점이다. BOOST 기능은 사용이 가능하지만, gf조건의 목적은 순위변경이 아닌 결과의 제한이므로, BOOST를 사용하고자 하면, ft조건으로 사용하는 것이 바람직하다.
+사용법은 ft와 동일하므로 ft의 설명을 참고한다.
+
+Examples:
+
+아래의 조건을 쿼리에 함께 적용하면, 먼저 category필드로 그룹핑하여 그룹결과를 생성하며, 그후에 카테고리가 shirts인 문서만 필터링하여 검색결과를 생성한다.
+
+	gr=category:COUNT
+    ft=category:MATCH:shirts
+
 ### sn
 
 Name: 검색결과 시작번호, Start Number
