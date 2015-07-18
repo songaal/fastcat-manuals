@@ -217,6 +217,8 @@ Filter Type:
 - `SUFFIX_BOOST` 후방일치시 결과점수 가산
 - `EXCLUDE_BOOST` 완전일치하지 않을시 결과점수 가산
 - `BOOST` 결과점수에 필드값 가산. 단, 필드가 숫자형(Int, Long, Float, Double) 일 경우에만 사용가능.
+- `GEO_RADIUS` 위경도 거리반경. 경도 위도 필드는 Float형이어야 한다. 반경의 단위는 km 이며, 소수점까지 사용가능. 예) 0.3 -> 300m, 1.5 -> 1500m
+- `GEO_RADIUS_BOOST` 위경도 거리반경내 일치시 결과점수 가산
 
 필터타입은 대소문자를 구분하지 않는다.
 
@@ -227,9 +229,16 @@ Examples:
     ft=category:MATCH:shirts
 
 price가 500이상 2000이하인 문서로 필터링한다.
-
-    ft=price:SECTION:500~2000
-
+```
+ft=price:SECTION:500~2000
+```
+```
+ft=price:SECTION:500~2000;10000~20000
+```
+price 값이 500이상 2000미만, 100000이상 200000미만일 경우 점수에 100점을 가산한다.
+```
+ft=price:SECTION_BOOST:500~2000;10000~20000:100
+```
 code가 "A000"으로 시작하는 문서로 필터링한다.
 
     ft=code:PREFIX:A000
@@ -245,6 +254,18 @@ code가 "A100"인 문서는 제외한다.
 popularScore 를 최종결과점수에 대해준다.
 
     ft=popularScore:BOOST
+
+lat과 lon은 float형 필드인덱스이며, 위도 37.513, 경도 127.056를 기준으로 lat와 lon의 값이 500m이 내에 들어오는 문서만 필터링 한다.
+```
+ft=lat,lon:GEO_RADIUS:37.513;127.056;0.5
+```
+
+위와 동일한 조건에 boosting 점수로 10000점을 가산한다.
+```
+ft=lat,lon:GEO_RADIUS_BOOST:37.513;127.056;0.5;10000
+```
+
+
 
 ### ra
 
