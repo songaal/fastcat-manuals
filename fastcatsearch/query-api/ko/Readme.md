@@ -133,13 +133,23 @@ Format: `field-name[:summary-size],..`
 
 Description: 검색후 가져와서 사용할 필드들의 리스트를 전달한다.
 여러필드의 경우 `,` 로 연결하며, `,` 사이에 공백이 없어야 한다.
-필드데이터가 길 경우, 요약길이를 지정하면 해당 길이만큼의 문자열만 리턴된다. 
+필드데이터가 길 경우, 요약길이를 지정하면 해당 길이만큼의 문자열만 리턴된다.
 하이라이팅기능을 사용시 요약본은 검색어가 가장 빈번히 출현된 구간으로 요약된다.
+
+기본적으로 제공되는 내부필드로는 _score가 있으며, 정확도 점수를 확인할 수 있다.
+GEO 필터를 사용했다면 내부필드 _distance에 거리값이 채워진다.
 
 Examples:
 ```
-fl=id,title,body:100,category
+fl=id,title,body:100,category,_score
 ```
+주소와 위도 및 경도가 포함된 데이터의 경우 GEO 필터를 사용하면 _distance필드로 거리차이를 확인할 수 있다.
+```
+fl=address,latitude,longitude,_distance
+```
+
+
+
 ### se
 
 Name: 검색조건, Search Entry
@@ -274,10 +284,21 @@ Name: 정렬조건, Ranking
 Format: `field-index-id[:ASC|DESC],..`
 
 Description: 필드명의 데이터로 정렬을 하며, 다중필드정렬시 `,` 를 사용하여 연결한다.
-문서점수로 정렬시 필드명에 `_SCORE` 를 사용한다.
+문서점수로 정렬시 필드명에 내부필드인 `_SCORE` 를 사용한다.
+GEO 필터를 사용하였다면, `_DISTANCE`라는 내부필드가 생성되며 정렬에 사용이 가능하다.
 정렬옵션에서 `ASC` 는 오름차순으로, `DESC` 는 내림차순으로 정렬하며 생략시 `ASC` 가 디폴트로 사용된다.
 
 Examples:
+
+정확도로 내림차순 정렬한다.
+```
+ra=_score:desc
+```
+
+가까운 거리순으로 정렬한다.(GEO 필터 사용시)
+```
+ra=_distance:asc
+```
 
 price 필드로 오름차순 정렬한다.
 
@@ -290,7 +311,7 @@ price 필드로 내림차순 정렬후 category 필드로 오름차순 정렬한
 price 필드로 내림차순 정렬후 문서점수가 높은순으로 정렬한다.
 
     ra=price:desc,_SCORE:desc
- 
+
 ### gr
 
 Name: 그룹조건, Group
