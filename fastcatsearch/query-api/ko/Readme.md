@@ -265,14 +265,14 @@ popularScore 를 최종결과점수에 대해준다.
 
     ft=popularScore:BOOST
 
-lat과 lon은 float형 필드인덱스이며, 위도 37.513, 경도 127.056를 기준으로 lat와 lon의 값이 500m이 내에 들어오는 문서만 필터링 한다.
+lat과 lon은 float형 필드인덱스이며, 위도 37.513, 경도 127.056를 기준으로 lat와 lon의 값이 500m이 내에 들어오는 문서만 필터링 한다. lat와 lon의 구분자가 세미콜론임에 유의한다.
 ```
-ft=lat,lon:GEO_RADIUS:37.513;127.056;0.5
+ft=lat;lon:GEO_RADIUS:37.513;127.056;0.5
 ```
 
 위와 동일한 조건에 boosting 점수로 10000점을 가산한다.
 ```
-ft=lat,lon:GEO_RADIUS_BOOST:37.513;127.056;0.5;10000
+ft=lat;lon:GEO_RADIUS_BOOST:37.513;127.056;0.5;10000
 ```
 
 
