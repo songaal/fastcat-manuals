@@ -154,13 +154,14 @@ fl=address,latitude,longitude,_distance
 
 Name: 검색조건, Search Entry
 
-Format: `{search-index-id,[search-index-id2,..]:[ALL|ANY](search-keyword)[:score:option]}[AND|OR|NOT{another-search-entry}]`
+Format: `{search-index-id,[search-index-id2,..]:[ALL|ANY](search-keyword)[~adjoin-level][:score:option]}[AND|OR|NOT{another-search-entry}]`
 
 Description: 검색엔진에서 설정한 검색필드에 대해 검색조건을 적용한다.
 검색어는 (형태소)분리된 단어가 모두 출현하는 문서를 검색시 `ALL` 을 사용하며, 하나라도 출현하는 문서를 검색시 `ANY` 를 사용한다.
 검색조건은 `AND` `OR` `NOT` 으로 연결할 수 있으며, 연결시 `{ }` 의 중괄호를 이용하여 감싸주어 선후관계를 명시해야 한다.
 검색필드를 여러개 사용시 `,` 로 연결하며, `,` 사이에 공백이 없어야 한다.
 검색조건에 가중치를 지정할 경우 문서별 검색결과점수는 `가중치 x 출현빈도` 이다. 조건이 여러개일 경우 결과점수를 모두 더한 값이 최종점수가 된다.
+인접검색을 사용할 시에는 `(search-keyword)` 옆에 `~인접단계`을 입력해야 하며, 검색조건에 들어가는 필드가 Search Indexes의 Store Position에 체크가 되어 이어야 하며 `ALL`을 사용해야만 인접검색이 적용된다. 인접단계는 검색어 분석 시 분석된 단어들이 인접해 있는 정도를 뜻하며, 예를 들어 첫 번째 단어와 두 번째 단어의 인접단계는 1로 볼 수 있다.
 
 Score:
 
@@ -179,12 +180,10 @@ Options:
 	문서에서 검색어 발견시 쿼리에서 설정한 태그로 감싸준다. 태그설정은 ht 쿼리항목으로 전달한다.
 - `8` 결과요약
 	키워드가 가장 빈번히 발견된 문서의 일부를 발췌하여 요약길이로 잘라준다.
-- `16` 인접검색
-	띄어쓰기로 구분된 인접된 여러 개의 단어로 검색 시 인접한 상태의 결과값만을 검색한다. (ALL 옵션에서만 사용 가능)
 
 옵션을 지정하지 않을 경우 디폴트로 `유사어확장 + 금지어적용` 이 사용되며, 숫자는 3이 된다.
 
-모든 옵션을 사용한다면 숫자는 31이 된다.
+모든 옵션을 사용한다면 숫자는 15가 된다.
 
 여러 옵션을 적용할 시 해당 옵션의 숫자값을 더하여 사용한다.
 
@@ -206,13 +205,13 @@ title 에서 "핸드폰"과 "필름" 이 모두 출현하는 문서를 찾는다
 
     se={title:ALL(핸드폰 필름):100:15}OR{body:ALL(핸드폰 필름):50:15}OR{author:ALL(홍길동):10}
 
-인접검색만을 사용하여 검색어 "search engine"으로 이루어진 검색결과만을 얻고자 한다. 인접검색기능은 ALL을 사용해야 한다. ~ 뒤의 숫자가 양수일 경우 띄어쓰기로 구분된 단어들이 올바른 순서대로 있어야만 검색 결과가 나온다.
+인접검색을 사용하여 검색어 "핸드폰 필름"을 검색한다. 인접검색기능은 ALL을 사용해야 한다. ~ 뒤의 숫자가 양수일 경우 분석된 단어들이 올바른 순서대로 있어야만 검색 결과가 나온다. 검색 결과 중 "핸드폰"과 "필름"이 인접하지 않은 결과는 나오지 않는다.
 
-	se={title:ALL(search engine)~1:10:16}
+	se={title:ALL(핸드폰 필름)~1}
 
-인접검색을 포함한 옵션을 사용하여 "search fast engine"을 검색한다. ~ 뒤의 숫자가 음수이므로 단어 순서에 관계없이 "fast", "search", "engine"가 포함되며, 각 단어가 단어가 2 이하로 인접하여 있는 검색 결과가 출력된다. 예를 들어 "fast cat solution search engine" 같은 검색결과는 인접검색 적용 시 fast가 0번째, search가 3번째가 되어 fast와 search의 인접 단계가 3이 되므로 검색이 되지 않지만 "fast solution search engine" 같은 결과는 fast가 0번째, search가 2번째가 되어 인접 단계가 2가 되므로 검색 결과에 나오게 된다.
+인접검색을 사용하여 "search fast engine"을 검색한다. ~ 뒤의 숫자가 음수이므로 단어 순서에 관계없이 "fast", "search", "engine"가 포함되며, 각 단어가 단어가 2 이하로 인접하여 있는 검색 결과가 출력된다. 예를 들어 "fast cat solution search engine" 같은 검색결과는 인접검색 적용 시 fast가 0번째, search가 3번째가 되어 fast와 search의 인접 단계가 3이 되므로 검색이 되지 않지만 "fast solution search engine" 같은 결과는 fast가 0번째, search가 2번째가 되어 인접 단계가 2가 되므로 검색 결과에 나오게 된다.
 
-	se={title:ALL(search fast engine)~-2:10:31}
+	se={title:ALL(search fast engine)~-2}
 
 ### ft
 
