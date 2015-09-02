@@ -34,7 +34,7 @@
 `예상소요시간 1h`
 
 #### 참조매뉴얼
-- [로그분석기 통합매뉴얼 > 2.로그분석기 설치](http://www.fastcat.co/document.html?c=search-analytics&d=search-analytics_main_ko)
+- [로그분석기 통합매뉴얼 > 2.로그분석기 설치](http://www.fastcat.co/document.html?c=search-analytics&d=search-analytics_main_ko#user-content-2-로그분석기-설치)
 
 1. 포트설정 및 구동
 2. 사이트 및 카테고리 설정
