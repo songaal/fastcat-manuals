@@ -8,7 +8,7 @@
 `예상소요시간 1h`
 
 #### 참조 매뉴얼
-- [fastcatsearch 설치매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_install_ko)
+- [fastcatsearch 설치매뉴얼](http://www.fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_install_ko)
 
 #### 검색엔진설치 및 구동
 
@@ -34,7 +34,7 @@
 `예상소요시간 1h`
 
 #### 참조매뉴얼
-- [로그분석기 통합매뉴얼 > 2.로그분석기 설치](http://fastcat.co/document.html?c=search-analytics&d=search-analytics_main_ko)
+- [로그분석기 통합매뉴얼 > 2.로그분석기 설치](http://www.fastcat.co/document.html?c=search-analytics&d=search-analytics_main_ko)
 
 1. 포트설정 및 구동
 2. 사이트 및 카테고리 설정
@@ -46,7 +46,7 @@
 
 `예상소요시간 1h`
 #### 참조 매뉴얼
-- [fastcatsearch 통합매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
+- [fastcatsearch 통합매뉴얼](http://www.fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_main_ko)
 
 1. 문서 컬렉션 구성
 2. 색인 및 데이터확인
@@ -58,8 +58,8 @@
 `예상소요시간 30m`
 
 #### 참조 매뉴얼
-- [쿼리API](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_query_ko)
-- [로그분석기 API 매뉴얼](http://fastcat.co/document.html?c=search-analytics&d=search-analytics_api_ko)
+- [쿼리API](http://www.fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_query_ko)
+- [로그분석기 API 매뉴얼](http://www.fastcat.co/document.html?c=search-analytics&d=search-analytics_api_ko)
 
 
 #### 검색엔진API
@@ -77,8 +77,8 @@
 
 `예상소요시간 1h`
 #### 참조매뉴얼
-- [JSP개발가이드](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_dev_jsp_ko)
-- [PHP개발가이드](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_dev_php_ko)
+- [JSP개발가이드](http://www.fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_dev_jsp_ko)
+- [PHP개발가이드](http://www.fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_dev_php_ko)
 1. 검색기능
 2. 인기검색어 기능
 3. 연관검색어 기능
@@ -91,7 +91,7 @@
 #### 참조매뉴얼
 - 없음
 
-1. fastcatsearch.jar 를 이용한 eclipse project 구성.
+1. fastcatsearch.jar 를 이용한 intellij project 구성.
 2. 소스모디파이어 개발
 3. 소스모디파이어를 통한 색인테스트
 
@@ -101,7 +101,7 @@
 
 `예상소요시간 30m`
 #### 참조매뉴얼
-- [fastcatsearch 운영 매뉴얼](http://fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_op_ko)
+- [fastcatsearch 운영 매뉴얼](http://www.fastcat.co/document.html?c=fastcatsearch&d=fastcatsearch_op_ko)
 
 1. 운영상태 확인
 2. 중단 및 주의사항

@@ -337,16 +337,16 @@ $ mv -r fastcatsearch-console [설치위치]/
 
 ##### 스크립트
 
-- Linux : 시작 스크립트는 `bin/start.sh` 이며,  `bin/daemon.sh start` 로 실행해도 동일하다. 
+- Linux : 시작 스크립트는 `bin/fastcatsearch start` 이며,  종료 시에는 `bin/fastcatsearch stop` 으로 종료한다.
 실행시 log파일이 자동으로 `tail` 을 사용해서 뿌려진다.
 로그를 그만보고자 하면 `ctrl^c`를 누르면 되며, 검색엔진은 background로 계속 실행된다.
-- Windows : `bin/start.cmd` 파일을 더블 클릭하여 실행한다.
+- Windows : `bin/fastcatsearch.bat` 파일을 더블 클릭하여 실행한다. 종료는 cmd 창을 닫으면 된다.
  
 ##### 메모리설정
 
-- Linux : `bin/daemon.sh` 에서는 다음과 같이 jvm 등의 메모리 설정을 할 수 있다.
+- Linux : `bin/environment.sh` 에서는 다음과 같이 jvm 등의 메모리 설정을 할 수 있다.
 `HEAP_MEMORY_SIZE=4g`
-- Windows :  `bin/start.cmd` 파일에서 수정가능하다.
+- Windows :  `bin/environment.bat` 파일에서 수정가능하다.
 `java -Xmx4g ... `
  
 ##### 프로세스확인
@@ -370,7 +370,7 @@ $ mv -r fastcatsearch-console [설치위치]/
 
 ##### 프로세스확인
 
-- Linux : `ps -ef|grep java | grep start.jar`
+- Linux : `ps -ef | grep java | grep start.jar`
 - Windows : 작업관리자 또는 프로세스가 실행된 cmd 창을 확인한다.
 
 ##### 로그확인
