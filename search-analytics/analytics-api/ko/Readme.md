@@ -74,6 +74,13 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 		<td>millisecond 단위로 전달</td>
 </tr>
 <tr>
+        <td>검색결과</td>
+		<td>resultCount</td>
+		<td>검색결과 개수</td>
+		<td>10</td>
+		<td>검색 결과의 수를 입력한다.<br>(결과가 없을 시에는 0)</td>
+</tr>
+<tr>
 	<td rowspan=7>비율통계</td>
 		<td>category</td>
 		<td>타입별 분류 입력</td>
@@ -120,7 +127,7 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 
 ##### 예시
 ```
-http://localhost:8050/service/keyword/hit/post?type=search&siteId=www&categoryId=cat1&searchService=totalSearch&keyword=12인치 노트북&prev=최신 노트북&resptime=130&category=가전/컴퓨터&page=1&sort=가격순&age=30대&service=통합검색&login=일반&gender=남성
+http://localhost:8050/service/keyword/hit/post?type=search&siteId=www&categoryId=cat1&searchService=totalSearch&resultCount=15&keyword=12인치 노트북&prev=최신 노트북&resptime=130&category=가전/컴퓨터&page=1&sort=가격순&age=30대&service=통합검색&login=일반&gender=남성
 ```
  
 ###1.2. 클릭통계데이터 입력
