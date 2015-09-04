@@ -55,7 +55,7 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 		<td>totalSearch</td>
 		<td> 검색이 유입된 서비스명.<br/>  Attibute설정에 입력해둔 서비스ID를 사용한다. </td></tr>
 <tr>
-	<td rowspan=3>검색횟수통계<br/>  인기키워드<br/>  연관키워드</td>
+	<td rowspan=4>검색횟수통계<br/>  인기키워드<br/>  연관키워드</td>
 		<td>keyword</td>
 		<td>입력된 키워드</td>
 		<td>12인치 노트북</td>
@@ -74,7 +74,6 @@ URL : `http://[서버 IP]:[서버 PORT]/service/keyword/hit/post`
 		<td>millisecond 단위로 전달</td>
 </tr>
 <tr>
-        <td>검색결과</td>
 		<td>resultCount</td>
 		<td>검색결과 개수</td>
 		<td>10</td>
