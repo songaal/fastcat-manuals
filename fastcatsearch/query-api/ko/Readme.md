@@ -469,7 +469,6 @@ category 필드로 묶은 뒤 카테고리 별로 동일한 값을 가진 결과
 
 	bd=item:20:1;name:asc,_score:desc
 
-
 ### ud
 
 Name: 사용자데이터, User Data
