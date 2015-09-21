@@ -9,20 +9,18 @@
 4. 색인스케쥴 on/off 설정
 5. 색인스케쥴 on/off 확인
 
----
 
 검색엔진 ServicePort는 기본적으로 8090 이나, 설치시 변경하였을 경우 `conf/id.properties` 파일에서 확인할수 있다.
 ```
 servicePort=8090
 ```
----
 
 전체색인실행
 ---------
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/full.json?=collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/full.json?collectionId=[Collection ID]
 
 #### Param
 
@@ -55,7 +53,7 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/add.json?=collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/add.json?collectionId=[Collection ID]
 
 #### Param
 
@@ -88,7 +86,7 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/status.json?=collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/status.json?collectionId=[Collection ID]
 
 #### Param
 
@@ -139,7 +137,7 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule?=collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule?collectionId=[Collection ID]
 
 #### Param
 
@@ -173,7 +171,7 @@ true이면 컬렉션의 스케쥴이 On 상태이며, false이면 Off상태임�
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule?=collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule?collectionId=[Collection ID]
 
 #### Param
 
