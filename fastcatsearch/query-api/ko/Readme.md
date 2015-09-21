@@ -442,7 +442,34 @@ B 태그로 검색어를 감싸주어 bold 처리한다.
 css에 text-red라는 class를 정의하여 사용한 경우 설정.
 
     ht=<span class='text-red'>:</span>
- 
+
+### bd
+
+Name: 검색결과 묶음, Bundle
+
+Format: `field-index-id:COUNT:main-including-option;other-field-index-id[:ASC|DESC],.. `
+
+Description: 검색 결과 중 선택한 field-index에 중복되는 값이 존재하는 경우 중복 값들을 번들 배열로 묶어 출력한다.
+번들 옵션을 적용하기 위해서는 해당 필드를 필드 인덱스로 설정해야 한다.
+번들 배열의 길이는 `_biundleSize`로 별도로 제공한다.
+`main-including-option`의 값은 번들 배열에 대표를 포함할 지에 대한 여부를 묻는 옵션으로서, 포함 시 1, 미포함 시 0이다. 해당 값을 생략시 Default는 1로서 번들 배열에 포함된다.
+번들 필드는 하나만 선택이 가능하다. 하나의 검색 쿼리에 다중 번들을 적용할 수 없다.
+
+Examples:
+
+category 필드로 묶은 뒤 하위 묶음 상품을 최대 10개까지 가져온다. 해당 쿼리는 대표 포함 옵션을 준 `bd=category:10:1`과 동일하다.
+
+    bd=category:10
+
+category 필드로 묶은 뒤 카테고리 별로 동일한 값을 가진 결과값끼리 번들 배열로 묶는다. 다만 각 대표값은 번들 배열에는 대표값이 포함되지 않고 출력된다. 번들 배열 사이즈 `_biundleSize` 또한 대표값을 제외한 나머지 배열의 크기로 나온다.
+
+	bd=category:10:0
+
+검색 결과를 item 필드로 묶고 결과값을 보낸다. 단, 번들 배열 내부의 값은 name 오름차순, 정확도 내림차순하여 정렬한다.
+
+	bd=item:20:1;name:asc,_score:desc
+
+
 ### ud
 
 Name: 사용자데이터, User Data
