@@ -20,7 +20,7 @@ servicePort=8090
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/full.json?collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/full.json
 
 #### Param
 
@@ -35,8 +35,6 @@ servicePort=8090
     Request
     POST http://localhost:8090/service/indexing/full.json
     PARAM : collectionId=test
-
-    http://localhost:8090/service/indexing/full.json?collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 전체색인 요청을 보낼 때, 다음과 같이 status가 0이 나오면 작업등록이 정상적으로 이루어진다.
 
@@ -53,7 +51,7 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/add.json?collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/add.json
 
 #### Param
 
@@ -68,8 +66,6 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
     Request
     POST http://localhost:8090/service/indexing/add.json
     PARAM : collectionId=test
-
-    http://localhost:8090/service/indexing/add.json?collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 증분색인 요청을 보낼 때, 다음과 같이 status가 0이 나오면 작업등록이 정상적으로 이루어진다.
 
@@ -137,7 +133,7 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule?collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule
 
 #### Param
 
@@ -154,8 +150,6 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
     Request
     POST localhost:8090/service/indexing/schedule
     PARAM : collectionId=test&type=add&flag=on
-
-    http://localhost:8090/service/indexing/schedule?collectionId=mycollection&type=add&flag=on
 
 위의 주소와 같이 mycollection 컬렉션에 색인스케쥴 요청을 보내면 다음과 같은 응답이 온다.
 
