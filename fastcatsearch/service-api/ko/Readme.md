@@ -34,13 +34,13 @@ servicePort=8090
 
     Request
     POST http://localhost:8090/service/indexing/full.json
-    PARAM : collectionId=test
+    PARAM : collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 전체색인 요청을 보낼 때, 다음과 같이 status가 0이 나오면 작업등록이 정상적으로 이루어진다.
 
 	Response :
     {
-      "collectionId": "test",
+      "collectionId": "mycollection",
       "status": "0"
     }
 
@@ -65,13 +65,13 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
     Request
     POST http://localhost:8090/service/indexing/add.json
-    PARAM : collectionId=test
+    PARAM : collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 증분색인 요청을 보낼 때, 다음과 같이 status가 0이 나오면 작업등록이 정상적으로 이루어진다.
 
 	Response :
     {
-      "collectionId": "test",
+      "collectionId": "mycollection",
       "status": "0"
     }
 
@@ -104,7 +104,7 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
     Response :
     {
       "indexingState": {
-        "collectionId": "test",
+        "collectionId": "mycollection",
         "indexingType": "FULL",
         "isScheduled": false,
         "state": "RUNNING",
@@ -133,7 +133,7 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule.json
 
 #### Param
 
@@ -148,14 +148,14 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 #### Example:
 
     Request
-    POST localhost:8090/service/indexing/schedule
-    PARAM : collectionId=test&type=add&flag=on
+    POST localhost:8090/service/indexing/schedule.json
+    PARAM : collectionId=mycollection&type=add&flag=on
 
 위의 주소와 같이 mycollection 컬렉션에 색인스케쥴 요청을 보내면 다음과 같은 응답이 온다.
 
     Response
     {
-        "test" : true
+        "mycollection" : true
     }
 
 true이면 컬렉션의 스케쥴이 On 상태이며, false이면 Off상태임을 나타낸다.
@@ -179,10 +179,10 @@ true이면 컬렉션의 스케쥴이 On 상태이며, false이면 Off상태임�
 #### Example:
 
     Request
-    GET localhost:8090/service/indexing/schedule
-    PARAM : collectionId=test&type=full
+    GET localhost:8090/service/indexing/schedule.json?collectionId=mycollection&type=full
+    PARAM : collectionId=mycollection&type=full
 
-    http://localhost:8090/service/indexing/schedule?collectionId=mycollection&type=full
+    http://localhost:8090/service/indexing/schedule.json?collectionId=mycollection&type=full
 
 위의 주소와 같이 mycollection 컬렉션에 색인스케쥴 확인 요청을 보내면 다음과 같은 응답이 온다.
 
