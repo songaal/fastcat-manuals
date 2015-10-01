@@ -59,10 +59,12 @@ drwxr-xr-x   5 swsong  staff   170  3  7 10:37 service
 
 ```bash
 $ cd bin
-$ sh start.sh
+$ ./fastcatsearch start
+++++++++++ Fastcatsearch Environment ++++++++++
+server_home = /home/jhjeon/fastcat/fastcatsearch-2.22.1
 ################################
-Start server PID = 11227
-java -Dserver.home=/Users/swsong/TEST_HOME/teset/fastcatsearch-2.14.3 -Xms512m -Xmx512m -XX:+HeapDumpOnOutOfMemoryError -server -Dfile.encoding=UTF-8 -Dlogback.configurationFile=/Users/swsong/TEST_HOME/teset/fastcatsearch-2.14.3/conf/logback.xml -Dderby.stream.error.file=logs/db.log  -classpath /Users/swsong/TEST_HOME/teset/fastcatsearch-2.14.3/lib/fastcatsearch-server-bootstrap.jar org.fastcatsearch.server.Bootstrap start > /Users/swsong/TEST_HOME/teset/fastcatsearch-2.14.3/logs/output.log 2>&1 &
+Start server PID = 30901
+java -Dserver.home=/home/jhjeon/fastcat/fastcatsearch-2.22.1 -Xms4096m -Xmx4096m -XX:+HeapDumpOnOutOfMemoryError -server -Dfile.encoding=UTF-8 -Dlogback.configurationFile=/home/jhjeon/fastcat/fastcatsearch-2.22.1/conf/logback.xml -Dderby.stream.error.file=/home/jhjeon/fastcat/fastcatsearch-2.22.1/logs/db.log  -classpath /home/jhjeon/fastcat/fastcatsearch-2.22.1/lib/fastcatsearch-server-bootstrap.jar org.fastcatsearch.server.Bootstrap start > /home/jhjeon/fastcat/fastcatsearch-2.22.1/logs/output.log 2>&1 &
 ################################
 
 ... 중략 ...
@@ -70,28 +72,30 @@ java -Dserver.home=/Users/swsong/TEST_HOME/teset/fastcatsearch-2.14.3 -Xms512m -
 [2014-03-07 11:01:13,335 INFO] (CatServer.java:231) CatServer started!
 ```
 
-위의 예에서는 검색엔진이 PID 11227 로 실행되었으며, 마지막 라인에서 `CatServer started!` 라는 검색엔진이 시작되었음을 알리는 로그를 볼 수 있다.
+위의 예에서는 검색엔진이 PID 30901 로 실행되었으며, 마지막 라인에서 `CatServer started!` 라는 검색엔진이 시작되었음을 알리는 로그를 볼 수 있다.
 
 로그는 tail을 사용하여 보여주므로 `CTRL-C` 를 입력하여 tail을 빠져나올 수 있다.
 언제라도 로그를 다시 보고 싶으면 `tail -f logs/system.log` 를 사용하여 확인가능하다.
- 
+
 ### 관리도구 접속
 
 관리도구는 다음 장에서 설치 및 접속하는 방법을 적어놓았다.
 현재 설치한 검색엔진의 IP와 PORT를 기억한뒤, 차후 관리도구에서 접속시 사용하도록 한다.
- 
+
 ### 검색엔진 종료
 
 `bin/stop.sh` 스크립트를 실행한다.
 
 ```bash
 $ cd bin
-$ sh stop.sh
+$ ./fastcatsearch stop
+++++++++++ Fastcatsearch Environment ++++++++++
+server_home = /home/jhjeon/fastcat/fastcatsearch-2.22.1
 ################################
-Stop Daemon PID = 11227
-  PID TTY           TIME CMD
-11227 ttys004    0:06.26 /usr/bin/java -Dserver.home=/Users/swsong/TEST_HOME/teset/fastcatsearch-2.14.3 -Xms512m -Xmx512m -XX:+He
-kill 11227
+Stop Daemon PID = 30901
+  PID TTY          TIME CMD
+30901 pts/6    00:00:07 java
+kill 30901
 ################################
 
 .. 중략 ..
@@ -101,7 +105,7 @@ kill 11227
 
 Server Shutdown Complete! 메시지가 보이면 검색엔진 종료가 완료된것이다.
 tail 로그를 빠져나가기위해 `CTRL-C` 를 입력하여 프롬프트로 빠져나온다.
- 
+
 3. 검색엔진 구동 (Windows)
 ------------------------
 
