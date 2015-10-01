@@ -52,10 +52,10 @@ drwxr-xr-x  38 swsong  staff  1292  3  7 10:37 lib
 drwxr-xr-x   3 swsong  staff   102  3  7 10:37 plugin
 drwxr-xr-x   5 swsong  staff   170  3  7 10:37 service
 ```
- 
+
 ### 시작스크립트 실행
 
-`bin/start.sh` 스크립트를 실행한다.
+`bin/fastcatsearch start` 스크립트를 실행한다.
 
 ```bash
 $ cd bin
@@ -84,7 +84,7 @@ java -Dserver.home=/home/jhjeon/fastcat/fastcatsearch-2.22.1 -Xms4096m -Xmx4096m
 
 ### 검색엔진 종료
 
-`bin/stop.sh` 스크립트를 실행한다.
+`bin/fastcatsearch stop` 스크립트를 실행한다.
 
 ```bash
 $ cd bin
@@ -127,7 +127,7 @@ C:\app\fastcatsearch-2.14.3>dir
 2014-03-07  오전 11:15    <DIR>          plugin
 2014-03-07  오전 11:15    <DIR>          service
 ```
- 
+
 시작스크립트 실행
 
 `bin/fastcatsearch.bat` 스크립트를 실행한다.
@@ -139,17 +139,17 @@ fastcatsearch start. see log at logs/system.log
 
 cmd 창에는 fastcatsearch 를 시작했으며, `logs/system.log` 파일을 확인하라는 메시지가 보인다. 
 텍스트편집기 또는 mtail 과 같은 tail 전용 프로그램을 이용해 로그파일을 열어보면 마지막 라인에서 `CatServer started!` 라는 검색엔진이 시작되었음을 알리는 로그를 볼 수 있다.
- 
+
 ### 관리도구 접속
 
 관리도구는 다음 장에서 설치 및 접속하는 방법을 적어놓았다.
 현재 설치한 검색엔진의 IP와 PORT를 기억한뒤, 차후 관리도구에서 접속시 사용하도록 한다.
- 
+
 ### 검색엔진 종료
 
 단순히 cmd 창에서 CTRL-C 를 입력하여 프로세스를 종료한다.
 검색엔진 종료시 로그에서 Server Shutdown Complete! 메시지가 보이면 검색엔진 종료가 완료된것이다.
- 
+
 4. 관리도구 설치
 --------------
 
@@ -159,7 +159,7 @@ cmd 창에는 fastcatsearch 를 시작했으며, `logs/system.log` 파일을 확
 디렉토리구조는 아래와 같다. `fastcatsearch-console-버전` 디렉토리 이하참조.
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/install-manual/ko/img/225.jpg)
- 
+
 ### 서비스 포트준비
 
 기본적으로 8080 포트를 사용하며 포트를 변경하고자 한다면 `etc/jetty.xml` 중 Port항목을 변경한다.
@@ -223,7 +223,7 @@ $ tail -f logs/server.log
 .. 중략 ..
 2014-03-07 11:39:47.407:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:8080
 ```
- 
+
 ### 관리도구 접속
 
 웹브라우저를 이용하여 http://localhost:8080/console 에 접속한다.
