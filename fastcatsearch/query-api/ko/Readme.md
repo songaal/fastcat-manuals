@@ -325,15 +325,21 @@ price 필드로 내림차순 정렬후 문서점수가 높은순으로 정렬한
 
 Name: 그룹조건, Group
 
-Format: `field-index-id:group-function[(parameters)]:sort-type[:count-limit-size]`
+Format: `field-index-id:[group-function[(field-index)];..]:sort-type[:count-limit-size]`
 
 Description: 그룹핑은 검색결과내에 그룹핑결과를 추가로 제공한다. 검색조건과 필터조건이 모두 적용된 최종결과리스트에 대해서 group 필드값에 group-function을 수행한다.
+group-function 중 count를 제외하고는 모두 소문자로만 작성해야 한다. group-function의 경우 다중으로 사용이 가능하다. count를 제외한 나머지 기능은 인자값으로 필드 인덱스 1개를 요구한다.
 
 표. group-function
 
 |Function Name	|Parameter	|Description			|
 |---------------|-----------|-----------------------|
-|COUNT			|  			|그룹갯수를 반환한다	|
+|count			|없음		   |그룹갯수를 반환한다		|
+|first			|Field-Index|그룹 내 첫번째 문서의 Field 값	|
+|last 			|Field-Index|그룹 내 마지막 문서의 Field 값	|
+|max			|Field-Index|그룹 내 Field 중 가장 큰 값	|
+|min 			|Field-Index|그룹 내 Field 중 가장 작은 값	|
+|sum			|Field-Index|그룹 내 Field 값들을 모두 더한 값	|
 
 표. sort-type
 
@@ -344,15 +350,19 @@ Description: 그룹핑은 검색결과내에 그룹핑결과를 추가로 제공
 |COUNT_ASC 		|그룹별 갯수로 오름차순 정렬한다.	|
 |COUNT_DESC 	|그룹별 갯수로 내림차순 정렬한다.	|
 
-count-limit-size: 
+count-limit-size:
 
 그룹핑 결과가 너무 길경우 상단 count-limit-size개만 사용할 때 사용한다. 사용하지 않을 경우 옵션을 주지 않는다.
- 
+
 Examples:
 
 category필드를 그룹핑하여 갯수를 계산한다.
 
     gr=category:COUNT
+
+category 필드를 그룹핑하여 category로 묶인 그룹별로 model 필드의 첫 번째 값을 출력한다.
+
+	gr=category:first(model)
 
 그룹핑 결과를 그룹별 결과갯수로 내림차순 정렬한다.
 
@@ -361,8 +371,12 @@ category필드를 그룹핑하여 갯수를 계산한다.
 그룹핑 결과가 너무 많을땐 상위 10개만 사용한다.
 
     gr=category:COUNT:COUNT_DESC:10
- 
- 
+
+그룹핑 결과를 amount 필드의 최대값, 최소값, 그리고 갯수가 나오도록 하며 내림차순으로 5개를 사용한다.
+
+	gr=category:max(amount);min(amount);COUNT:DESC:5
+
+
 ### gf
 
 Name: 그룹핑 필터조건, GroupFilter
