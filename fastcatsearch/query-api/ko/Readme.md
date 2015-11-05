@@ -372,9 +372,9 @@ category 필드를 그룹핑하여 category로 묶인 그룹별로 model 필드�
 
     gr=category:COUNT:COUNT_DESC:10
 
-그룹핑 결과를 amount 필드의 최대값, 최소값, 그리고 갯수가 나오도록 하며 내림차순으로 5개를 사용한다.
+그룹핑 결과를 amount 필드의 최대값, 최소값, 그리고 갯수가 나오도록 하며 결과갯수 내림차순으로 5개를 사용한다.
 
-	gr=category:max(amount);min(amount);COUNT:DESC:5
+	gr=category:max(amount);min(amount);COUNT_DESC:5
 
 
 ### gf
