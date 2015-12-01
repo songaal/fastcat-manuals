@@ -631,7 +631,7 @@ openstack endpoint create \
 ```
 #### To install the Networking components
 ```ruby
-# apt-get install neutron-server neutron-plugin-ml2 python-neutronclient
+apt-get install neutron-server neutron-plugin-ml2 python-neutronclient
 ```
 
 #### To configure the Networking server component
