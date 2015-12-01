@@ -584,7 +584,7 @@ service nova-consoleauth restart
 service nova-scheduler restart
 service nova-conductor restart
 service nova-novncproxy restart
-# rm -f /var/lib/nova/nova.sqlite
+rm -f /var/lib/nova/nova.sqlite
 ```
 
 #### 여기서 compute node 쪽을 설치하고 온다.
