@@ -2,10 +2,20 @@
 
 #### To configure networking:
 
+**/etc/network/interfaces**
 ```
-Host : 10.0.0.1
-Mask : 255.255.255.0
-Default gateway: 10.0.0.1
+# Management
+auto eth0
+iface eth0 inet static
+address 10.0.1.11
+netmask 255.255.255.0
+gateway 10.0.1.1
+
+# Storage
+auto eth1
+iface eth1 inet static
+address 10.0.3.11
+netmask 255.255.255.0
 ```
 
 ```ruby
@@ -16,16 +26,16 @@ reboot
 
 ```
 # controller
-10.0.0.11       controller
+10.0.1.11       controller
 
 # network
-10.0.0.21       network
+10.0.1.21       network
 
 # compute1
-10.0.0.31       compute1
+10.0.1.31       compute1
 
 # block1
-10.0.0.41       block1
+10.0.1.41       block1
 ```
 
 #### Verify connectivity
