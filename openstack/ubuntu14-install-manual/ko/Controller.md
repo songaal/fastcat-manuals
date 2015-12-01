@@ -419,7 +419,7 @@ connection = mysql://glance:glancedbpass@controller/glance
 
 [keystone_authtoken]
 #Comment out or remove any other options in the [keystone_authtoken]section.
-auth_uri = http://controller:5000
+auth_uri = http://controller:5000/v2.0
 auth_url = http://controller:35357
 auth_plugin = password
 project_domain_id = default
@@ -451,7 +451,7 @@ connection = mysql://glance:glancedbpass@controller/glance
 
 [keystone_authtoken]
 #Comment out or remove any other options in the [keystone_authtoken]section.
-auth_uri = http://controller:5000
+auth_uri = http://controller:5000/v2.0
 auth_url = http://controller:35357
 auth_plugin = password
 project_domain_id = default
@@ -542,6 +542,8 @@ apt-get install nova-api nova-cert nova-conductor nova-consoleauth nova-novncpro
 ```
 
 **/etc/nova/nova.conf**
+> `auth_uri` 설정이 매뉴얼에는 `auth_uri = http://controller:5000`로 되어있지만, 접속이 자주 끊기는 현상이 자주발생하므로 `v2.0` 을 붙여서 `auth_uri = http://controller:5000/v2.0` 와 같이 버전을 명시하도록 한다.
+
 ```
 [database]
 ...
@@ -564,7 +566,7 @@ rabbit_password = rabbitpass
 
 [keystone_authtoken]
 #Comment out or remove any other options in the [keystone_authtoken]section.
-auth_uri = http://controller:5000
+auth_uri = http://controller:5000/v2.0
 auth_url = http://controller:35357
 auth_plugin = password
 project_domain_id = default
@@ -674,7 +676,7 @@ rabbit_password = rabbitpass
 
 [keystone_authtoken]
 #Comment out or remove any other options in the [keystone_authtoken]section.
-auth_uri = http://controller:5000
+auth_uri = http://controller:5000/v2.0
 auth_url = http://controller:35357
 auth_plugin = password
 project_domain_id = default
