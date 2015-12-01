@@ -1,7 +1,5 @@
 # Openstack Network Node
 
-# Openstack Controller Node
-
 #### To configure networking:
 
 **/etc/network/interfaces**
