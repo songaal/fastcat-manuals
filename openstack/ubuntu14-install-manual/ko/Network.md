@@ -248,7 +248,7 @@ username = neutron
 password = neutronpass
 
 nova_metadata_ip = controller
-metadata_proxy_shared_secret = METADATA_SECRET
+metadata_proxy_shared_secret = c8c6fd0b91a39cf2024e
 
 verbose = True
 ```

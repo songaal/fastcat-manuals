@@ -772,7 +772,7 @@ neutron ext-list
 [neutron]
 ...
 service_metadata_proxy = True
-metadata_proxy_shared_secret = METADATA_SECRET
+metadata_proxy_shared_secret = c8c6fd0b91a39cf2024e
 ```
 ```ruby
 service nova-api restart
