@@ -60,7 +60,7 @@ apt-get install ntp
 **/etc/ntp.conf**
 
 ```
-server NTP_SERVER iburst
+server time.bora.net iburst
 restrict -4 default kod notrap nomodify
 restrict -6 default kod notrap nomodify
 ```
