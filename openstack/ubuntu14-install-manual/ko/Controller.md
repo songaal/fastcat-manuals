@@ -773,7 +773,7 @@ service_metadata_proxy = True
 metadata_proxy_shared_secret = METADATA_SECRET
 ```
 ```ruby
-# service nova-api restart
+service nova-api restart
 ```
 
 #### 다시 Network 노드 설정으로 복귀한다.
@@ -996,7 +996,7 @@ OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
 TIME_ZONE = "Asia/Seoul"
 ```
 ```ruby
-# service apache2 reload
+service apache2 reload
 ```
 
 Try access http://controller/horizon
