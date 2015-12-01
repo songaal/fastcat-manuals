@@ -714,10 +714,11 @@ tunnel_id_ranges = 1:1000
 enable_security_group = True
 enable_ipset = True
 firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+```
 
-To configure Compute to use Networking
-/etc/nova/nova.conf
-
+#### To configure Compute to use Networking
+**/etc/nova/nova.conf**
+```
 [DEFAULT]
 ...
 network_api_class = nova.network.neutronv2.api.API
