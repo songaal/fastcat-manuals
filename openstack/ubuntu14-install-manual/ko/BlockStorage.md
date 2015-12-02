@@ -14,7 +14,7 @@ gateway 10.0.1.1
 # Storage
 auto eth1
 iface eth1 inet static
-address 10.0.2.41
+address 10.0.3.41
 netmask 255.255.255.0
 ```
 

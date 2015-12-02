@@ -10,12 +10,6 @@ iface eth0 inet static
 address 10.0.1.11
 netmask 255.255.255.0
 gateway 10.0.1.1
-
-# Storage
-auto eth1
-iface eth1 inet static
-address 10.0.3.11
-netmask 255.255.255.0
 ```
 
 ```ruby
@@ -118,7 +112,7 @@ apt-get install mariadb-server python-mysqldb
 
 ```
 [mysqld]
-bind-address = CONTROLLER_NODE_MANAGEMENT_IP
+bind-address = %CONTROLLER_NODE_MANAGEMENT_IP%
 
 [mysqld]
 default-storage-engine = innodb
@@ -131,9 +125,9 @@ character-set-server = utf8
 ```ruby
 service mysql restart
 
-Secure the database service:  >>> 묻는 것에는 모두 Y로.
-
 mysql_secure_installation
+
+Secure the database service:  >>> 묻는 것에는 모두 Y로.
 ```
 
 ## Message queue
