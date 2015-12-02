@@ -16,6 +16,12 @@ auto eth1
 iface eth1 inet static
 address 10.0.2.31
 netmask 255.255.255.0
+
+# Storage
+auto eth1
+iface eth1 inet static
+address 10.0.3.31
+netmask 255.255.255.0
 ```
 
 ```ruby
