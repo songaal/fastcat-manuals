@@ -118,11 +118,9 @@ apt-get install mariadb-server python-mysqldb
 
 ```
 [mysqld]
-...
 bind-address = CONTROLLER_NODE_MANAGEMENT_IP
 
 [mysqld]
-...
 default-storage-engine = innodb
 innodb_file_per_table
 collation-server = utf8_general_ci
@@ -171,25 +169,20 @@ apt-get install keystone python-openstackclient apache2 libapache2-mod-wsgi memc
 ***/etc/keystone/keystone.conf***
 ```
 [DEFAULT]
-...
 verbose = True
 admin_token = ab1670a916b0ef3ed39b
 
 [database]
-...
 connection = mysql://keystone:keystonedbpass@controller/keystone
 
 [memcache]
-...
 servers = localhost:11211
 
 [token]
-...
 provider = keystone.token.providers.uuid.Provider
 driver = keystone.token.persistence.backends.memcache.Token
 
 [revoke]
-...
 driver = keystone.contrib.revoke.backends.sql.Revoke
 ```
 
@@ -413,8 +406,11 @@ apt-get install glance python-glanceclient
 **/etc/glance/glance-api.conf**
 
 ```
+[DEFAULT]
+notification_driver = noop
+verbose = True
+
 [database]
-...
 connection = mysql://glance:glancedbpass@controller/glance
 
 [keystone_authtoken]
@@ -429,24 +425,20 @@ username = glance
 password = glancepass
 
 [paste_deploy]
-...
 flavor = keystone
 
 [glance_store]
-...
 default_store = file
 filesystem_store_datadir = /var/lib/glance/images/
-
-[DEFAULT]
-...
-notification_driver = noop
-verbose = True
 ```
 
 **/etc/glance/glance-registry.conf**
 ```
+[DEFAULT]
+notification_driver = noop
+verbose = True
+
 [database]
-...
 connection = mysql://glance:glancedbpass@controller/glance
 
 [keystone_authtoken]
@@ -461,14 +453,7 @@ username = glance
 password = glancepass
 
 [paste_deploy]
-...
 flavor = keystone
-
-[DEFAULT]
-...
-notification_driver = noop
-verbose = True
-
 ```
 
 ```ruby
@@ -546,20 +531,17 @@ apt-get install nova-api nova-cert nova-conductor nova-consoleauth nova-novncpro
 
 ```
 [database]
-...
 connection = mysql://nova:novadbpass@controller/nova
 
 [DEFAULT]
-...
 rpc_backend = rabbit
 auth_strategy = keystone
-my_ip = 10.0.0.11 # Controller management IP
-vncserver_listen = 10.0.0.11 # Controller management IP
-vncserver_proxyclient_address = 10.0.0.11 # Controller management IP
+my_ip = %CONTROLLER_NODE_MANAGEMENT_IP%
+vncserver_listen = %CONTROLLER_NODE_MANAGEMENT_IP%
+vncserver_proxyclient_address = %CONTROLLER_NODE_MANAGEMENT_IP%
 verbose = True
 
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -576,11 +558,9 @@ username = nova
 password = novapass
 
 [glance]
-...
 host = controller
 
 [oslo_concurrency]
-...
 lock_path = /var/lib/nova/tmp
 ```
 
@@ -652,12 +632,7 @@ apt-get install neutron-server neutron-plugin-ml2 python-neutronclient
 **/etc/neutron/neutron.conf**
 
 ```
-[database]
-...
-connection = mysql://neutron:neutrondbpass@controller/neutron
-
 [DEFAULT]
-…
 verbose = True
 rpc_backend = rabbit
 auth_strategy = keystone
@@ -668,8 +643,10 @@ notify_nova_on_port_status_changes = True
 notify_nova_on_port_data_changes = True
 nova_url = http://controller:8774/v2
 
+[database]
+connection = mysql://neutron:neutrondbpass@controller/neutron
+
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -686,7 +663,6 @@ username = neutron
 password = neutronpass
 
 [nova]
-...
 auth_url = http://controller:35357
 auth_plugin = password
 project_domain_id = default
@@ -702,17 +678,14 @@ password = novapass
 **/etc/neutron/plugins/ml2/ml2_conf.ini**
 ```
 [ml2]
-...
 type_drivers = flat,vlan,gre,vxlan
 tenant_network_types = gre
 mechanism_drivers = openvswitch
 
 [ml2_type_gre]
-...
 tunnel_id_ranges = 1:1000
 
 [securitygroup]
-...
 enable_security_group = True
 enable_ipset = True
 firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
@@ -722,14 +695,12 @@ firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewal
 **/etc/nova/nova.conf**
 ```
 [DEFAULT]
-...
 network_api_class = nova.network.neutronv2.api.API
 security_group_api = neutron
 linuxnet_interface_driver = nova.network.linux_net.LinuxOVSInterfaceDriver
 firewall_driver = nova.virt.firewall.NoopFirewallDriver
 
 [neutron]
-...
 url = http://controller:9696
 auth_strategy = keystone
 admin_auth_url = http://controller:35357/v2.0
@@ -770,7 +741,6 @@ neutron ext-list
 
 ```
 [neutron]
-...
 service_metadata_proxy = True
 metadata_proxy_shared_secret = c8c6fd0b91a39cf2024e
 ```
@@ -1049,25 +1019,22 @@ openstack endpoint create \
 #### To install and configure Block Storage controller components
 
 ```ruby
-# apt-get install cinder-api cinder-scheduler python-cinderclient
+apt-get install cinder-api cinder-scheduler python-cinderclient
 ```
 
 **/etc/cinder/cinder.conf**
 
 ```
 [DEFAULT]
-...
 verbose = True
 rpc_backend = rabbit
-my_ip = management interface IP address of the controller node <10.0.0.11>
+my_ip = %CONTROLLER_NODE_MANAGEMENT_IP%
 auth_strategy = keystone
 
 [database]
-...
 connection = mysql://cinder:cinderdbpass@controller/cinder
 
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -1084,7 +1051,6 @@ username = cinder
 password = cinderpass
 
 [oslo_concurrency]
-...
 lock_path = /var/lock/cinder
 
 ```

@@ -135,7 +135,6 @@ apt-get install neutron-plugin-ml2 neutron-plugin-openvswitch-agent neutron-l3-a
 # comment any connection options
 
 [DEFAULT]
-...
 verbose = True
 rpc_backend = rabbit
 auth_strategy = keystone
@@ -144,7 +143,6 @@ service_plugins = router
 allow_overlapping_ips = True
 
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -168,32 +166,28 @@ password = neutronpass
 
 ```
 [ml2]
-...
 type_drivers = flat,vlan,gre,vxlan
 tenant_network_types = gre
 mechanism_drivers = openvswitch
 
 [ml2_type_flat]
-...
+# 외부 네트워크가 여러개면 그 이름을 컴마단위로 나열한다. ex)ex1,ex2,ex3
 flat_networks = external
 
 [ml2_type_gre]
-...
 tunnel_id_ranges = 1:1000
 
 [securitygroup]
-...
 enable_security_group = True
 enable_ipset = True
 firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
 
 [ovs]
-...
 local_ip = %MY_TUNNELS_INTERFACE_IP_ADDRESS%
+# 외부 네트워크가 여러개면 그 매핑을 컴마단위로 나열한다. ex) ext2:br-ex2,ext3:br-ex3
 bridge_mappings = external:br-ex
 
 [agent]
-...
 tunnel_types = gre
 ```
 
@@ -201,7 +195,6 @@ tunnel_types = gre
 
 ```
 [DEFAULT]
-...
 verbose = True
 interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver
 external_network_bridge =
@@ -213,7 +206,6 @@ router_delete_namespaces = True
 
 ```
 [DEFAULT]
-...
 verbose = True
 interface_driver = neutron.agent.linux.interface.OVSInterfaceDriver
 dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq
@@ -236,7 +228,6 @@ pkill dnsmasq
 
 ```
 [DEFAULT]
-...
 auth_uri = http://controller:5000
 auth_url = http://controller:35357
 auth_region = RegionOne
@@ -256,6 +247,9 @@ verbose = True
 #### 이제 여기서 controller 노드로 넘어가서 “Network 노드를 설정한뒤에 해야할일"을 수행하고 온다.
 
 #### To configure the Open vSwitch (OVS) service
+
+* 위의 `ml2_conf.ini`에서 만든 `bridge_mappings`의 브릿지를 실제로 생성해준다. ex) br-ex,ex1,ex2..
+* `EXTERNAL_NETWORK_INTERFACE_NAME` 은 외부연결용 이더넷카드 이름이다. /etc/network/interfaces 에서 설정한 이름을 사용한다. ex) eth0, eth1, p4p1
 
 ```ruby
 service openvswitch-switch restart

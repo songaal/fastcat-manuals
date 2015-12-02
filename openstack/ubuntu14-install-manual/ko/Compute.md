@@ -112,7 +112,6 @@ apt-get install nova-compute sysfsutils
 
 ```
 [DEFAULT]
-...
 rpc_backend = rabbit
 auth_strategy = keystone
 my_ip = 10.0.0.31 #Compute node MANAGEMENT_IP_ADDRESS
@@ -123,7 +122,6 @@ novncproxy_base_url = http://#CONTROLLER_NODE_MANAGEMENT_IP_ADDRESS:6080/vnc_aut
 verbose = True
 
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -140,11 +138,9 @@ username = nova
 password = novapass
 
 [glance]
-...
 host = controller
 
 [oslo_concurrency]
-...
 lock_path = /var/lib/nova/tmp
 ```
 
@@ -160,8 +156,7 @@ $ egrep -c '(vmx|svm)' /proc/cpuinfo
 **/etc/nova/nova-compute.conf**
 ```
 [libvirt]
-...
-virt_type = qemu
+virt_type = kvm
 ```
 
 ```ruby
@@ -199,7 +194,6 @@ apt-get install neutron-plugin-ml2 neutron-plugin-openvswitch-agent
 # comment any connection options
 
 [DEFAULT]
-...
 verbose = True
 rpc_backend = rabbit
 auth_strategy = keystone
@@ -208,7 +202,6 @@ service_plugins = router
 allow_overlapping_ips = True
 
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -231,32 +224,22 @@ password = neutronpass
 
 ```
 [ml2]
-...
 type_drivers = flat,vlan,gre,vxlan
 tenant_network_types = gre
 mechanism_drivers = openvswitch
 
-[ml2_type_flat]
-...
-#flat_networks = external ##컴퓨트 노드에서는 수정하지 않는다.
-
 [ml2_type_gre]
-...
 tunnel_id_ranges = 1:1000
 
 [securitygroup]
-...
 enable_security_group = True
 enable_ipset = True
 firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
 
 [ovs]
-...
 local_ip = MY_INSTANCE_TUNNELS_INTERFACE_IP_ADDRESS
-#bridge_mappings = external:br-ex ##컴퓨트 노드에서는 수정하지 않는다.
 
 [agent]
-...
 tunnel_types = gre
 ```
 
@@ -271,14 +254,12 @@ service openvswitch-switch restart
 **/etc/nova/nova.conf**
 ```
 [DEFAULT]
-...
 network_api_class = nova.network.neutronv2.api.API
 security_group_api = neutron
 linuxnet_interface_driver = nova.network.linux_net.LinuxOVSInterfaceDriver
 firewall_driver = nova.virt.firewall.NoopFirewallDriver
 
 [neutron]
-...
 url = http://controller:9696
 auth_strategy = keystone
 admin_auth_url = http://controller:35357/v2.0

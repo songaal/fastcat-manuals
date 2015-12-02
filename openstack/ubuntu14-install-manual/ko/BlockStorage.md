@@ -116,7 +116,7 @@ vgcreate cinder-volumes /dev/sdb1
 **/etc/lvm/lvm.conf**
 ```
 devices {
-...
+
 filter = [ "a/sdb/", "r/.*/"]
 ```
 
@@ -127,16 +127,18 @@ apt-get install cinder-volume python-mysqldb
 
 **/etc/cinder/cinder.conf**
 ```
+[DEFAULT]
+rpc_backend = rabbit
+auth_strategy = keystone
+my_ip = MY_MANAGEMENT_INTERFACE_IP_ADDRESS
+enabled_backends = lvm
+glance_host = controller
+verbose = True
+
 [database]
-...
 connection = mysql://cinder:cinderdbpass@controller/cinder
 
-[DEFAULT]
-...
-rpc_backend = rabbit
-
 [oslo_messaging_rabbit]
-...
 rabbit_host = controller
 rabbit_userid = openstack
 rabbit_password = rabbitpass
@@ -152,23 +154,13 @@ project_name = service
 username = cinder
 password = cinderpass
 
-[DEFAULT]
-...
-auth_strategy = keystone
-my_ip = MY_MANAGEMENT_INTERFACE_IP_ADDRESS
-enabled_backends = lvm
-glance_host = controller
-verbose = True
-
 [lvm]
-...
 volume_driver = cinder.volume.drivers.lvm.LVMVolumeDriver
 volume_group = cinder-volumes
 iscsi_protocol = iscsi
 iscsi_helper = tgtadm
 
 [oslo_concurrency]
-...
 lock_path = /var/lock/cinder
 ```
 
