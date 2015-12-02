@@ -189,7 +189,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewal
 
 [ovs]
 ...
-local_ip = #Network Node INSTANCE_TUNNELS_INTERFACE_IP_ADDRESS
+local_ip = %MY_TUNNELS_INTERFACE_IP_ADDRESS%
 bridge_mappings = external:br-ex
 
 [agent]
