@@ -479,6 +479,10 @@ glance image-create --name "cirros-0.3.4-x86_64" --file /tmp/images/cirros-0.3.4
 - Image CLI : http://docs.openstack.org/cli-reference/content/glanceclient_commands.html#glanceclient_subcommand_image-create
 - More official images : http://docs.openstack.org/image-guide/obtain-images.html#official-ubuntu-images
 
+> ubuntu14에서 부팅이 느릴때 해결법 
+> /etc/cloud/cloud.cfg.d/90_dpkg.cfg
+> datasource_list: [ OpenStack ]
+
 ```ruby
 $ glance image-list
 ```
