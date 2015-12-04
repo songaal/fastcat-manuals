@@ -227,3 +227,22 @@ chown -R swift:swift /srv/node
 mkdir -p /var/cache/swift
 chown -R swift:swift /var/cache/swift
 ```
+
+
+## Telemetry Service (Ceilometer)
+
+#### Configure the Block Storage service
+
+**/etc/cinder/cinder.conf**
+```
+[DEFAULT]
+control_exchange = cinder
+notification_driver = messagingv2
+```
+
+```ruby
+# service cinder-volume restart
+```
+
+
+

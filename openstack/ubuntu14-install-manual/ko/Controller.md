@@ -966,7 +966,7 @@ OPENSTACK_KEYSTONE_DEFAULT_ROLE = "user"
 TIME_ZONE = "Asia/Seoul"
 ```
 ```ruby
-service apache2 reload
+# service apache2 reload
 ```
 
 Try access http://controller/horizon
@@ -1017,7 +1017,7 @@ openstack endpoint create \
 #### To install and configure Block Storage controller components
 
 ```ruby
-apt-get install cinder-api cinder-scheduler python-cinderclient
+# apt-get install cinder-api cinder-scheduler python-cinderclient
 ```
 
 **/etc/cinder/cinder.conf**
@@ -1054,6 +1054,7 @@ lock_path = /var/lock/cinder
 ```
 
 ```ruby
+#
 su -s /bin/sh -c "cinder-manage db sync" cinder
 
 service cinder-scheduler restart
@@ -1268,9 +1269,10 @@ default = yes
 
 **On all nodes**
 ```ruby
-# chown -R swift:swift /etc/swift
-# service memcached restart
-# service swift-proxy restart
+#
+chown -R swift:swift /etc/swift
+service memcached restart
+service swift-proxy restart
 ```
 **On the storage nodes**
 ```ruby
@@ -1310,6 +1312,7 @@ openstack user create --password-prompt heat
 User Password: heatpass
 ```
 ```ruby
+$
 openstack role add --project service --user heat admin
 
 openstack role create heat_stack_owner
@@ -1442,12 +1445,12 @@ heat stack-list
 ```
 
 
-## Telemetry Node
+## Telemetry Service (Ceilometer)
 
 #### To configure prerequisites
 
 ```ruby
-apt-get install mongodb-server mongodb-clients python-pymongo
+# apt-get install mongodb-server mongodb-clients python-pymongo
 ```
 
 **/etc/mongodb.conf**
@@ -1457,9 +1460,10 @@ smallfiles = true
 ```
 
 ```ruby
-# service mongodb stop
-# rm /var/lib/mongodb/journal/prealloc.*
-# service mongodb start
+#
+service mongodb stop
+rm /var/lib/mongodb/journal/prealloc.*
+service mongodb start
 ```
 
 ```ruby
@@ -1591,13 +1595,16 @@ ceilometer meter-list
 ```
 만약 meter-list에 아무것도 출력되지 않는다면, 아래 명령을 실행한다.
 
-```
+```ruby
+$
 unset OS_PROJECT_DOMAIN_ID
 unset OS_USER_DOMAIN_ID
 export OS_AUTH_URL=http://controller:35357/v2.0
 ```
 
 또는 ceilometer-admin-openrc.sh 을 아래와 같이 생성한다.
+
+**ceilometer-admin-openrc.sh**
 ```
 unset OS_PROJECT_DOMAIN_ID
 unset OS_USER_DOMAIN_ID
@@ -1614,6 +1621,7 @@ export OS_VOLUME_API_VERSION=2
 
 
 ```ruby
+$
 IMAGE_ID=$(glance image-list | grep 'cirros-0.3.4-x86_64' | awk '{ print $2 }')
 
 glance image-download $IMAGE_ID > /tmp/cirros.img
@@ -1624,7 +1632,7 @@ ceilometer statistics -m image.download -p 60
 ```
 
 ```ruby
-rm /tmp/cirros.img
+$ rm /tmp/cirros.img
 ```
 
 

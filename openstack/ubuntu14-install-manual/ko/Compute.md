@@ -281,7 +281,7 @@ service nova-compute restart
 service neutron-plugin-openvswitch-agent restart
 ```
 
-## Openstack Telemetry Node
+## Telemetry Service (Ceilometer)
 
 ```ruby
 # apt-get install ceilometer-agent-compute
