@@ -479,7 +479,7 @@ glance image-create --name "cirros-0.3.4-x86_64" --file /tmp/images/cirros-0.3.4
 - Image CLI : http://docs.openstack.org/cli-reference/content/glanceclient_commands.html#glanceclient_subcommand_image-create
 - More official images : http://docs.openstack.org/image-guide/obtain-images.html#official-ubuntu-images
 
-> ubuntu14에서 부팅이 느릴때 해결법 
+> ubuntu14에서 부팅이 느릴때 해결법
 > /etc/cloud/cloud.cfg.d/90_dpkg.cfg
 > datasource_list: [ OpenStack ]
 
@@ -502,7 +502,7 @@ GRANT ALL PRIVILEGES ON nova.* TO 'nova'@'%' IDENTIFIED BY 'novadbpass';
 ```
 
 ```ruby
-$ 
+$
 source admin-openrc.sh
 openstack user create --password-prompt nova
 ```
@@ -1086,3 +1086,459 @@ cinder create --name demo-volume1 1
 
 cinder list
 ```
+
+## Object Storage(Swift)
+
+#### To configure prerequisites
+```ruby
+$
+source admin-openrc.sh
+
+openstack user create --password-prompt swift
+User Password:swiftpass
+```
+```ruby
+$
+openstack role add --project service --user swift admin
+
+openstack service create --name swift --description "OpenStack Object Storage" object-store
+
+openstack endpoint create \
+  --publicurl 'http://controller:8080/v1/AUTH_%(tenant_id)s' \
+  --internalurl 'http://controller:8080/v1/AUTH_%(tenant_id)s' \
+  --adminurl http://controller:8080 \
+  --region RegionOne \
+  object-store
+```
+
+#### To install and configure the controller node components
+```ruby
+# apt-get install swift swift-proxy python-swiftclient python-keystoneclient python-keystonemiddleware memcached
+```
+```ruby
+#
+mkdir /etc/swift
+
+curl -o /etc/swift/proxy-server.conf https://git.openstack.org/cgit/openstack/swift/plain/etc/proxy-server.conf-sample?h=stable/kilo
+```
+**/etc/swift/proxy-server.conf**
+```
+[DEFAULT]
+bind_port = 8080
+user = swift
+swift_dir = /etc/swift
+
+[pipeline:main]
+pipeline = catch_errors gatekeeper healthcheck proxy-logging cache container_sync bulk ratelimit authtoken keystoneauth container-quotas account-quotas slo dlo proxy-logging proxy-server
+
+[app:proxy-server]
+account_autocreate = true
+
+[filter:keystoneauth]
+use = egg:swift#keystoneauth
+operator_roles = admin,user
+
+[filter:authtoken]
+#Comment out or remove any other options in the [filter:authtoken] section.
+paste.filter_factory = keystonemiddleware.auth_token:filter_factory
+auth_uri = http://controller:5000
+auth_url = http://controller:35357
+auth_plugin = password
+project_domain_id = default
+user_domain_id = default
+project_name = service
+username = swift
+password = swiftpass
+delay_auth_decision = true
+
+[filter:cache]
+memcache_servers = 127.0.0.1:11211
+```
+#### 이제 각 스토리지 노드를 설치하고 온다.
+
+### Account ring
+```ruby
+# cd /etc/swift
+```
+
+**account.builder (New File)**
+```ruby
+#
+swift-ring-builder account.builder create 10 3 1
+swift-ring-builder account.builder add r1z1-%STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS%:6002/DEVICE_NAME DEVICE_WEIGHT
+예)
+swift-ring-builder account.builder add r1z1-10.0.0.51:6002/sdb1 100
+Device d0r1z1-10.0.0.51:6002R10.0.0.51:6002/sdb1_"" with 100.0 weight got id 0
+
+swift-ring-builder account.builder add r1z2-10.0.0.51:6002/sdc1 100
+Device d1r1z2-10.0.0.51:6002R10.0.0.51:6002/sdc1_"" with 100.0 weight got id 1
+
+swift-ring-builder account.builder add r1z3-10.0.0.52:6002/sdb1 100
+Device d2r1z3-10.0.0.52:6002R10.0.0.52:6002/sdb1_"" with 100.0 weight got id 2
+
+swift-ring-builder account.builder add r1z4-10.0.0.52:6002/sdc1 100
+Device d3r1z4-10.0.0.52:6002R10.0.0.52:6002/sdc1_"" with 100.0 weight got id 3
+```
+
+```ruby
+#
+swift-ring-builder account.builder
+swift-ring-builder account.builder rebalance
+```
+
+
+### Container ring
+```ruby
+# cd /etc/swift
+```
+**container.builder (New File)**
+```ruby
+swift-ring-builder container.builder create 10 3 1
+swift-ring-builder container.builder add r1z1-%STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS%:6001/DEVICE_NAME DEVICE_WEIGHT
+예)
+swift-ring-builder container.builder add r1z1-10.0.0.51:6001/sdb1 100
+Device d0r1z1-10.0.0.51:6001R10.0.0.51:6001/sdb1_"" with 100.0 weight got id 0
+
+swift-ring-builder container.builder add r1z2-10.0.0.51:6001/sdc1 100
+Device d1r1z2-10.0.0.51:6001R10.0.0.51:6001/sdc1_"" with 100.0 weight got id 1
+
+swift-ring-builder container.builder add r1z3-10.0.0.52:6001/sdb1 100
+Device d2r1z3-10.0.0.52:6001R10.0.0.52:6001/sdb1_"" with 100.0 weight got id 2
+
+swift-ring-builder container.builder add r1z4-10.0.0.52:6001/sdc1 100
+Device d3r1z4-10.0.0.52:6001R10.0.0.52:6001/sdc1_"" with 100.0 weight got id 3
+```
+
+```ruby
+#
+swift-ring-builder container.builder
+swift-ring-builder container.builder rebalance
+```
+
+### Object ring
+```ruby
+# cd /etc/swift
+```
+**container.builder (New File)**
+```ruby
+#
+swift-ring-builder object.builder create 10 3 1
+swift-ring-builder object.builder add r1z1-%STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS%:6000/DEVICE_NAME DEVICE_WEIGHT
+예)
+swift-ring-builder object.builder add r1z1-10.0.0.51:6000/sdb1 100
+Device d0r1z1-10.0.0.51:6000R10.0.0.51:6000/sdb1_"" with 100.0 weight got id 0
+
+swift-ring-builder object.builder add r1z2-10.0.0.51:6000/sdc1 100
+Device d1r1z2-10.0.0.51:6000R10.0.0.51:6000/sdc1_"" with 100.0 weight got id 1
+
+swift-ring-builder object.builder add r1z3-10.0.0.52:6000/sdb1 100
+Device d2r1z3-10.0.0.52:6000R10.0.0.52:6000/sdb1_"" with 100.0 weight got id 2
+
+swift-ring-builder object.builder add r1z4-10.0.0.52:6000/sdc1 100
+Device d3r1z4-10.0.0.52:6000R10.0.0.52:6000/sdc1_"" with 100.0 weight got id 3
+```
+```ruby
+#
+swift-ring-builder object.builder
+swift-ring-builder object.builder rebalance
+```
+
+### Distribute ring configuration files
+**Copy the account.ring.gz, container.ring.gz, and object.ring.gz files to the /etc/swift directory on each storage node**
+
+
+### Finalize installation
+
+#### Configure hashes and default storage policy
+```ruby
+# curl -o /etc/swift/swift.conf https://git.openstack.org/cgit/openstack/swift/plain/etc/swift.conf-sample?h=stable/kilo
+```
+**/etc/swift/swift.conf**
+```
+[swift-hash]
+swift_hash_path_suffix = HASH_PATH_SUFFIX
+swift_hash_path_prefix = HASH_PATH_PREFIX
+
+[storage-policy:0]
+name = Policy-0
+default = yes
+```
+
+**Copy the swift.conf file to the /etc/swift directory on each storage node**
+
+**On all nodes**
+```ruby
+# chown -R swift:swift /etc/swift
+# service memcached restart
+# service swift-proxy restart
+```
+**On the storage nodes**
+```ruby
+# swift-init all start
+```
+
+>The storage node runs many Object Storage services and the swift-init command makes them easier to manage. You can ignore errors from services not running on the storage node.
+
+#### Verify operation
+```ruby
+$
+source demo-openrc.sh
+swift -V 3 stat
+# Replace FILE with the name of a local file to upload to the demo-container1 container.
+swift -V 3 upload demo-container1 FILE
+```
+```ruby
+$ swift -V 3 list
+swift -V 3 download demo-container1 FILE
+```
+
+
+
+
+## Orchestration module (Heat)
+
+```ruby
+$ mysql -u root -p
+CREATE DATABASE heat;
+GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'localhost' IDENTIFIED BY 'heatdbpass';
+GRANT ALL PRIVILEGES ON heat.* TO 'heat'@'%' IDENTIFIED BY 'heatdbpass';
+```
+```ruby
+$
+source admin-openrc.sh
+openstack user create --password-prompt heat
+User Password: heatpass
+```
+```ruby
+openstack role add --project service --user heat admin
+
+openstack role create heat_stack_owner
+
+openstack role add --project demo --user demo heat_stack_owner
+
+openstack role create heat_stack_user
+```
+>You must add the heat_stack_owner role to users that manage stacks.
+
+```ruby
+$
+openstack service create --name heat --description "Orchestration" orchestration
+
+openstack service create --name heat-cfn --description "Orchestration"  cloudformation
+
+openstack endpoint create \
+  --publicurl http://controller:8004/v1/%\(tenant_id\)s \
+  --internalurl http://controller:8004/v1/%\(tenant_id\)s \
+  --adminurl http://controller:8004/v1/%\(tenant_id\)s \
+  --region RegionOne \
+  orchestration
+
+  openstack endpoint create \
+    --publicurl http://controller:8000/v1 \
+    --internalurl http://controller:8000/v1 \
+    --adminurl http://controller:8000/v1 \
+    --region RegionOne \
+    cloudformation
+```
+
+#### To install and configure the Orchestration components
+
+```ruby
+# apt-get install heat-api heat-api-cfn heat-engine python-heatclient
+```
+
+**/etc/heat/heat.conf**
+```
+[DEFAULT]
+verbose = True
+rpc_backend = rabbit
+heat_metadata_server_url = http://controller:8000
+heat_waitcondition_server_url = http://controller:8000/v1/waitcondition
+stack_domain_admin = heat_domain_admin
+stack_domain_admin_password = heatdomainpass
+stack_user_domain_name = heat_user_domain
+
+[oslo_messaging_rabbit]
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = rabbitpass
+
+[database]
+connection = mysql://heat:heatdbpass@controller/heat
+
+[keystone_authtoken]
+#Comment out any auth_host, auth_port, and auth_protocol
+auth_uri = http://controller:5000/v2.0
+identity_uri = http://controller:35357
+admin_tenant_name = service
+admin_user = heat
+admin_password = heatpass
+
+[ec2authtoken]
+auth_uri = http://controller:5000/v2.0
+```
+
+```ruby
+$
+source admin-openrc.sh
+heat-keystone-setup-domain \
+  --stack-user-domain-name heat_user_domain \
+  --stack-domain-admin heat_domain_admin \
+  --stack-domain-admin-password heatdomainpass
+```
+
+```ruby
+# su -s /bin/sh -c "heat-manage db_sync" heat
+```
+
+#### To finalize installation
+```ruby
+#
+service heat-api restart
+service heat-api-cfn restart
+service heat-engine restart
+rm -f /var/lib/heat/heat.sqlite
+```
+#### Verify operation
+```ruby
+$ source admin-openrc.sh
+```
+- Template Guide : http://docs.openstack.org/developer/heat/template_guide/index.html
+
+**test-stack.yml**
+```
+heat_template_version: 2014-10-16
+description: A simple server.
+
+parameters:
+  ImageID:
+    type: string
+    description: Image use to boot a server
+  NetID:
+    type: string
+    description: Network ID for the server
+
+resources:
+  server:
+    type: OS::Nova::Server
+    properties:
+      image: { get_param: ImageID }
+      flavor: m1.tiny
+      networks:
+      - network: { get_param: NetID }
+
+outputs:
+  private_ip:
+    description: IP address of the server in the private network
+    value: { get_attr: [ server, first_address ] }
+```
+```ruby
+$
+NET_ID=$(nova net-list | awk '/ demo-net / { print $2 }')
+
+heat stack-create -f test-stack.yml -P "ImageID=cirros-0.3.4-x86_64;NetID=$NET_ID" testStack
+
+heat stack-list
+```
+
+
+## Telemetry Node
+
+#### To configure prerequisites
+
+```ruby
+apt-get install mongodb-server mongodb-clients python-pymongo
+```
+
+**/etc/mongodb.conf**
+```
+bind_ip = %MANAGEMENT_NODE_IP_ADDRESS%
+smallfiles = true
+```
+
+```ruby
+# service mongodb stop
+# rm /var/lib/mongodb/journal/prealloc.*
+# service mongodb start
+```
+
+```ruby
+# mongo --host controller --eval '
+  db = db.getSiblingDB("ceilometer");
+  db.addUser({user: "ceilometer",
+  pwd: "ceilometerdbpass",
+  roles: [ "readWrite", "dbAdmin" ]})'
+```
+
+```ruby
+$
+source admin-openrc.sh
+
+openstack user create --password-prompt ceilometer
+User Password: ceilometerpass
+```
+```ruby
+$
+openstack role add --project service --user ceilometer admin
+
+openstack service create --name ceilometer --description "Telemetry" metering
+
+openstack endpoint create \
+  --publicurl http://controller:8777 \
+  --internalurl http://controller:8777 \
+  --adminurl http://controller:8777 \
+  --region RegionOne \
+  metering
+```
+
+#### To install and configure the Telemetry module components
+
+```ruby
+# apt-get install ceilometer-api ceilometer-collector ceilometer-agent-central ceilometer-agent-notification ceilometer-alarm-evaluator ceilometer-alarm-notifier python-ceilometerclient
+```
+**/etc/ceilometer/ceilometer.conf**
+```
+[DEFAULT]
+verbose = True
+rpc_backend = rabbit
+auth_strategy = keystone
+
+[oslo_messaging_rabbit]
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = rabbitpass
+
+[database]
+connection = mongodb://ceilometer:ceilometerdbpass@controller:27017/ceilometer
+
+[keystone_authtoken]
+#Comment out any auth_host, auth_port, and auth_protocol
+auth_uri = http://controller:5000/v2.0
+identity_uri = http://controller:35357
+admin_tenant_name = service
+admin_user = ceilometer
+admin_password = ceilometerpass
+
+[service_credentials]
+os_auth_url = http://controller:5000/v2.0
+os_username = ceilometer
+os_tenant_name = service
+os_password = ceilometerpass
+os_endpoint_type = internalURL
+os_region_name = RegionOne
+
+[publisher]
+telemetry_secret = 969c6c4413e693901809
+```
+#### To finalize installation
+
+```ruby
+# service ceilometer-agent-central restart
+# service ceilometer-agent-notification restart
+# service ceilometer-api restart
+# service ceilometer-collector restart
+# service ceilometer-alarm-evaluator restart
+# service ceilometer-alarm-notifier restart
+```
+
+#### 이제 나머지 노드들도 설정하자.
