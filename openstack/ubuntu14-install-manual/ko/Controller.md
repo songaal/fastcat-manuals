@@ -1541,4 +1541,64 @@ telemetry_secret = 969c6c4413e693901809
 # service ceilometer-alarm-notifier restart
 ```
 
-#### 이제 나머지 노드들도 설정하자.
+#### Configure the Image service
+
+**/etc/glance/glance-api.conf**
+**/etc/glance/glance-registry.conf**
+```
+[DEFAULT]
+notification_driver = messagingv2
+rpc_backend = rabbit
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = rabbitpass
+```
+
+```ruby
+#
+service glance-registry restart
+service glance-api restart
+```
+
+#### Configure the Block Storage service
+
+**/etc/cinder/cinder.conf**
+```
+[DEFAULT]
+control_exchange = cinder
+notification_driver = messagingv2
+```
+
+```ruby
+# service cinder-api restart
+# service cinder-scheduler restart
+```
+
+#### 이제 컴퓨트노드와 스토리지 노드도 설정한다.
+
+> cinder-volume-usage-audit command : http://docs.openstack.org/admin-guide-cloud/telemetry-data-collection.html#block-storage-audit-script-setup-to-get-notifications
+
+
+#### Verify the Telemetry installation
+
+```ruby
+$
+source admin-openrc.sh
+
+ceilometer meter-list
+
+IMAGE_ID=$(glance image-list | grep 'cirros-0.3.4-x86_64' | awk '{ print $2 }')
+
+glance image-download $IMAGE_ID > /tmp/cirros.img
+
+ceilometer meter-list
+
+ceilometer statistics -m image.download -p 60
+```
+
+```ruby
+rm /tmp/cirros.img
+```
+
+
+

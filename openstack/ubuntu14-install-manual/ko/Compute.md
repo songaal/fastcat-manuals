@@ -289,13 +289,50 @@ service neutron-plugin-openvswitch-agent restart
 
 **/etc/ceilometer/ceilometer.conf**
 ```
+[DEFAULT]
+verbose = True
+rpc_backend = rabbit
+
+[oslo_messaging_rabbit]
+rabbit_host = controller
+rabbit_userid = openstack
+rabbit_password = rabbitpass
+
 [publisher]
-telemetry_secret = TELEMETRY_SECRET
+telemetry_secret = 969c6c4413e693901809
+
+[keystone_authtoken]
+#Comment out any auth_host, auth_port, and auth_protocol
+auth_uri = http://controller:5000/v2.0
+identity_uri = http://controller:35357
+admin_tenant_name = service
+admin_user = ceilometer
+admin_password = ceilometerpass
+
+[service_credentials]
+os_auth_url = http://controller:5000/v2.0
+os_username = ceilometer
+os_tenant_name = service
+os_password = ceilometerpass
+os_endpoint_type = internalURL
+os_region_name = RegionOne
+
 ```
 
+**/etc/nova/nova.conf**
+```
+[DEFAULT]
+instance_usage_audit = True
+instance_usage_audit_period = hour
+notify_on_state_change = vm_and_task_state
+notification_driver = messagingv2
+```
 
-
-
+```ruby
+#
+service ceilometer-agent-compute restart
+service nova-compute restart
+```
 
 
 

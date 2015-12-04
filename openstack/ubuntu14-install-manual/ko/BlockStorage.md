@@ -171,3 +171,18 @@ service cinder-volume restart
 
 rm -f /var/lib/cinder/cinder.sqlite
 ```
+
+## Telemetry Service (Ceilometer)
+
+#### Configure the Block Storage service
+
+**/etc/cinder/cinder.conf**
+```
+[DEFAULT]
+control_exchange = cinder
+notification_driver = messagingv2
+```
+
+```ruby
+# service cinder-volume restart
+```
