@@ -86,10 +86,11 @@ ntpq -c assoc
 # apt-get install xfsprogs rsync
 ```
 ```ruby
-# mkfs.xfs /dev/sdb1
-# mkfs.xfs /dev/sdc1
-# mkdir -p /srv/node/sdb1
-# mkdir -p /srv/node/sdc1
+#
+mkfs.xfs /dev/sdb1
+mkfs.xfs /dev/sdc1
+mkdir -p /srv/node/sdb1
+mkdir -p /srv/node/sdc1
 ```
 **/etc/fstab**
 ```
@@ -98,8 +99,9 @@ ntpq -c assoc
 ```
 
 ```ruby
-# mount /srv/node/sdb1
-# mount /srv/node/sdc1
+#
+mount /srv/node/sdb1
+mount /srv/node/sdc1
 ```
 
 **/etc/rsyncd.conf**
@@ -143,6 +145,7 @@ RSYNC_ENABLE=true
 #### To enable the OpenStack repository
 
 ```ruby
+#
 apt-get install ubuntu-cloud-keyring
 
 echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu" "trusty-updates/kilo main" > /etc/apt/sources.list.d/cloudarchive-kilo.list
@@ -151,7 +154,7 @@ echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu" "trusty-updates/kilo
 #### To finalize installation
 
 ```ruby
-apt-get update && apt-get dist-upgrade
+# apt-get update && apt-get dist-upgrade
 ```
 
 #### Install and configure storage node components

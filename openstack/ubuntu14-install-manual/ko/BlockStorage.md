@@ -93,13 +93,9 @@ echo "deb http://ubuntu-cloud.archive.canonical.com/ubuntu" "trusty-updates/kilo
 apt-get update && apt-get dist-upgrade
 ```
 
-#### 한번에 모두 설치
-```ruby
-apt-get install -y qemu lvm2 cinder-volume python-mysqldb
-```
-
 ## Block Storage (Cinder)
 ```ruby
+#
 apt-get install qemu
 
 apt-get install lvm2
@@ -122,7 +118,7 @@ filter = [ "a/sdb/", "r/.*/"]
 
 #### Install and configure Block Storage volume components
 ```ruby
-apt-get install cinder-volume python-mysqldb
+# apt-get install cinder-volume python-mysqldb
 ```
 
 **/etc/cinder/cinder.conf**
@@ -165,6 +161,7 @@ lock_path = /var/lock/cinder
 ```
 
 ```ruby
+#
 service tgt restart
 
 service cinder-volume restart
