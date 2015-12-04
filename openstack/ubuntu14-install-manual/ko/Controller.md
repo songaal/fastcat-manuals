@@ -1533,12 +1533,13 @@ telemetry_secret = 969c6c4413e693901809
 #### To finalize installation
 
 ```ruby
-# service ceilometer-agent-central restart
-# service ceilometer-agent-notification restart
-# service ceilometer-api restart
-# service ceilometer-collector restart
-# service ceilometer-alarm-evaluator restart
-# service ceilometer-alarm-notifier restart
+#
+service ceilometer-agent-central restart
+service ceilometer-agent-notification restart
+service ceilometer-api restart
+service ceilometer-collector restart
+service ceilometer-alarm-evaluator restart
+service ceilometer-alarm-notifier restart
 ```
 
 #### Configure the Image service
@@ -1570,8 +1571,9 @@ notification_driver = messagingv2
 ```
 
 ```ruby
-# service cinder-api restart
-# service cinder-scheduler restart
+#
+service cinder-api restart
+service cinder-scheduler restart
 ```
 
 #### 이제 컴퓨트노드와 스토리지 노드도 설정한다.
