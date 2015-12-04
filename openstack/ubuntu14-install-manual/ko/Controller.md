@@ -1588,7 +1588,32 @@ $
 source admin-openrc.sh
 
 ceilometer meter-list
+```
+만약 meter-list에 아무것도 출력되지 않는다면, 아래 명령을 실행한다.
 
+```
+unset OS_PROJECT_DOMAIN_ID
+unset OS_USER_DOMAIN_ID
+export OS_AUTH_URL=http://controller:35357/v2.0
+```
+
+또는 ceilometer-admin-openrc.sh 을 아래와 같이 생성한다.
+```
+unset OS_PROJECT_DOMAIN_ID
+unset OS_USER_DOMAIN_ID
+
+export OS_PROJECT_NAME=admin
+export OS_TENANT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=adminpass #ADMIN_PASS
+export OS_AUTH_URL=http://controller:35357/v2.0
+
+export OS_IMAGE_API_VERSION=2
+export OS_VOLUME_API_VERSION=2
+```
+
+
+```ruby
 IMAGE_ID=$(glance image-list | grep 'cirros-0.3.4-x86_64' | awk '{ print $2 }')
 
 glance image-download $IMAGE_ID > /tmp/cirros.img
