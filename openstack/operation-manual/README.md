@@ -56,7 +56,7 @@ Using default value 10485759
 Command (m for help):w
 ```
 
-이제 `fdisk`로 확인해보면 새로 생성된 `/dev/sdb1`을 확인할 수 있다.
+이제 `fdisk`로 확인해보면 새로 생성된 `/dev/vdb1`을 확인할 수 있다.
 
 ```ruby
 # fdisk -l
