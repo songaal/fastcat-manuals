@@ -1,8 +1,9 @@
-# Openstack Controller Node
+# 오픈스택 컨트롤러 노드
 
-#### To configure networking:
+#### 네트워크 설정
 
 **/etc/network/interfaces**
+
 ```
 # Management
 auto eth0
@@ -161,6 +162,7 @@ apt-get install keystone python-openstackclient apache2 libapache2-mod-wsgi memc
 ```
 
 ***/etc/keystone/keystone.conf***
+
 ```
 [DEFAULT]
 verbose = True
@@ -192,6 +194,7 @@ ServerName controller
 ```
 
 **/etc/apache2/sites-available/wsgi-keystone.conf**
+
 ```
 Listen 5000
 Listen 35357
@@ -300,12 +303,13 @@ openstack role add --project demo --user demo user
 
 #### Verify operation
 
-- For security reasons, disable the temporary authentication token mechanism:
-Edit the /etc/keystone/keystone-paste.ini file and remove admin_token_auth from the [pipeline:public_api], [pipeline:admin_api], and [pipeline:api_v3] sections.
+- For security reasons, disable the temporary authentication token mechanism
+- Edit the `/etc/keystone/keystone-paste.ini` file and remove `admin_token_auth` from the `[pipeline:public_api]`, `[pipeline:admin_api]`, and `[pipeline:api_v3]` sections.
 
 ```ruby
 $ unset OS_TOKEN OS_URL
 ```
+
 ```ruby
 $
 openstack --os-auth-url http://controller:35357 --os-project-name admin --os-username admin --os-auth-type password token issue
@@ -427,6 +431,7 @@ filesystem_store_datadir = /var/lib/glance/images/
 ```
 
 **/etc/glance/glance-registry.conf**
+
 ```
 [DEFAULT]
 notification_driver = noop
@@ -462,6 +467,7 @@ rm -f /var/lib/glance/glance.sqlite
 ```
 
 #### Verify operation
+
 ```ruby
 $ echo "export OS_IMAGE_API_VERSION=2" | tee -a admin-openrc.sh demo-openrc.sh
 ```
@@ -674,6 +680,7 @@ password = novapass
 #### To configure the Modular Layer 2 (ML2) plug-in
 
 **/etc/neutron/plugins/ml2/ml2_conf.ini**
+
 ```
 [ml2]
 type_drivers = flat,vlan,gre,vxlan
@@ -691,6 +698,7 @@ firewall_driver = neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewal
 
 #### To configure Compute to use Networking
 **/etc/nova/nova.conf**
+
 ```
 [DEFAULT]
 network_api_class = nova.network.neutronv2.api.API
@@ -708,6 +716,7 @@ admin_password = neutronpass
 ```
 
 #### To finalize installation
+
 ```ruby
 su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 ```
@@ -762,6 +771,7 @@ neutron agent-list
 ### External network
 
 #### To create the external network
+
 ```ruby
 $ source admin-openrc.sh
 
@@ -848,6 +858,7 @@ neutron router-gateway-set demo-router ext-net
 
 
 #### Verify connectivity
+
 Following the external network subnet example using 203.0.113.0/24, the tenant router gateway should occupy the lowest IP address in the floating IP address range, 203.0.113.101.
 If you configured your external physical network and virtual networks correctly, you should be able to ping this IP address from any host on your external physical network.
 If you are building your OpenStack nodes as virtual machines, you must configure the hypervisor to permit promiscuous mode on the external network.
@@ -952,6 +963,7 @@ Disk /dev/vdb: 1073 MB, 1073741824 bytes
 ```
 
 **/etc/openstack-dashboard/local_settings.py**
+
 ```
 OPENSTACK_HOST = "controller"
 ALLOWED_HOSTS = ['*', ]
@@ -1123,6 +1135,7 @@ mkdir /etc/swift
 curl -o /etc/swift/proxy-server.conf https://git.openstack.org/cgit/openstack/swift/plain/etc/proxy-server.conf-sample?h=stable/kilo
 ```
 **/etc/swift/proxy-server.conf**
+
 ```
 [DEFAULT]
 bind_port = 8080
@@ -1163,6 +1176,7 @@ memcache_servers = 127.0.0.1:11211
 ```
 
 **account.builder (New File)**
+
 ```ruby
 #
 swift-ring-builder account.builder create 10 3 1
@@ -1193,6 +1207,7 @@ swift-ring-builder account.builder rebalance
 # cd /etc/swift
 ```
 **container.builder (New File)**
+
 ```ruby
 swift-ring-builder container.builder create 10 3 1
 swift-ring-builder container.builder add r1z1-%STORAGE_NODE_MANAGEMENT_INTERFACE_IP_ADDRESS%:6001/DEVICE_NAME DEVICE_WEIGHT
@@ -1217,10 +1232,14 @@ swift-ring-builder container.builder rebalance
 ```
 
 ### Object ring
+
 ```ruby
 # cd /etc/swift
 ```
+
 **container.builder (New File)**
+
+
 ```ruby
 #
 swift-ring-builder object.builder create 10 3 1
@@ -1238,6 +1257,7 @@ Device d2r1z3-10.0.0.52:6000R10.0.0.52:6000/sdb1_"" with 100.0 weight got id 2
 swift-ring-builder object.builder add r1z4-10.0.0.52:6000/sdc1 100
 Device d3r1z4-10.0.0.52:6000R10.0.0.52:6000/sdc1_"" with 100.0 weight got id 3
 ```
+
 ```ruby
 #
 swift-ring-builder object.builder
@@ -1245,16 +1265,19 @@ swift-ring-builder object.builder rebalance
 ```
 
 ### Distribute ring configuration files
+
 **Copy the account.ring.gz, container.ring.gz, and object.ring.gz files to the /etc/swift directory on each storage node**
 
 
 ### Finalize installation
 
 #### Configure hashes and default storage policy
+
 ```ruby
 # curl -o /etc/swift/swift.conf https://git.openstack.org/cgit/openstack/swift/plain/etc/swift.conf-sample?h=stable/kilo
 ```
 **/etc/swift/swift.conf**
+
 ```
 [swift-hash]
 swift_hash_path_suffix = HASH_PATH_SUFFIX
@@ -1268,6 +1291,7 @@ default = yes
 **Copy the swift.conf file to the /etc/swift directory on each storage node**
 
 **On all nodes**
+
 ```ruby
 #
 chown -R swift:swift /etc/swift
@@ -1275,6 +1299,7 @@ service memcached restart
 service swift-proxy restart
 ```
 **On the storage nodes**
+
 ```ruby
 # swift-init all start
 ```
@@ -1351,6 +1376,7 @@ openstack endpoint create \
 ```
 
 **/etc/heat/heat.conf**
+
 ```
 [DEFAULT]
 verbose = True
@@ -1409,6 +1435,7 @@ $ source admin-openrc.sh
 - Template Guide : http://docs.openstack.org/developer/heat/template_guide/index.html
 
 **test-stack.yml**
+
 ```
 heat_template_version: 2014-10-16
 description: A simple server.
@@ -1454,6 +1481,7 @@ heat stack-list
 ```
 
 **/etc/mongodb.conf**
+
 ```
 bind_ip = %MANAGEMENT_NODE_IP_ADDRESS%
 smallfiles = true
@@ -1501,6 +1529,7 @@ openstack endpoint create \
 # apt-get install ceilometer-api ceilometer-collector ceilometer-agent-central ceilometer-agent-notification ceilometer-alarm-evaluator ceilometer-alarm-notifier python-ceilometerclient
 ```
 **/etc/ceilometer/ceilometer.conf**
+
 ```
 [DEFAULT]
 verbose = True
@@ -1550,6 +1579,7 @@ service ceilometer-alarm-notifier restart
 
 **/etc/glance/glance-api.conf**
 **/etc/glance/glance-registry.conf**
+
 ```
 [DEFAULT]
 notification_driver = messagingv2
@@ -1568,6 +1598,7 @@ service glance-api restart
 #### Configure the Block Storage service
 
 **/etc/cinder/cinder.conf**
+
 ```
 [DEFAULT]
 control_exchange = cinder
@@ -1605,6 +1636,7 @@ export OS_AUTH_URL=http://controller:35357/v2.0
 또는 ceilometer-admin-openrc.sh 을 아래와 같이 생성한다.
 
 **ceilometer-admin-openrc.sh**
+
 ```
 unset OS_PROJECT_DOMAIN_ID
 unset OS_USER_DOMAIN_ID

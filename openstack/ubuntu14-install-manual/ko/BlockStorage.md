@@ -1,8 +1,9 @@
-# Openstack Block Storage Node
+# 오픈스택 블록스토리지 노드
 
-#### To configure networking:
+#### 네트워크 설정
 
 **/etc/network/interfaces**
+
 ```
 # Management
 auto eth0
@@ -94,6 +95,7 @@ apt-get update && apt-get dist-upgrade
 ```
 
 ## Block Storage (Cinder)
+
 ```ruby
 #
 apt-get install qemu
@@ -110,6 +112,7 @@ vgcreate cinder-volumes /dev/sdb1
 ```
 
 **/etc/lvm/lvm.conf**
+
 ```
 devices {
 
@@ -122,6 +125,7 @@ filter = [ "a/sdb/", "r/.*/"]
 ```
 
 **/etc/cinder/cinder.conf**
+
 ```
 [DEFAULT]
 rpc_backend = rabbit
@@ -174,6 +178,7 @@ rm -f /var/lib/cinder/cinder.sqlite
 #### Configure the Block Storage service
 
 **/etc/cinder/cinder.conf**
+
 ```
 [DEFAULT]
 control_exchange = cinder

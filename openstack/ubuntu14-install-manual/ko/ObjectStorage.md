@@ -1,8 +1,9 @@
-# Openstack Objecet Storage Node
+# 오픈스택 오브젝트 스토리지 노드
 
-#### To configure networking:
+#### 네트워크 설정
 
 **/etc/network/interfaces**
+
 ```
 # Management
 auto eth0
@@ -93,6 +94,7 @@ mkdir -p /srv/node/sdb1
 mkdir -p /srv/node/sdc1
 ```
 **/etc/fstab**
+
 ```
 /dev/sdb1 /srv/node/sdb1 xfs noatime,nodiratime,nobarrier,logbufs=8 0 2
 /dev/sdc1 /srv/node/sdc1 xfs noatime,nodiratime,nobarrier,logbufs=8 0 2
@@ -105,6 +107,7 @@ mount /srv/node/sdc1
 ```
 
 **/etc/rsyncd.conf**
+
 ```
 uid = swift
 gid = swift
@@ -132,6 +135,7 @@ lock file = /var/lock/object.lock
 ```
 
 **/etc/default/rsync**
+
 ```
 RSYNC_ENABLE=true
 ```
@@ -176,6 +180,7 @@ curl -o /etc/swift/object-expirer.conf https://git.openstack.org/cgit/openstack/
 ```
 
 **/etc/swift/account-server.conf**
+
 ```
 [DEFAULT]
 bind_ip = %MANAGEMENT_INTERFACE_IP_ADDRESS%
@@ -192,6 +197,7 @@ recon_cache_path = /var/cache/swift
 ```
 
 **/etc/swift/container-server.conf**
+
 ```
 [DEFAULT]
 bind_ip = %MANAGEMENT_INTERFACE_IP_ADDRESS%
@@ -208,6 +214,7 @@ recon_cache_path = /var/cache/swift
 ```
 
 **/etc/swift/object-server.conf**
+
 ```
 [DEFAULT]
 bind_ip = %MANAGEMENT_INTERFACE_IP_ADDRESS%
@@ -237,6 +244,7 @@ chown -R swift:swift /var/cache/swift
 #### Configure the Block Storage service
 
 **/etc/cinder/cinder.conf**
+
 ```
 [DEFAULT]
 control_exchange = cinder

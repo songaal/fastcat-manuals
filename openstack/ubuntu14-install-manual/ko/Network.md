@@ -1,8 +1,9 @@
-# Openstack Network Node
+# 오픈스택 네트워크 노드
 
-#### To configure networking:
+#### 네트워크 설정
 
 **/etc/network/interfaces**
+
 ```
 # Management
 auto eth0
@@ -113,6 +114,7 @@ apt-get install -y neutron-plugin-ml2 neutron-plugin-openvswitch-agent neutron-l
 ####To configure prerequisites
 
 **/etc/sysctl.conf**
+
 ```
 net.ipv4.ip_forward=1
 net.ipv4.conf.all.rp_filter=0
@@ -214,6 +216,7 @@ dnsmasq_config_file = /etc/neutron/dnsmasq-neutron.conf
 ```
 
 **/etc/neutron/dnsmasq-neutron.conf** (Create)
+
 ```
 dhcp-option-force=26,1454
 ```

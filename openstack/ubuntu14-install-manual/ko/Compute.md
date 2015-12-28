@@ -1,8 +1,9 @@
-# Openstack Compute Node
+# 오픈스택 컴퓨트 노드
 
-#### To configure networking:
+#### 네트워크 설정
 
 **/etc/network/interfaces**
+
 ```
 # Management
 auto eth0
@@ -258,6 +259,7 @@ service openvswitch-switch restart
 #### To configure Compute to use Networking
 
 **/etc/nova/nova.conf**
+
 ```
 [DEFAULT]
 network_api_class = nova.network.neutronv2.api.API
@@ -275,6 +277,7 @@ admin_password = neutronpass
 ```
 
 #### To finalize the installation
+
 ```ruby
 service nova-compute restart
 
@@ -288,6 +291,7 @@ service neutron-plugin-openvswitch-agent restart
 ```
 
 **/etc/ceilometer/ceilometer.conf**
+
 ```
 [DEFAULT]
 verbose = True
@@ -320,6 +324,7 @@ os_region_name = RegionOne
 ```
 
 **/etc/nova/nova.conf**
+
 ```
 [DEFAULT]
 instance_usage_audit = True
