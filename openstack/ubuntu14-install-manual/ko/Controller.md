@@ -189,6 +189,7 @@ su -s /bin/sh -c "keystone-manage db_sync" keystone
 #### To configure the Apache HTTP server
 
 **/etc/apache2/apache2.conf**
+
 ```
 ServerName controller
 ```
@@ -332,6 +333,7 @@ openstack --os-auth-url http://controller:5000 --os-project-domain-id default --
 #### To create the scripts
 
 **admin-openrc.sh**
+
 ```
 export OS_PROJECT_DOMAIN_ID=default
 export OS_USER_DOMAIN_ID=default
@@ -344,6 +346,7 @@ export OS_AUTH_URL=http://controller:35357/v3
 ```
 
 **demo-openrc.sh**
+
 ```
 export OS_PROJECT_DOMAIN_ID=default
 export OS_USER_DOMAIN_ID=default
@@ -531,6 +534,7 @@ apt-get install nova-api nova-cert nova-conductor nova-consoleauth nova-novncpro
 ```
 
 **/etc/nova/nova.conf**
+
 > `auth_uri` 설정이 매뉴얼에는 `auth_uri = http://controller:5000`로 되어있지만, 접속이 자주 끊기는 현상이 자주발생하므로 `v2.0` 을 붙여서 `auth_uri = http://controller:5000/v2.0` 와 같이 버전을 명시하도록 한다.
 
 ```
@@ -802,6 +806,7 @@ $ neutron subnet-create ext-net EXTERNAL_NETWORK_CIDR --name ext-subnet \
   --disable-dhcp --gateway EXTERNAL_NETWORK_GATEWAY
 ```
 **For example)**
+
 ```ruby
 $ neutron subnet-create ext-net 203.0.113.0/24 --name ext-subnet \
   --allocation-pool start=203.0.113.101,end=203.0.113.200 \
@@ -842,6 +847,7 @@ $ neutron subnet-create demo-net TENANT_NETWORK_CIDR \
   --gateway TENANT_NETWORK_GATEWAY
 ```
 **For Example)**
+
 ```ruby
 $ neutron subnet-create demo-net 192.168.1.0/24 --name demo-subnet --dns-nameserver 8.8.4.4 --gateway 192.168.1.1
 ```

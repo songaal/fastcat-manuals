@@ -1,6 +1,82 @@
 # 오픈스택 운영매뉴얼
 
-### 볼륨을 붙일때
+
+
+## 프로젝트 및 사용자 추가
+
+최초 설치시, 프로젝트는 admin과 demo가 존재한다.
+
+admin 프로젝트는 admin계정이 사용하는 관리용도이므로, 그대로 두지만, demo프로젝트는 데모용도이므로, 삭제해도 무방하다.
+
+신규로 `team1` 이라는 프로젝트를 만들고, `manager1`이라는 계정으로 관리하고자 한다면, 아래와 같이 수행한다.
+
+```ruby
+$ source admin-openrc.sh
+```
+
+```ruby
+$ openstack project create --description "Team1 Project" team1
+$ openstack user create --password-prompt manager1
+패스워드 :
+```
+```ruby
+$ openstack role add --project team1 --user manager1 user
+```
+
+이제 Horizon관리도구를 통해 로그인하여 프로젝트를 관리할 수 있다.
+
+만약, 관리도구가 아닌, Command 를 통해 openstack 명령어를 수행하고자 하면, 아래와 같이 스크립트를 만든다.
+
+**team1-openrc.sh**
+
+```
+export OS_PROJECT_DOMAIN_ID=defaultexport OS_USER_DOMAIN_ID=defaultexport OS_PROJECT_NAME=team1export OS_TENANT_NAME=team1export OS_USERNAME=manager1export OS_PASSWORD=%PASSWORD% 
+export OS_AUTH_URL=http://controller:5000/v3
+```
+
+사용하려면, `source`로 읽은뒤, 명령을 수행한다.
+
+```ruby
+$ source team1-openrc.sh
+$ neutron net-list
++--------------------------------------+----------+-----------------------------------------------------+
+| id                                   | name     | subnets                                             |
++--------------------------------------+----------+-----------------------------------------------------+
+| 72740fee-6c99-42c5-a15a-5a3b983d8c00 | demo-net | 3427dbaf-73e2-4587-ab06-fcfccdc46a88 192.168.1.0/24 |
+| a2024656-9bfc-49c4-878e-7f89a3319cda | team1-net  | fa473ad6-807e-44c1-ad68-a50e74667ef8                |
++--------------------------------------+----------+-----------------------------------------------------+
+```
+
+
+## 컴퓨트 노드 증설
+
+인스턴스의 사용량이 늘어나 추가적으로 컴퓨트 노드가 필요할 때 수행하며, 기본적으로 설치한다.
+
+컴퓨트 노드는 Management 네트워크와 Storage 네트워크를 사용하므로, 이에 따른 이더넷카드연결을 먼저 수행한다.
+
+각 노드의 /etc/hosts 파일을 아래를 참고하여 설정한다.
+
+예) compute7을 추가할때
+
+```
+# compute7
+10.0.1.37       compute7
+```
+
+그외에 컨트롤러 노드에서 설정해줄 것은 없으며, 새 컴퓨트 노드에  `컴퓨트 노드 설치매뉴얼`을 따라서 NTP, Nova, Neutron을 설치한뒤, 컨트롤러 노드에서 아래 명령으로 추가된 상태를 확인한다.
+
+```ruby
+$ source admin-openrc.sh
+$ nova service-list
+```
+
+
+## 볼륨연동후 사용설정
+
+오픈스택에서 볼륨을 생성후 인스턴스에 연동을 하면, 실제로는 바로 사용할 수 없으며 파티션을 생성 및 마운트작업이 추가로 필요하다.
+
+먼저 인스턴스와 볼륨의 연동이 완료되면, 인스턴스에 `ssh` 로 접속하여 아래와 같이 정보를 확인할 수 있다.
+
 ```ruby
 # fdisk -l
 Disk /dev/vda: 42.9 GB, 42949672960 bytes
@@ -123,6 +199,7 @@ Writing superblocks and filesystem accounting information: done
 ```
 
 `df` 명령어로 확인하면 `/dev/vdb1` 가 `disk2` 에 연결된 것을 확인할 수 있다.
+
 ```ruby
 # df -T
 Filesystem     Type     1K-blocks   Used Available Use% Mounted on
