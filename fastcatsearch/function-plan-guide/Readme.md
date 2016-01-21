@@ -109,18 +109,22 @@
 
 현재뿐 아니라 과정의 특정 시간단위(1일전, 2일전, 1주전)로 인기검색어를 보여줌으로써, 사용자는 검색어트렌드를 비교해볼 수 있음.
 
-
+![일별 인기검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/daily_popular_keyword.png)
 
 ####3. 기간범위 인기검색어
 
 시간단위뿐 아니라, 7월~9월 등의 운영자가 원하는 기간범위로 인기검색어를 보여줌.
 
+![기간범위 인기검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/range_popular_keyword.png)
+
 ####4. 분야별 인기검색어
 
 특정 분야 및 카테고리별로 인기검색어를 별도로 제공.
 
-
+![분야별 인기검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/cate_popular_keyword.png)
 
 ## 연관검색어
 
 입력한 검색어와 통계적으로 연관관계에 있는 단어를 함께 보여줌으로써 검색의 폭을 확장시킬 수 있는 기능.
+
+![연관검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/relate_keyword.png)
