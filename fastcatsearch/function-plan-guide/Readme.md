@@ -52,6 +52,10 @@
 
 검색결과를 페이지별로 나누어 가져오는 기능.
 
+![페이징1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/pagenav1.png)
+
+![페이징2](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/pagenav2.png)
+
 ####7. 검색결과 요약 및 하이라이트
 
 본문내용이 긴 경우 검색어와 일치한 부분만 발췌하여 짧게 요약된 내용만 리턴해주는 기능.
