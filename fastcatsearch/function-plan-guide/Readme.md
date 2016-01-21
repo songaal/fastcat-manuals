@@ -128,3 +128,7 @@
 입력한 검색어와 통계적으로 연관관계에 있는 단어를 함께 보여줌으로써 검색의 폭을 확장시킬 수 있는 기능.
 
 ![연관검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/relate_keyword.png)
+
+또한 검색어와 관련없이 관리자가 미리 셋팅해둔 검색어들을 보여주는 방식도 가능하다.
+
+![운영자 검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/recom_keyword.png)
