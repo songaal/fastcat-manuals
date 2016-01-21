@@ -44,7 +44,9 @@
 
 가격대 또는 기간범위를 설정하여 원하는 뉴스나 상품만 검색하는 기능.
 
-![옵션2](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/filter2.png)
+![필터1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/filter3.png)
+
+![필터2](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/filter2.png)
 
 ####6. 검색결과 페이지 네비게이션
 
