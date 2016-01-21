@@ -129,6 +129,6 @@
 
 ![연관검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/relate_keyword.png)
 
-또한 검색어와 관련없이 관리자가 미리 셋팅해둔 검색어들을 보여주는 방식도 가능하다.
+또한 검색어와 관련없이 관리자가 미리 셋팅해둔 검색어들을 보여주는 경우도 있음.
 
 ![운영자 검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/recom_keyword.png)
