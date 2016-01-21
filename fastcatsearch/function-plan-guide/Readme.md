@@ -7,6 +7,8 @@
 
 각 영역별로 검색결과를 상위 몇개씩만 보여주며, 한번에 전체영역에 대한 상위검색결과를 볼수 있다는 장점이 있음.
 
+![지식쇼핑통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/totalsearch2.png)
+
 ![네이버통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/totalsearch.png)
 
 
@@ -65,7 +67,7 @@
 
 이미 검색한 검색결과안에서 한번더 자세하게 검색하는 기능.
 
-![결과내재검색1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/insearch.png)
+![결과내재검색](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/insearch.png)
 
 ## 자동완성
 
@@ -74,7 +76,7 @@
 
 검색창에 단어를 입력했을 때 해당단어로 시작하거나 끝나는 검색어 리스트를 보여준다.
 
-
+![자동완성](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/autocomplete1.png)
 
 ####2. 총알검색
 
@@ -84,7 +86,7 @@
 
 자동완성 단어는 디폴트로 처음단어가 선택되며 선택을 변경하면 오른편의 검색결과 리스트도 변경됨.
 
-
+![총알검색](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/bulletsearch.png)
 
 ####3. 순간검색
 
@@ -92,15 +94,16 @@
 
 검색결과는 자동완성 첫번째 단어의 결과임.
 
+![순간검색](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/instantsearch.png)
 
 
 ## 인기검색어
 
 ####1. 실시간 인기검색어
 
-인기검색어는 최근 약 5~30분이내에 검색빈도수가 높은 상위 10개의 검색어리스트를 보여줌.
+인기검색어는 최근 약 5분~30분이내에 검색빈도수가 높은 상위 10개의 검색어리스트를 보여줌.
 
-
+![실시간 인기검색어](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/rt_popular_keyword.png)
 
 ####2. 일/주/월간 인기검색어
 
@@ -111,6 +114,10 @@
 ####3. 기간범위 인기검색어
 
 시간단위뿐 아니라, 7월~9월 등의 운영자가 원하는 기간범위로 인기검색어를 보여줌.
+
+####4. 분야별 인기검색어
+
+특정 분야 및 카테고리별로 인기검색어를 별도로 제공.
 
 
 
