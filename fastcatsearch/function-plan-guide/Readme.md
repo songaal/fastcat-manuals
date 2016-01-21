@@ -16,16 +16,17 @@
 
 
 <네이버지식쇼핑>
-![통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-jsp/ko/img/213.jpg)
+![네이버지식쇼핑 그룹핑](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/naver-shopping-grouping.png)
 
 
 <다나와>
-![통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-jsp/ko/img/213.jpg)
+![다나와 그룹핑](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/danawa-grouping.png)
 
 
 ####3. 정렬기능
 
 원하는 필드로 정렬할수 있는 기능.
+
 
 ####4. 필터링기능
 
