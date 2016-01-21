@@ -7,7 +7,7 @@
 
 각 영역별로 검색결과를 상위 몇개씩만 보여주며, 한번에 전체영역에 대한 상위검색결과를 볼수 있다는 장점이 있음.
 
-![통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-jsp/ko/img/213.jpg)
+![통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/totalsearch.png)
 
 
 ####2. 검색결과그룹핑
