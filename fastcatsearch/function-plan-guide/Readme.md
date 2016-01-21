@@ -7,7 +7,7 @@
 
 각 영역별로 검색결과를 상위 몇개씩만 보여주며, 한번에 전체영역에 대한 상위검색결과를 볼수 있다는 장점이 있음.
 
-![통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/totalsearch.png)
+![네이버통합검색예시](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/totalsearch.png)
 
 
 ####2. 검색결과그룹핑
@@ -28,7 +28,7 @@
 원하는 필드로 정렬할수 있는 기능.
 
 
-####4. 필터링기능
+####4. 옵션선택기능
 
 원하는 조건만 선택하여 검색결과를 볼수 있는 기능
 
