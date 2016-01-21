@@ -28,15 +28,23 @@
 원하는 필드로 정렬할수 있는 기능.
 
 
+![정렬1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/rank1.png)
+
+![정렬2](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/rank2.png)
+
 ####4. 옵션선택기능
 
 원하는 조건만 선택하여 검색결과를 볼수 있는 기능
+
+![옵션1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/filter1.png)
+
 
 
 ####5. 범위조건기능
 
 가격대 또는 기간범위를 설정하여 원하는 뉴스나 상품만 검색하는 기능.
 
+![옵션2](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/filter2.png)
 
 ####6. 검색결과 페이지 네비게이션
 
