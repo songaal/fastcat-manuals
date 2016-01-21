@@ -14,19 +14,14 @@
 
 검색결과가 어느 카테고리에서 몇 개 검색되었는지 통계를 보여줌. 해당 카테고리를 클릭시 카테고리내 상품결과만 보여주게 됨.
 
-
-<네이버지식쇼핑>
 ![네이버지식쇼핑 그룹핑](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/naver-shopping-grouping.png)
 
-
-<다나와>
 ![다나와 그룹핑](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/danawa-grouping.png)
 
 
 ####3. 정렬기능
 
-원하는 필드로 정렬할수 있는 기능.
-
+선택한 조건으로 정렬할수 있는 기능.
 
 ![정렬1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/rank1.png)
 
@@ -62,13 +57,15 @@
 
 검색어와 일치한 단어는 색깔을 달리하거나 두께를 두껍게 하여, 사용자에게 편의를 제공.
 
+![요약하이라이팅1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/sumhigh1.png)
 
+![요약하이라이팅2](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/sumhigh2.png)
 
-####8. 재검색
+####8. 결과내재검색
 
-이미 검색한 결과를 바탕으로 한번더 자세한게 검색하는 기능.
+이미 검색한 검색결과안에서 한번더 자세하게 검색하는 기능.
 
-
+![결과내재검색1](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/function-plan-guide/img/insearch.png)
 
 ## 자동완성
 
