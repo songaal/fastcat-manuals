@@ -120,6 +120,7 @@
 - Enabled : 활성화 여부. 체크해제시 수집대상에서 제외된다.
 - Reader Class : 소스타입. 데이터가 DB에 존재하는 경우 DBMS를 선택한다.
 - Modifier Class : 모디파이어 클래스명
+- collection : 데이터를 복제할 컬렉션명을 입력한다.
 
 7. CSV_FILE
 -------------
@@ -134,6 +135,11 @@
 - Enabled : 활성화 여부. 체크해제시 수집대상에서 제외된다.
 - Reader Class : 소스타입. 데이터가 DB에 존재하는 경우 DBMS를 선택한다.
 - Modifier Class : 모디파이어 클래스명
+- File or Dir Path :
+- Encoding :
+- Buffer Size :
+- Limit Size :
+- Field List :
 
 8. JSON_LIST_FILE
 -------------
@@ -148,6 +154,10 @@
 - Enabled : 활성화 여부. 체크해제시 수집대상에서 제외된다.
 - Reader Class : 소스타입. 데이터가 DB에 존재하는 경우 DBMS를 선택한다.
 - Modifier Class : 모디파이어 클래스명
+- File or Dir Path :
+- Buffer Size :
+- Limit Size :
+
 
 9. DIRECTORY_PATH
 -------------
@@ -162,3 +172,10 @@
 - Enabled : 활성화 여부. 체크해제시 수집대상에서 제외된다.
 - Reader Class : 소스타입. 데이터가 DB에 존재하는 경우 DBMS를 선택한다.
 - Modifier Class : 모디파이어 클래스명
+- Data Root Path :
+- Mapping Field Id :
+- Max Depth :
+- Skip Patterns :
+- Accept Only Patterns :
+- Buffer Size :
+- Max Count :
