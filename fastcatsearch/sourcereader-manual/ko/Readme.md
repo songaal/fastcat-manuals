@@ -19,7 +19,7 @@
 
 ####1.2. Edit
 
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/blob/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_001.png?raw=true)
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_001.png)
 
 - Name : 데이터소스이름
 - Enabled : 활성화 여부. 체크해제시 수집대상에서 제외된다.
