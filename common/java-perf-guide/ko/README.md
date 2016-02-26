@@ -6,6 +6,7 @@ JAVA 성능튜닝가이드
 
 1. [Tools](#Tools)
 2. [Case Study](#Case Study)
+3. [Swap](#Swap)
 
 
 <a name="Tools"></a>
@@ -85,3 +86,34 @@ GC멈춤문제를 해결하기 위해서는 JVM Tuning이 필요한데, 위의 �
 Yong Generation영역은 Eden + Survivor 인데, jvm옵션으로 -XX:MaxNewSize=7g 와 같이 크기를 정해줄수 있다.
 Eden이 14G로 다소 크기 때문에 Young영역을 7G로 제한하면 약 6G가 할당될것이다.
 Colletor는 기존 14G의 Object를 살펴보는것에서 6G만 살펴보는 것으로 부담이 줄어든다.
+
+<a name="Swap"></a>
+3. Swap
+----------
+`Swap` 메모리의 특성 상 물리 메모리에 비해 속도가 느리다. 따라서 지속적으로 메모리를 사용하는 검색엔진의 특성 상 스왑핑을 최소화하여야 한다.
+일시적으로 스왑 메모리를 제거하려면 다음 명령어를 사용한다.
+```
+sudo swapoff -a
+```
+해당 명령어를 통해 모든 스왑 메모리의 해제가 가능하다. 다만 서버를 재부팅하면 OS의 기본 설정에 따라 스왑 메모리가 다시 잡힌다. 재부팅 후에도 스왑 메모리에 대한 설정을 유지하고자 한다면 `swappiness` 옵션을 설정해 주어야 한다.
+swappiness 옵션 확인은 다음 명령어들 중 하나를 입력할 시 확인 가능하다.
+```
+sysctl vm.swappiness
+sysctl -a | grep swappiness
+cat /proc/sys/vm/swappiness
+```
+swappiness의 기본 값은 `60`이며, 해당 명령들을 통해 swappiness 값의 변경 또한 가능하나 영구 적용을 위해서는 `/etc/sysctl.conf` 을 수정하여여 한다.
+
+|값|설명|
+|--------|--------|
+|vm.swappiness = 0|(커널 버전 3.5 이상) 스왑핑 끄기 |
+|vm.swappiness = 1|(커널 버전 3.5 이상) 스왑핑 최소화 |
+|vm.swappiness = 10|메모리가 충분할 때 성능향상을 위해 권장되는 경우가 있음|
+|vm.swappiness = 60|기본값|
+|vm.swappiness = 100|적극적으로 스왑 사용|
+
+vi 로 `sysctl.conf`에 `vm.swappiness`을 추가한다. 아무 설정도 하지 않았다면 `vm.swappiness`는 설정되지 않은 상태이다. 추천하는 옵션은 `vm.swappiness = 1`으로서 스왑핑을 최소화한다.
+```
+vm.swappiness = 1
+```
+수정 후 서버를 재부팅하면 해당 옵션이 적용된다.
