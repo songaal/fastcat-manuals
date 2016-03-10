@@ -6,8 +6,9 @@
 1. 전체색인실행
 2. 증분색인실행
 3. 색인작업확인
-4. 색인스케쥴 on/off 설정
-5. 색인스케쥴 on/off 확인
+4. 색인 스케쥴 On/Off
+5. 동적색인 API
+
 
 
 검색엔진 ServicePort는 기본적으로 8090 이나, 설치시 변경하였을 경우 `conf/id.properties` 파일에서 확인할수 있다.
@@ -15,7 +16,7 @@
 servicePort=8090
 ```
 
-전체색인실행
+1. 전체색인실행
 ---------
 
 #### 요청 URL
@@ -32,13 +33,15 @@ servicePort=8090
 
 #### Example:
 
-    Request
+**Request**
+
     POST http://localhost:8090/service/indexing/full.json
     PARAM : collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 전체색인 요청을 보낼 때, 다음과 같이 status가 0이 나오면 작업등록이 정상적으로 이루어진다.
 
-	Response :
+**Response**
+
     {
       "collectionId": "mycollection",
       "status": "0"
@@ -46,7 +49,7 @@ servicePort=8090
 
 status가 0이면 작업등록 정상, 1이면 에러이다.
 
-증분색인실행
+2. 증분색인실행
 ---------
 
 #### 요청 URL
@@ -63,13 +66,15 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
 #### Example:
 
-    Request
+**Request**
+
     POST http://localhost:8090/service/indexing/add.json
     PARAM : collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 증분색인 요청을 보낼 때, 다음과 같이 status가 0이 나오면 작업등록이 정상적으로 이루어진다.
 
-	Response :
+**Response**
+
     {
       "collectionId": "mycollection",
       "status": "0"
@@ -77,7 +82,7 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
 status가 0이면 작업등록 정상, 1이면 에러이다.
 
-색인작업확인
+3. 색인작업확인
 ---------
 
 #### 요청 URL
@@ -94,14 +99,16 @@ status가 0이면 작업등록 정상, 1이면 에러이다.
 
 #### Example:
 
-    Request
+**Request**
+
     GET localhost:8090/service/indexing/status.json?collectionId=mycollection
 
     http://localhost:8090/service/indexing/status.json?collectionId=mycollection
 
 위의 주소와 같이 mycollection 컬렉션에 색인작업 확인 요청을 보내면 두 가지 경우의 값을 받는다.
 
-    Response :
+**Response**
+
     {
       "indexingState": {
         "collectionId": "mycollection",
@@ -128,7 +135,8 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 
 색인작업이 모두 종료되거나 실행중이 아니면, 아래 예제와 같이 indexingState는 빈 Object가 반환된다.
 
-색인스케쥴 on/off 설정
+
+4. 색인 스케쥴 on/off
 ---------
 
 #### 요청 URL
@@ -137,58 +145,209 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 
 #### Param
 
-`collectionId` : 컬렉션 아이디
-`type` : 색인타입. 전체색인, 증분색인 구분. full, add중 택일
-`flag` : on, off 중 택일
+`collectionId` : 컬렉션 아이디 (필수)
+
+`type` : 색인타입. 전체색인, 증분색인, 동적색인중 구분. full, add, dynamic중 택일 (필수)
+
+`flag` : on, off 중 택일. Flag값이 없을 경우 조회용으로 사용되고, flag값이 존재하면, 업데이트한다.(조회시 생략)
 
 #### METHOD
 
-`POST`
+`POST` : On/Off
+`GET`  : 조회
 
 #### Example:
 
-    Request
-    POST localhost:8090/service/indexing/schedule.json
-    PARAM : collectionId=mycollection&type=add&flag=on
+V1컬렉션의 증분색인 스케줄을 On상태로 변경한다.
 
-위의 주소와 같이 mycollection 컬렉션에 색인스케쥴 요청을 보내면 다음과 같은 응답이 온다.
+**Request**
 
-    Response
-    {
-        "mycollection" : true
-    }
+    POST /service/indexing/schedule
+    PARAM : collectionId=V1&type=add&flag=on
 
-true이면 컬렉션의 스케쥴이 On 상태이며, false이면 Off상태임을 나타낸다.
+    http://localhost:8090/service/indexing/schedule.json?collectionId=V1&type=add&flag=on
 
-색인스케쥴 on/off 확인
+**Response**
+
+	{
+	"V1" : true
+	}
+
+
+V1컬렉션의 증분색인 스케줄을 Off상태로 변경한다.
+
+**Request**
+
+    POST /service/indexing/schedule
+    PARAM : collectionId=V1&type=add&flag=off
+
+    http://localhost:8090/service/indexing/schedule.json?collectionId=V1&type=add&flag=off
+
+**Response**
+
+	{
+	"V1" : false
+	}
+
+V1컬렉션의 동적색인 스케줄을 On상태로 변경한다.
+
+**Request**
+
+    POST /service/indexing/schedule
+    PARAM : collectionId=V1&type=dynamic&flag=on
+
+    http://localhost:8090/service/indexing/schedule.json?collectionId=V1&type=dynamic&flag=on
+
+**Response**
+
+	{
+	"V1" : true
+	}
+
+V1컬렉션의 증분색인 스케줄 설정상태를 조회한다.
+
+**Request**
+
+    GET /service/indexing/schedule
+    PARAM : collectionId=V1&type=add
+
+    http://localhost:8090/service/indexing/schedule.json?collectionId=V1&type=add
+
+**Response**
+
+	{
+	"V1" : false
+	}
+
+V1컬렉션의 동적색인 스케줄 설정상태를 조회한다.
+
+**Request**
+
+    GET /service/indexing/schedule
+    PARAM : collectionId=V1&type=dynamic
+
+    http://localhost:8090/service/indexing/schedule.json?collectionId=V1&type=dynamic
+
+**Response**
+
+	{
+	"V1" : true
+	}
+
+
+
+5. 동적색인 API
 ---------
+
+주기적 색인이 아닌 동적으로 필드를 업데이트하고, 문서를 추가 및 삭제할 수 있는 API이다. 성공시 `status` 값은 0이 리턴된다.
 
 #### 요청 URL
 
-	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/indexing/schedule?collectionId=[Collection ID]
+	http://[검색엔진 IP]:[검색엔진 ServicePort]/service/index
 
 #### Param
 
 `collectionId` : 컬렉션 아이디 (필수)
-`type` : 색인타입. 전체색인, 증분색인 구분. full, add중 택일 (필수)
+
+`Request Body` : 한줄에 기록된 JSON 형식의 문서. 다수의 문서를 BULK로 요청시 한줄에 하나의 문서를 여러줄로 나열한다.
 
 #### METHOD
 
-`GET`
+`POST` : 문서추가
+`PUT`  : 필드업데이트
+`DELETE` : 문서삭제
+`GET` : 문서확인
 
 #### Example:
 
-    Request
-    GET localhost:8090/service/indexing/schedule.json?collectionId=mycollection&type=full
-    PARAM : collectionId=mycollection&type=full
 
-    http://localhost:8090/service/indexing/schedule.json?collectionId=mycollection&type=full
+문서를 한건 추가한다.
 
-위의 주소와 같이 mycollection 컬렉션에 색인스케쥴 확인 요청을 보내면 다음과 같은 응답이 온다.
+**Request**
 
-    Response
-	{
-	"test" : false
-	}
+```
+POST /service/index?collectionId=VM
+{ "ID":"12000","PRODUCTCODE":"12345", "PRODUCTNAME":"웨스턴디지털 외장하드 1TB", "PRICE": 52000, "MAKER":"웨스턴디지털"}
+```
 
-현재 mycollection의 전체색인 스케쥴이 Off상태임을 알 수 있다. 색인스케쥴 설정과는 달리, flag 값을 넣지 않은 경우 색인스케쥴의 설정 여부만을 알 수 있다.
+**Response**
+
+```
+# 성공
+{
+  "collectionId": "VM",
+  "status": "0"
+}
+```
+
+```
+# 실패
+{
+  "success": false,
+  "errorMessage": "org.fastcatsearch.exception.FastcatSearchException: Uncategorized Error: Collection [VM] is not exist."
+}
+```
+
+문서를 여러건 추가한다.
+
+**Request**
+
+```
+POST /service/index?collectionId=VM
+{ "ID":"12000","PRODUCTCODE":"12345", "PRODUCTNAME":"웨스턴디지털 외장하드 1TB", "PRICE": 52000, "MAKER":"웨스턴디지털"}
+{ "ID":"12001","PRODUCTCODE":"12346", "PRODUCTNAME":"웨스턴디지털 외장하드 512GB", "PRICE": 30000, "MAKER":"웨스턴디지털"}
+{ "ID":"12002","PRODUCTCODE":"12347", "PRODUCTNAME":"웨스턴디지털 외장하드 2TB", "PRICE": 89000, "MAKER":"웨스턴디지털"}
+```
+
+**Response**
+
+```
+# 성공
+{
+  "collectionId": "VM",
+  "status": "0"
+}
+```
+
+문서를 여러건 업데이트 한다.
+
+**Request**
+
+```
+PUT /service/index?collectionId=VM
+{ "ID":"12000", PRICE": 51000 }
+{ "ID":"12001", "PRICE": 29000 }
+{ "ID":"12002", "PRICE": 87000 }
+```
+
+**Response**
+
+```
+# 성공
+{
+  "collectionId": "VM",
+  "status": "0"
+}
+```
+
+**Request**
+
+문서를 한건 삭제한다.
+```
+DELETE /service/index?collectionId=VM
+{ "ID": "12001" }
+```
+
+**Response**
+
+```
+# 성공
+{
+  "collectionId": "VM",
+  "status": "0"
+}
+```
+
+
+
+
