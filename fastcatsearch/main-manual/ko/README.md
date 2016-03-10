@@ -324,49 +324,70 @@ $ mv -r fastcatsearch-console [설치위치]/
 </Call>
 ```
 
- 
-3.서비스 시작/종료/등록
------------------------
 
-###3.1. 서비스 시작
+###2.4. 검색엔진 서비스 등록
 
-검색엔진을 운영하기 위해서는 총 2개의 프로세스가 실행되어야 한다. 
-하나는 검색엔진 프로세스이고 또 하나는 관리도구 프로세스이므로 각각 실행해주도록 한다.
-
-####3.1.1. 검색엔진
-
-##### 스크립트
-
-- Linux : 시작 스크립트는 `bin/fastcatsearch start` 이며,  종료 시에는 `bin/fastcatsearch stop` 으로 종료한다.
-실행시 log파일이 자동으로 `tail` 을 사용해서 뿌려진다.
-로그를 그만보고자 하면 `ctrl^c`를 누르면 되며, 검색엔진은 background로 계속 실행된다.
-- Windows : `bin/fastcatsearch.bat` 파일을 더블 클릭하여 실행한다. 종료는 cmd 창을 닫으면 된다.
- 
 ##### 메모리설정
 
 - Linux : `bin/environment.sh` 에서는 다음과 같이 jvm 등의 메모리 설정을 할 수 있다.
 `HEAP_MEMORY_SIZE=4g`
 - Windows :  `bin/environment.bat` 파일에서 수정가능하다.
 `java -Xmx4g ... `
- 
+
+##### 서비스등록
+
+서비스에 등록을 해두면 운영체제가 재시작되는 경우에도 검색엔진이 자동으로 시작된다.
+
+|운영체제	|스크립트						|
+|-----------|-------------------------------|
+|Linux		|service/bin/installDaemon.sh	|
+|Windows	|service/bat/installService.bat	|
+
+##### 서비스시작
+
+- Linux : 시작 스크립트는 `bin/fastcatsearch start` 이며,  종료 시에는 `bin/fastcatsearch stop` 으로 종료한다.
+실행시 log파일이 자동으로 `tail` 을 사용해서 뿌려진다.
+로그를 그만보고자 하면 `ctrl^c`를 누르면 되며, 검색엔진은 background로 계속 실행된다.
+- Windows : `bin/fastcatsearch.bat` 파일을 더블 클릭하여 실행한다. 종료는 cmd 창을 닫으면 된다.
+
+##### 서비스종료
+
+- Linux : `bin/daemon.sh stop` 를 호출한다.  또는 `bin/stop.sh` 를 호출하면 process를 찾아서 `kill` 한다.
+- Windows : 실행중인 cmd창을 닫는다.
+
 ##### 프로세스확인
 
 - Linux : `ps -ef | grep java | grep fastcatsearch | grep Bootstrap`
 - Windows : 작업관리자 또는 프로세스가 실행된 cmd 창을 확인한다.
- 
+
 ##### 로그확인
 
 - Linux : `tail -f logs/system.log` 를 통해 시스템로그를 확인한다.
 - Windows :  `logs/system.log` 파일을 윈도우용 `tail` 프로그램 또는 텍스트편집기로 열어본다.
- 
-####3.1.2. 관리도구
 
-#####스크립트
+
+####2.5 관리도구 서비스 등록
+
+##### 서비스등록
+
+서비스에 등록을 해두면 운영체제가 재시작되는 경우에도 검색엔진이 자동으로 시작된다.
+
+|운영체제	|스크립트						|
+|-----------|-------------------------------|
+|Linux		|service/bin/installDaemon.sh	|
+|Windows	|service/bat/installService.bat	|
+
+##### 서비스시작
 
 시작스크립트를 호출한다.
 
 - Linux : `start-console.sh`
 - Windows : `start-console.cmd`
+
+##### 서비스종료
+
+- Linux : `stop-console.sh` 를 호출한다.
+- Windows : 실행중인 cmd창을 닫는다.
 
 ##### 프로세스확인
 
@@ -377,37 +398,14 @@ $ mv -r fastcatsearch-console [설치위치]/
 
 - Linux : `tail -f logs/server.log`
 - Windows : `logs/server.log` 파일을 윈도우용 tail 프로그램 또는 텍스트편집기로 열어본다.
- 
+
 ##### 관리도구 접속
 
 웹브라우저를 이용하여 `http://[검색엔진설치IP]:[PORT]/console` 에 접속한다.
 로그인화면이 보이면 올바로 접속된 것이다.
- 
-###3.2. 서비스 종료
 
-####3.2.1. 검색엔진
 
-##### 스크립트
 
-- Linux : `bin/daemon.sh stop` 를 호출한다.  또는 `bin/stop.sh` 를 호출하면 process를 찾아서 `kill` 한다.
-- Windows : 실행중인 cmd창을 닫는다.
- 
-####3.2.2. 관리도구
-
-##### 스크립트
-
-- Linux : `stop-console.sh` 를 호출한다.
-- Windows : 실행중인 cmd창을 닫는다.
- 
-###3.3. 서비스등록
-
-서비스에 등록을 해두면 운영체제가 재시작되는 경우에도 검색엔진이 자동으로 시작된다. 
-
-|운영체제	|스크립트						|
-|-----------|-------------------------------|
-|Linux		|service/bin/installDaemon.sh	|
-|Windows	|service/bat/installService.bat	|
- 
 4.관리도구사용법
 ----------------
 
