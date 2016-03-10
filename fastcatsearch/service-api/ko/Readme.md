@@ -154,6 +154,7 @@ indexingType은 FULL 또는 Add이며, 각각 전체색인과 증분색인을 �
 #### METHOD
 
 `POST` : On/Off
+
 `GET`  : 조회
 
 #### Example:
