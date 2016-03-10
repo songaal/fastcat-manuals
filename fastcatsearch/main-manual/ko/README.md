@@ -446,11 +446,25 @@ system.mail.sender=sendmail
 sendmail.path=sendmail
 ```
 
-`smtp`를 선택했다면 `smtp-config.id`에 이메일 사용자 아이디를 `smtp-config.password`에 암호를 입력한다.
+`smtp`를 선택했다면 `smtp-config.id`에 이메일 사용자 아이디를 `smtp-config.password`에 암호를 입력한다. `smtp-config.mail.smtp` 로 시작하는 설정에는 `smtp` 메일서버정보를 입력한다.
 
 ```
 smtp-config.id=webmaster@mydomain.com
 smtp-config.password=my_email_password
+smtp-config.mail.smtp.port=
+smtp-config.mail.smtp.host=
+smtp-config.mail.smtp.starttls.enable=
+smtp-config.mail.smtp.auth=
+smtp-config.mail.smtp.ssl.trust=
+```
+
+다음은 `gmail` 사용시의 설정예제이다.
+```
+smtp-config.mail.smtp.port=587
+smtp-config.mail.smtp.host=smtp.gmail.com
+smtp-config.mail.smtp.starttls.enable=true
+smtp-config.mail.smtp.auth=true
+smtp-config.mail.smtp.ssl.trust=smtp.gmail.com
 ```
 
 ###3.4. 묶음검색설정
