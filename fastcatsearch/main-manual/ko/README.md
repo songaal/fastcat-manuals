@@ -685,7 +685,7 @@ ir.indexing.dynamic.indexing_period_SEC=1
 - Data Node List : 데이터노드 아이디. 컴마구분으로 여러개 추가가능. 우측 Drop-Down 리스트에서 노드를 선택하면 자동입력된다.
 - `Next` : 모든 사항이 올바로 입력되었다면 이 버튼으로 다음 단계로 넘어간다.
 - `Cancel collection` : 언제든지 이 버튼을 누르면 지금까지 설정한 컬렉션 설정정보가 삭제되면서 컬렉션 생성작업을 취소할 수 있다.
- 
+
 ####4.3.3. 데이터맵핑
 
 컬렉션 기본정보를 입력하였으면, 데이터소스와 데이터를 맵핑해준다.
@@ -707,14 +707,14 @@ ir.indexing.dynamic.indexing_period_SEC=1
 - Delete SQL : 삭제할 아이디를 가져오는 SQL 쿼리문. 여기에 Select되는 필드는 컬렉션 스키마의 주키가 되어야 한다. 
 
 ```
-Delete SQL의 Select할 필드에는 오직 하나의 주키 필드만 가져오도록 한다. 
+Delete SQL의 Select할 필드에는 오직 하나의 주키 필드만 가져오도록 한다.
 ```
 
 - Before SQL : Data SQL이 데이터를 수집하기 전에 실행되는 SQL쿼리문.
 - After SQL : Data SQL이 데이터를 수집한 뒤 마지막으로 실행되는 SQL쿼리문.
 
 ```
-Before SQL과 After SQL 은 오직 Update SQL만 실행할 수 있다. Select 문의 사용할 수 없다.
+Before SQL과 After SQL 은 오직 Update SQL만 실행할 수 있다. Select 문은 사용할 수 없다.
 ```
 
 - `Back` : 이전 단계로 이동한다. 현재 단계의 입력내용은 사라진다.
