@@ -252,8 +252,12 @@ etc2 : 한국인터넷진흥원>주요사업>인터넷 정책기획>인터넷ㆍ
 JSON 파일의 경우 다음과 같이 설정한다.
 
 ```
+{"url":"http://www.kisa.or.kr/business/policy/main.jsp", "cat1":"01", "cat2":"01", "cat3":"01", "etc1":"한국인터넷진흥원","etc2":"한국인터넷진흥원>주요사업>인터넷 정책기획"}
+{"url":"http://www.kisa.or.kr/business/policy/policy1.jsp", "cat1":"01", "cat2":"01", "cat3":"01", "etc1":"한국인터넷진흥원","etc2":"한국인터넷진흥원>주요사업>인터넷 정책기획>인터넷ㆍ정보보호 정책연구"}
+{"url":"http://www.kisa.or.kr/business/policy/policy2.jsp", "cat1":"01", "cat2":"01", "cat3":"01", "etc1":"한국인터넷진흥원","etc2":"한국인터넷진흥원>주요사업>인터넷 정책기획>인터넷ㆍ정보보호 조사분석"}
 ```
 
+JSON LIST와 동일한 형식으로 설정 파일을 작성한다.
 
 <a name="INDEX_CLONE"></a>
 7. INDEX_CLONE

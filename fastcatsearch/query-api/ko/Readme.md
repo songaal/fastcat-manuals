@@ -290,12 +290,13 @@ ft=lat;lon:GEO_RADIUS_BOOST:37.513;127.056;0.5;10000
 
 Name: 정렬조건, Ranking
 
-Format: `field-index-id[:ASC|DESC],..`
+Format: `field-index-id[:ASC|DESC][_SHUFFLE],..`
 
 Description: 필드명의 데이터로 정렬을 하며, 다중필드정렬시 `,` 를 사용하여 연결한다.
 문서점수로 정렬시 필드명에 내부필드인 `_SCORE` 를 사용한다.
 GEO 필터를 사용하였다면, `_DISTANCE`라는 내부필드가 생성되며 정렬에 사용이 가능하다.
 정렬옵션에서 `ASC` 는 오름차순으로, `DESC` 는 내림차순으로 정렬하며 생략시 `ASC` 가 디폴트로 사용된다.
+정렬 시 필드 값이 동일한 경우에 같은 값 중에서 출력되는 순서를 랜덤으로 하고 싶다면 `DESC_SHUFFLE` 또는 `ASC_SHUFFLE`를 적용한다. 다중필드에서 `_SHUFFLE` 적용 시 해당 옵션을 적용한 필드 후의 정렬 옵션은 무시된다.
 
 Examples:
 
@@ -320,6 +321,21 @@ price 필드로 내림차순 정렬후 category 필드로 오름차순 정렬한
 price 필드로 내림차순 정렬후 문서점수가 높은순으로 정렬한다.
 
     ra=price:desc,_SCORE:desc
+
+정확도로 내림차순 정렬하며, 동일한 정확도 내에서의 정렬 순서는 검색 시마다 랜덤으로 정렬한다.
+
+    ra=_score:desc_shuffle
+
+name 필드로 오름차순 정렬후 price 필드 내림차순으로 정렬하며 동일한 price 값 내에서의 정렬 순서는 랜덤으로 정한다.
+_shuffle 옵션 추가 시 다중필드 정렬에서 적용한다면 맨 마지막 필드 옵션에 붙여주어야 한다.
+
+    ra=name:asc,price:desc_shuffle
+
+예를 들어, 다음과 같이 shuffle 적용 후 category 필드를 오름차순 정렬로 한다고 적어도, category 필드 기준으로 정렬하지 않고 무시당한다.
+
+    ra=name:asc,price:desc_shuffle,category:asc
+
+
 
 ### gr
 
