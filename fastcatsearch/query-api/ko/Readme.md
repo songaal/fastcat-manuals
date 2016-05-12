@@ -361,10 +361,12 @@ group-function 중 count를 제외하고는 모두 소문자로만 작성해야 
 
 |Function Name	|Description						|
 |---------------|-----------------------------------|
-|KEY_ASC 		|그룹명으로 오름차순 정렬한다.		|
+|KEY_ASC 		|그룹명으로 오름차순 정렬한다.		  |
 |KEY_DESC 		|그룹명으로 내림차순 정렬한다.		|
-|COUNT_ASC 		|그룹별 갯수로 오름차순 정렬한다.	|
-|COUNT_DESC 	|그룹별 갯수로 내림차순 정렬한다.	|
+|VALUE_ASC 		|그룹별 갯수로 오름차순 정렬한다.	|
+|VALUE_DESC 	|그룹별 갯수로 내림차순 정렬한다.	|
+
+기존에 sort-type에서 COUNT_ 로 사용된 기능이 검색엔진 버전 v2.34.4 및 v3.9.1 이후부터 VALUE_ASC, VALUE_DESC 로 사용할 수 있도록 변경되었다. 또한 sort-type 명칭 변경의 혼동을 막기 위해 기존에 사용하던 COUNT_ASC, COUNT_DESC도 VALUE_ASC, VALUE_DESC의 하위호환으로 계속 사용할 수 있도록 했다. (명칭만 다를 뿐 사용법은 같음)
 
 count-limit-size:
 
@@ -383,6 +385,10 @@ category 필드를 그룹핑하여 category로 묶인 그룹별로 model 필드�
 그룹핑 결과를 그룹별 결과갯수로 내림차순 정렬한다.
 
     gr=category:COUNT:COUNT_DESC
+
+그룹핑 결과를 그룹별 결과갯수로 오름차순 정렬한다. VALUE_ASC는 기존에 사용하던 COUNT_ASC와 동일한 기능이다.
+
+    gr=category:COUNT:VALUE_ASC
 
 그룹핑 결과가 너무 많을땐 상위 10개만 사용한다.
 
