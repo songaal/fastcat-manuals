@@ -703,15 +703,15 @@ ir.indexing.dynamic.indexing_period_SEC=1
 - `Query Test` : 쿼리를 실제로 수행해 볼수 있는 SQL Editor를 실행한다. 사용법은 아래 "수집쿼리 테스트" 항목을 참조한다.
 - Bulk Size : Reader가 DB에서 한번씩 데이터를 가져오는 갯수. Bulk Size만큼 메모리에 쌓아두기 때문에, 값이 아주 큰 경우 OutOfMemory 에러가 발생할 수 있으니, 100정도의 디폴트값을 이용하는 것을 추천한다.
 - Fetch Size : JDBC의 Statement fetch-size를 가리킨다. 값이 0이면 각 JDBC별 디폴트값이 사용되고, -1이면, read-only cursor로 동작한다. JDBC수집중 OutOfMemory가 발생한다면 -1을 사용한다.
-- Data SQL : 색인할 데이터를 가져오는 SQL 쿼리문.
-- Delete SQL : 삭제할 아이디를 가져오는 SQL 쿼리문. 여기에 Select되는 필드는 컬렉션 스키마의 주키가 되어야 한다. 
+- Data SQL : 색인할 데이터를 가져오는 SQL 쿼리문을 입력한다. 프로시저 실행 또한 가능하다.
+- Delete SQL : 기존에 색인된 데이터 중 삭제할 데이터의 아이디를 가져오는 SQL 쿼리문을 입력한다. Select 문을 사용해야 하며 Data SQL의 쿼리 결과와 값이 중복될 경우 Data SQL의 결과가 우선시되기 때문에 전체 색인(Full Indexing)시에는 Delete SQL을 입력한 후 색인을 진행해도 Delete SQL 결과가 적용되지 않으므로 증분 색인(Add Indexing)에 설정해야 기존에 색인된 데이터 중 쿼리 결과로 나온 아이디 값의 삭제가 이루어진다. 아이디로서 Select되는 필드는 컬렉션 스키마의 주키(Primary Key)가 되어야 한다. 
 
 ```
 Delete SQL의 Select할 필드에는 오직 하나의 주키 필드만 가져오도록 한다.
 ```
 
-- Before SQL : Data SQL이 데이터를 수집하기 전에 실행되는 SQL쿼리문.
-- After SQL : Data SQL이 데이터를 수집한 뒤 마지막으로 실행되는 SQL쿼리문.
+- Before SQL : Data SQL이 데이터를 수집하기 전에 실행되는 SQL 쿼리문을 입력한다.
+- After SQL : Data SQL이 데이터를 수집한 뒤 마지막으로 실행되는 SQL 쿼리문을 입력한다.
 
 ```
 Before SQL과 After SQL 은 오직 Update SQL만 실행할 수 있다. Select 문은 사용할 수 없다.
