@@ -238,6 +238,8 @@ Filter Type:
 - `BOOST` 결과점수에 필드값 가산. 단, 필드가 숫자형(Int, Long, Float, Double) 일 경우에만 사용가능.
 - `GEO_RADIUS` 위경도 거리반경. 경도 위도 필드는 Float형이어야 한다. 반경의 단위는 km 이며, 소수점까지 사용가능. 예) 0.3 -> 300m, 1.5 -> 1500m
 - `GEO_RADIUS_BOOST` 위경도 거리반경내 일치시 결과점수 가산
+- `EMPTY` NULL값 여부에 따라 NULL값을 가진 문서만 검색 또는 제외
+- `SECTION_EXCLUDE` 범위일치시 제외
 
 필터타입은 대소문자를 구분하지 않는다.
 
@@ -282,6 +284,14 @@ ft=lat;lon:GEO_RADIUS:37.513;127.056;0.5
 위와 동일한 조건에 boosting 점수로 10000점을 가산한다.
 ```
 ft=lat;lon:GEO_RADIUS_BOOST:37.513;127.056;0.5;10000
+```
+price 값이 500이상 1000이하일 경우 검색 결과에서 제외한다.
+```
+ft=price:SECTION_EXCLUDE:500~1000
+```
+value 필드가 NULL값일 경우로 검색 결과를 제한한다. filter-keyword의 경우 Y(대소문자 구분 없음)로 시작하는 글자를 입력할 경우 NULL값인 경우만으로 검색결과를 제한하고, N(역시 대소문자 구분 없음)일 경우 NULL값이 아닌 경우로 검색 결과를 제한한다.
+```
+ft=value:EMPTY:y
 ```
 
 
