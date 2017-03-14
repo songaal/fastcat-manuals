@@ -1129,7 +1129,20 @@ Search Index 필드, 즉 검색필드의 데이터를 분석하여 보여준다.
 - Bulk Size : Reader가 DB에서 한번씩 데이터를 가져오는 갯수. Bulk Size만큼 메모리에 쌓아두기 때문에, 값이 아주 큰 경우 OutOfMemory 에러가 발생할 수 있으니, 100정도의 디폴트값을 이용하는 것을 추천한다.
 - Fetch Size : JDBC의 Statement fetch-size를 가리킨다. 값이 0이면 각 JDBC별 디폴트값이 사용되고, -1이면, read-only cursor로 동작한다. JDBC수집중 OutOfMemory가 발생한다면 -1을 사용한다.
 - Data SQL : 색인할 데이터를 가져오는 SQL 쿼리문. 증분색인의 경우 ${last_index_time} 값을 통해 마지막 증분색인 시작 시간, 증분 색인이 없을 경우 마지막 전체 색인 시간을 String 값으로 내보낸다. 이를 통해 이전 마지막 색인의 시작 시간을 Data SQL 쿼리에 추가할 수 있다.
-- Delete SQL : 삭제할 아이디를 가져오는 SQL 쿼리문. 여기에 Select되는 필드는 컬렉션 스키마의 주키가 되어야 한다. 
+```
+SELECT
+	id
+    ,title
+	....
+	,view_cnt
+FROM TB_XXX_XXXXX_PM M
+WHERE 1=1
+AND total_yn = 'Y'
+AND modidate >= date_add(${last_index_time},  interval -1 minute)
+```
+	${last_index_time}을 사용할 경우 위의 예시처럼 사용하도록 한다.
+
+- Delete SQL : 삭제할 아이디를 가져오는 SQL 쿼리문. 여기에 Select되는 필드는 컬렉션 스키마의 주키가 되어야 한다.
 ```
 Delete SQL의 Select할 필드에는 오직 하나의 주키 필드만 가져오도록 한다. 
 ```
