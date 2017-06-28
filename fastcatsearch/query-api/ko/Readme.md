@@ -375,8 +375,11 @@ group-function 중 count를 제외하고는 모두 소문자로만 작성해야 
 |KEY_DESC 		|그룹명으로 내림차순 정렬한다.		|
 |VALUE_ASC 		|그룹별 갯수로 오름차순 정렬한다.	|
 |VALUE_DESC 	|그룹별 갯수로 내림차순 정렬한다.	|
+|KEY_NUMERIC_ASC 		|그룹명이 숫자일 경우 숫자 기준으로 오름차순 정렬한다.		|
+|KEY_NUMERIC_DESC 		|그룹명이 숫자일 경우 숫자 기준으로 내림차순 정렬한다.		|
 
 기존에 sort-type에서 COUNT_ 로 사용된 기능이 검색엔진 버전 v2.34.4 및 v3.9.1 이후부터 VALUE_ASC, VALUE_DESC 로 사용할 수 있도록 변경되었다. 또한 sort-type 명칭 변경의 혼동을 막기 위해 기존에 사용하던 COUNT_ASC, COUNT_DESC도 VALUE_ASC, VALUE_DESC의 하위호환으로 계속 사용할 수 있도록 했다. (명칭만 다를 뿐 사용법은 같음)
+KEY_NUMERIC_ASC 및 KEY_NUMERIC_DESC의 경우 그룹명이 숫자로 이루어진 데이터들의 집합일 경우 기본 정렬 방식으로는 숫자도 문자열로 인식하여 숫자 기준으로 정렬하지 않았던 문제를 해결하기 위해 새로 추가된 정렬 옵션이다. 이  옵션을 사용하기 위해서는 그룹명 대상이 되는 필드가 숫자로만 이루어진 데이터 필드여야 한다.
 
 count-limit-size:
 
@@ -407,6 +410,10 @@ category 필드를 그룹핑하여 category로 묶인 그룹별로 model 필드�
 그룹핑 결과를 amount 필드의 최대값, 최소값, 그리고 갯수가 나오도록 하며 결과갯수 내림차순으로 5개를 사용한다.
 
 	gr=category:max(amount);min(amount);COUNT_DESC:5
+
+그룹핑 결과를 name 필드의 ranking 값에 해당되는 name 필드 값이 나오도록 하며 그룹명을 숫자 기준으로 내림차순 정렬한다.
+
+	gr=ranking:max(name);KEY_NUM_DESC
 
 
 ### gf

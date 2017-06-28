@@ -8,6 +8,7 @@
 3. 색인작업확인
 4. 색인 스케쥴 On/Off
 5. 동적색인 API
+6. 사전 서비스 API
 
 
 
@@ -352,6 +353,199 @@ DELETE /service/index?collectionId=VM
 }
 ```
 
+6. 사전 서비스 API
+---------
+
+한글분석기, 상품명 분석기 등을 서비스 원격으로 사용하기 위한 API이다.
+
+#### 제공 API 목록
+
+##### 단어 리스트 호출
+
+###### 요청 URL
+
+	GET, POST http://[검색엔진 IP]:[검색엔진 ServicePort]/service/dictionary/list
+
+###### Param
+
+`pluginId` : 사전 플러그인 ID (필수)
+
+`dictionaryId` : 사전 ID (필수)
+
+`start` : 시작 번호 (필수)
+
+`length` : 리스트 길이 (필수)
+
+`search` : 검색 키워드
+
+`searchColumns` : 검색 대상 필드
+
+`sortAsc` : 정렬기준 (등록시간 기준, 등록시간 역순 정렬(DESC) 시에는 false을 입력한다)
+
+###### Example
+
+사용자사전( dictionaryId user ) 단어 리스트를 가지고 온다.
+
+**Request**
+
+	GET /service/dictionary/list?
+    pluginId=KOREAN&dictionaryId=user&start=1&length=40
+
+**Response**
+
+	{
+        "user": [
+            {
+                "ID": 23308,
+                "KEYWORD": "단어1"
+            },
+            {
+                "ID": 23309,
+                "KEYWORD": "단어2"
+            }
+        ],
+        "totalSize": 2,
+        "filteredSize": 2,
+        "searchableColumnList": [
+            "KEYWORD"
+        ],
+        "columnList": [
+            "KEYWORD"
+        ]
+    }
+
+
+##### 단어 입력
+
+###### 요청 URL
+
+	POST http://[검색엔진 IP]:[검색엔진 ServicePort]/service/dictionary/put
+
+###### Param
+
+`pluginId` : 사전 플러그인 ID (필수)
+
+`dictionaryId` : 사전 ID (필수)
+
+사전 별로 컬럼 ID 값을 key로 입력하고 입력할 값을 value로 넣는다.
+검색엔진 관리도구에서 관리 > 분석기 > (플러그인 내 pluginId 값에 해당되는 메뉴) > 설정 > 사전 > 컬럼의 View를 참고하여 확인 가능하다.
+
+###### Example
+
+'검색엔진' 단어를 사용자사전(set 타입)에 등록한다.
+
+**Request**
+
+	POST /service/dictionary/put?pluginId=KOREAN&dictionaryId=user&KEYWORD=검색엔진
+
+**Response**
+
+	{
+        "success": true
+    }
+
+'화랑' 단어의 유사어로 등록할 'KBS드라마' 및 '신라' 유사어사전(synonym 타입)에 등록한다.
+
+**Request**
+
+	POST /service/dictionary/put?pluginId=KOREAN&dictionaryId=user&KEYWORD=검색엔진
+
+**Response**
+
+	{
+        "success": true
+    }
+
+
+##### 단어 수정
+
+###### 요청 URL
+
+	POST http://[검색엔진 IP]:[검색엔진 ServicePort]/service/dictionary/update
+
+###### Param
+
+`pluginId` : 사전 플러그인 ID (필수)
+
+`dictionaryId` : 사전 ID (필수)
+
+`ID` : 단어 ID (필수)
+
+사전 별로 컬럼 ID 값을 key로 입력하고 입력할 값을 value로 넣는다.
+검색엔진 관리도구에서 관리 > 분석기 > (플러그인 내 pluginId 값에 해당되는 메뉴) > 설정 > 사전 > 컬럼의 View를 참고하여 확인 가능하다.
+
+###### Example
+
+ID 값이 23308인 단어를 '무한도전'으로 수정한다.
+
+**Request**
+
+	POST /service/dictionary/update?pluginId=KOREAN&dictionaryId=user&ID=23308&KEYWORD=무한도전
+
+**Response**
+
+    {
+        "success": true
+    }
+
+
+##### 단어 삭제
+
+###### 요청 URL
+
+	POST http://[검색엔진 IP]:[검색엔진 ServicePort]/service/dictionary/delete
+
+###### Param
+
+`pluginId` : 사전 플러그인 ID (필수)
+
+`dictionaryId` : 사전 ID (필수)
+
+`deleteIdList` : 삭제할 단어 아이디 리스트 (콤마로 구분한다.)
+
+###### Example
+
+**Request**
+
+	POST /service/dictionary/delete?pluginId=KOREAN&dictionaryId=user&deleteIdList=23308,23309
+
+**Response**
+
+    {
+        "success": true,
+        "result": 2
+    }
+
+##### 사전 APPLY
+
+###### 요청 URL
+
+	POST http://[검색엔진 IP]:[검색엔진 ServicePort]/service/dictionary/apply
+
+###### Param
+
+`pluginId` : 사전 플러그인 ID (필수)
+
+`dictionaryId` : 사전 ID (필수) (여러 개의 사전 APPLY 시 콤마로 아이디 구분)
+
+###### Example
+
+사용자 사전(user) 및 유사어 사전(synonym)을 Apply한다.
+
+**Request**
+
+	POST /service/dictionary/apply?pluginId=KOREAN&dictionaryId=user,synonym
+
+**Response**
+
+    {
+        "success": true,
+        "successList": [
+            "user",
+            "synonym"
+        ],
+        "failList": []
+    }
 
 
 
