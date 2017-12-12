@@ -430,40 +430,185 @@ URL : `POST /service/users`
 ```
 
 
-## 5.2 아이템 추천
+## 5.2 그룹 아이템 추천
 
-URL : `GET /service/recommendation/groupItems`
+URL : `GET /service/recommendation/popular/user/items`
 
 표. 파라메터 목록
 
 |Parameter	|설명				|필수	|
 |-----------|----------------|-------|
 |siteId		|사이트 ID			|O		|
-|categoryId	|카테고리 ID		|O		|
-|커스텀 ID	|사용자가 설정한 속성들을 이곳에 전달한다.		|O		|
+|categoryId	|카테고리 ID		|X		|
+|userId	|유저 ID		|O		|
+|count	|출력 아이템 개수		|X		|
+|timeId	|통계 기준 일자 ID		|X		|
 
-예) 사용자 속성에 `country`, `age`, `gender` 3개를 설정했다면 아래와 같이 호출한다.
+예) 유저 ID가 `100`인 유저가 속한 그룹의 `medical` 카테고리 추천 아이템을 가져오려면 아래와 같이 호출한다.
 
 ```
-/service/recommendation/groupItems?
+/service/recommendation/popular/user/items?
 siteId=www&
 categoryId=medical&
-country=KR&
-age=30s
-gender=F
+userId=100&
+count=10
 ```
 
 **결과**
 
 ```
-[
-	{ 
-		"user" : "사용자",		//사용자 번호
-		"item" : "아이템",		//아이템 번호
-		"rating" : "평가점수"	//학습을 통한 예상평가점수
-	},
-	...
-]
+{
+    "siteId": "www",
+    "categoryId": "medical",
+    "userId": "100",
+    "userGroupId": "KRM20s",
+    "timeId": "D20171211",
+    "list": [
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRM20s",
+            "timeId": "D20171211",
+            "itemId": "4",
+            "rating": 0.6
+        },
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRM20s",
+            "timeId": "D20171211",
+            "itemId": "1",
+            "rating": 0.4
+        },
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRM20s",
+            "timeId": "D20171211",
+            "itemId": "6",
+            "rating": 0.2
+        },
+        ....
+    ]
+}
+```
+
+## 5.2 유저 ID 기준 그룹 아이템 추천
+
+URL : `GET /service/recommendation/popular/user/items`
+
+표. 파라메터 목록
+
+|Parameter	|설명				|필수	|
+|-----------|----------------|-------|
+|siteId		|사이트 ID			|O		|
+|categoryId	|카테고리 ID		|X		|
+|userId	|유저 ID		|O		|
+|count	|출력 아이템 개수		|X		|
+|timeId	|통계 기준 일자 ID		|X		|
+
+예) 유저 ID가 `100`인 유저가 속한 그룹의 `medical` 카테고리 추천 아이템을 가져오려면 아래와 같이 호출한다.
+
+```
+/service/recommendation/popular/user/items?
+siteId=www&
+categoryId=medical&
+userId=100&
+count=10
+```
+
+**결과**
+
+```
+{
+    "siteId": "www",
+    "categoryId": "medical",
+    "userId": "100",
+    "userGroupId": "KRM20s",
+    "timeId": "D20171211",
+    "list": [
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRM20s",
+            "timeId": "D20171211",
+            "itemId": "4",
+            "rating": 0.6
+        },
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRM20s",
+            "timeId": "D20171211",
+            "itemId": "1",
+            "rating": 0.4
+        },
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRM20s",
+            "timeId": "D20171211",
+            "itemId": "6",
+            "rating": 0.2
+        },
+        ....
+    ]
+}
+```
+
+## 5.3 그룹 아이템 추천
+
+URL : `GET /service/recommendation/popular/group/items`
+
+표. 파라메터 목록
+
+|Parameter	|설명				|필수	|
+|-----------|----------------|-------|
+|siteId		|사이트 ID			|O		|
+|categoryId	|카테고리 ID		|X		|
+|count	|출력 아이템 개수		|X		|
+|timeId	|통계 기준 일자 ID		|X		|
+|커스텀 ID	|사용자가 설정한 속성들을 이곳에 전달한다.		|O		|
+
+예) country가 `KR`, gender가 `F`, age가 `20s`에 해당되는 그룹의 `medical` 카테고리 추천 아이템을 가져오려면 아래와 같이 호출한다.
+
+```
+/service/recommendation/popular/group/items?
+siteId=www&
+categoryId=medical&
+count=10&
+country=KR&
+gender=F&
+age=20s
+```
+
+**결과**
+
+```
+{
+    "siteId": "www",
+    "categoryId": "medical",
+    "userGroupId": "KRF20s",
+    "timeId": "D20171211",
+    "list": [
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRF20s",
+            "timeId": "D20171211",
+            "itemId": "3",
+            "rating": 0.9
+        },
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRF20s",
+            "timeId": "D20171211",
+            "itemId": "4",
+            "rating": 0.4
+        },
+        {
+            "categoryId": "medical",
+            "userGroupId": "KRF20s",
+            "timeId": "D20171211",
+            "itemId": "5",
+            "rating": 0.4
+        },
+        ...
+    ]
+}
 ```
 
 끝.
