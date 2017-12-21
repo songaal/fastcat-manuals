@@ -412,6 +412,7 @@ URL : `POST /service/users`
 { 
 	"siteId" : "사이트 ID", 		//필수
 	"categoryId" : "카테고리 ID", 	//하위분류
+    "userId" : "유저 ID", 		//필수
 	"커스텀 ID" : "커스텀 ID",		// 사용자가 설정한 속성들을 이곳에 전달.
 	...
 }
@@ -421,8 +422,9 @@ URL : `POST /service/users`
 
 ```
 { 
-	"siteId" : "www", 		//필수
-	"categoryId" : "mdeical", 	//하위분류
+	"siteId" : "www",
+	"categoryId" : "medical",
+	"userId" : "MEM0001",
 	"country" : "KR",
 	"age" : "30s",
 	"gender" : "F",
