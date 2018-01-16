@@ -545,45 +545,57 @@ $ mv -r target/analytics-*  <설치위치>/
 
 통계에 사용되는 파라미터들을 설정한다.
 
-##### CommonProperties
+##### 공통 (CommonProperties)
 
-- Banwords : 통계에 사용하지 않을 단어들을 등록한다. 한줄에 한단어씩 입력한다.
-- Max Keyword Length : 통계대상인 단어가 이 길이보다 크다면 통계에 사용하지 않고 무시한다.
-- Daily Schedule Time : 일일 스케쥴 통계시 시작시간을 설정한다. 0~23사이의 정수를 입력한다.
-- Schedule Delay in seconds : 통계시작시 Delay 시간을 초 단위로 입력한다. Delay를 사용하지 않으려면 0으로 입력한다.
- 
-##### Realtime  Popular Keyword
+- 금지어 (Banwords) : 통계에 사용하지 않을 단어들을 등록한다. 한줄에 한단어씩 입력한다.
+- 검색어 최대길이 (Max Keyword Length) : 통계대상인 단어가 이 길이보다 크다면 통계에 사용하지 않고 무시한다.
+- 매일 통계스케줄 시각 (Daily Schedule Time) : 일일 스케쥴 통계시 시작시간을 설정한다. 0~23사이의 정수를 입력한다.
+- 통계스케줄 지연시간(초) (Schedule Delay in seconds) : 통계시작시 Delay 시간을 초 단위로 입력한다. Delay를 사용하지 않으려면 0으로 입력한다.
 
-- Minimum Hit Count : 최소 검색횟수가 이 수치이상일때 통계에 반영한다.
-- Recent Log Using Size : 이전 몇개의 로그를 실시간 검색어순위 통계에 반영하지 결정한다. 5분단위로 로그가 생성되므로 5 * Size 가 시간범위를 결정한다.
+##### 실시간 인기검색어 (Realtime Popular Keyword)
+
+- 최소 검색횟수 (Minimum Hit Count) : 최소 검색횟수가 이 수치이상일때 통계에 반영한다.
+- 최근 로그 사용갯수 (Recent Log Using Size) : 이전 몇개의 로그를 실시간 검색어순위 통계에 반영하지 결정한다. 5분단위로 로그가 생성되므로 5 * Size 가 시간범위를 결정한다.
 
 ```
 Recent Log Using Size에 5로 입력시 이전 30분의 데이터로 실시간 검색어 순위가 생성된다.
 ```
 
-- View Size : 상위 몇개의 검색어를 순위로 제공할것인지 결정한다.
-- Period in seconds : 몇 초마다 순위를 갱신할지 결정한다.
+- 보기 갯수 (View Size) : 상위 몇개의 검색어를 순위로 제공할것인지 결정한다.
+- 주기(초) (Period in seconds) : 몇 초마다 순위를 갱신할지 결정한다.
 
-##### Popular Keyword
+##### 인기검색어 (Popular Keyword)
 
-- Minimum Hit Count : 최소 검색횟수가 이 수치이상일때 통계에 반영한다.
-- View Size : 상위 몇개의 검색어를 순위로 제공할것인지 결정한다.
-- Root Store Size : 카테고리구분없는 전체통계를 DB에 저장시 상위 몇개를 저장할지 결정한다.
-- Category Store Size : 카테고리별 통계를 DB에 저장시 상위 몇개를 저장할지 결정한다.
+- 최소 검색횟수 (Minimum Hit Count) : 최소 검색횟수가 이 수치이상일때 통계에 반영한다.
+- 보기 갯수 (View Size) : 상위 몇개의 검색어를 순위로 제공할것인지 결정한다.
+- 최상위 저장갯수 (Root Store Size) : 카테고리구분없는 전체통계를 DB에 저장시 상위 몇개를 저장할지 결정한다.
+- 카테고리별 저장갯수 (Category Store Size) : 카테고리별 통계를 DB에 저장시 상위 몇개를 저장할지 결정한다.
 
-##### Relate Keyword
+##### 연관검색어 (Relate Keyword)
 
-- Minimum Hit Count : 최소 검색횟수가 이 수치이상일때 통계에 반영한다.
- 
-##### Click-through Rate
+- 최소 검색횟수 (Minimum Hit Count) : 최소 검색횟수가 이 수치이상일때 통계에 반영한다.
 
-- Dump-file Day Size : CTR데이터를 파일로 만들때 이전 몇일까지의 데이터를 통계내어 만들지 결정한다.
-- Target-file Path : CTR데이터를 파일로 만들때 파일명.
-- Minimum Click Count : 클릭횟수가 이 수치 이상일때 통계에 반영한다.
-- File Daily Decay-factor : CTR데이터를 파일로 만들때 일간 클릭횟수에 이 수치를 곱해서 더한다. 즉, 에전 데이터에 대해 클릭횟수를 감소시키는 역할을 한다.
+##### 클릭유입률 (Click-through Rate)
+
+- 일별 덤프파일 갯수 (Dump-file Day Size) : CTR데이터를 파일로 만들때 이전 몇일까지의 데이터를 통계내어 만들지 결정한다.
+- 결과파일 저장경로 (Target-file Path) : CTR데이터를 파일로 만들때 파일명.
+- 최소 클릭수 (Minimum Click Count) : 클릭횟수가 이 수치 이상일때 통계에 반영한다.
+- 일별 감쇠비율 (File Daily Decay-factor) : CTR데이터를 파일로 만들때 일간 클릭횟수에 이 수치를 곱해서 더한다. 즉, 에전 데이터에 대해 클릭횟수를 감소시키는 역할을 한다.
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/403.jpg)
- 
+
+##### 추천엔진
+
+![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/403_2.png)
+
+- Spark 마스터 주소: 분석프레임워크 Spark의 마스터 주소를 설정합니다. 로컬의 경우 local[*] 또는 local[(숫자)] 같이 입력한다.
+
+- 학습할 로그의 기간: 통계 시 얼마간의 기간을 잡고 통계를 낼 지를 입력한다. 기본적으로는 7일이며, 통계를 낸 일자 기준으로 이전날부터 설정한 수치 만큼의 기간의 이벤트 로그를 합산하여 통계를 낸다.
+
+- 학습 스케줄 시각(시): 이벤트 로그의 통계를 진행할 시각을 입력한다. 0~23 중에서 입력.
+
+- 학습 스케줄 요일: 통계를 진행할 요일을 입력한다. 요일을 MON과 같이 세 글자로 입력하며, 요일을 여러 개 적을 경우 콤마(,)로 구분한다.
+
 ###5.2. 카테고리 설정
 
 사이트하위 개념인 카테고리를 설정할 수 있다.
