@@ -644,23 +644,8 @@ Recent Log Using Size에 5로 입력시 이전 30분의 데이터로 실시간 �
 - Name : 속성라벨명
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/405.jpg)
-
-###5.4. 이벤트 설정
-추천검색에 사용할 수집 데이터에 대한 설정 페이지이다.
-
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/420.png)
-
-- 이벤트 ID: 추천검색에 입력될 이벤트 ID에 대한 설정. 해당 설정에 추가된 ID만 평균 점수 계산 시 참고된다.
-
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/421.png)
-
-- 사용자 속성: 사용자 ID와 함께 입력되는 속성 키를 설정한다. 사용자 속성에 따른 그룹 분류에 사용된다.
-
-![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/422.png)
-
-- 이벤트 카테고리: 카테고리 ID를 설정한다. 추천 검색 시 전체 데이터와는 별개로 카테고리별로 별도 평균 점수를 계산한다.
-
-###5.5. 통계실행
+ 
+###5.4. 통계실행
 
 자동스케쥴 작업이 실행되지 않았거나, 스케쥴을 기다리지 않고 즉시 통계를 실행하고자 할때 사용된다.
 각 통계는 시/일/주/월/년 으로 나누어 실행되며 원하는 항목을 선택하여 한꺼번에 통계를 실행할 수 있다.
@@ -675,7 +660,7 @@ Recent Log Using Size에 5로 입력시 이전 30분의 데이터로 실시간 �
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/search-analytics/analytics-manual/ko/img/406.jpg)
  
-###5.6. 고급통계실행
+###5.5. 고급통계실행
 
 기간 범위를 지정하여 모든 통계를 한꺼번에 실행하는 기능이다. 
 평상시에는 사용할 일이 없지만, 통계저장 DB가 사라졌거나, 초기 데이터 입력시등에 사용될 수 있다.
