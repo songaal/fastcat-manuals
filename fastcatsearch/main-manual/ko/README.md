@@ -1670,35 +1670,4 @@ DB명에 system 입력시 시스템 DB를 사용하고, Plugin DB를 사용하�
 상단 메뉴에는 실행중인 작업을 간단하게 확인할 수 있는 버튼을 제공한다.
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/370.jpg) 
- 
-####4.12.2. JDBC DB Vendor 추가하기
 
-[검색엔진설치위치] / collections / jdbc-support.xml 에 <jdbc-driver>를 추가한다.
-
-```xml
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<jdbc-support>
-  <jdbc-drivers>
-    <jdbc-driver id="mysql" name="MySQL Driver" driver="com.mysql.jdbc.Driver" 
-      urlTemplate="jdbc:mysql://${host}:${port:3306}/${dbname}"/>
-    <jdbc-driver id="oracle-thin" name="Oracle Thin Driver" driver="oracle.jdbc.driver.OracleDriver" 
-      urlTemplate="jdbc:oracle:thin:${host}:${port:1521}:${dbname}"/>
-    <jdbc-driver id="jtds-mssql" name="jTDS Microsoft SQL" driver="net.sourceforge.jtds.jdbc.Driver" 
-      urlTemplate="jdbc:jtds:sqlserver://${host}:${port:1433}/${dbname}"/>
-    <jdbc-driver id="cubrid" name="CUBRID Driver" driver="cubrid.jdbc.driver.CUBRIDDriver" 
-      urlTemplate="jdbc:cubrid:${host}:${port:33000}:${dbname}:::"/>
-  </jdbc-drivers>
-</jdbc-support>
-```
-
-```xml
-<jdbc-driver id="[드라이버아이디]" name="[드라이버이름]" driver="[드라이버클래스]" 
-      urlTemplate="[JDBC URL 템플릿]"/>
-```
-JDBC URL 템플릿 예약어
-
-|${host}			|호스트 주소		|
-|-------------------|-------------------|
-|${port:기본포트}	|DBMS 서비스 PORT	|
-|${dbname}			|접속할 DB명		|
- 
