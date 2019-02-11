@@ -6,9 +6,7 @@
 3. 검색엔진설정
 4. 관리도구 사용법
 
-<span></span>
-1. 시스템개요
--------------
+## 1. 시스템개요
 
 ###1.1. 개요
 
@@ -58,8 +56,7 @@ Fastcatsearch는 대용량문서를 빠른 시간안에 색인 및 검색이 가
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/main-manual/ko/img/328.jpg)
 
 
-2. 검색엔진설치
----------------
+##2. 검색엔진설치
 
 ###2.1. 설치환경
 
@@ -406,8 +403,7 @@ $ mv -r fastcatsearch-console [설치위치]/
 
 
 
-3.검색엔진설정
-----------------
+##3.검색엔진설정
 
 여기에서 설명하는 설정내용들은 `conf/system.properties` 파일에서 수정할 수 있으며, 동적으로 적용되지 않기 때문에, 수정후에는 반드시 검색엔진을 재시작해야 한다.
 
@@ -560,11 +556,7 @@ ir.indexing.dynamic.indexing_period_SEC=1
 ```
 
 
-
-
-
-4.관리도구사용법
-----------------
+##4.관리도구사용법
 
 ###4.1. 관리도구 접속 및 로그아웃
 
