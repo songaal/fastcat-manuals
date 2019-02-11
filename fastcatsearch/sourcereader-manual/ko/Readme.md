@@ -13,14 +13,13 @@
 
 
 <a name="DBMS"></a>
-1. DBMS
--------------
+## 1. DBMS
 
-####1.1. 설명
+#### 1.1. 설명
 
 데이터베이스에서 데이터를 가져와서 색인을 진행한다.
 
-####1.2. Edit
+#### 1.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_005.png)
 
@@ -49,14 +48,13 @@ Before SQL과 After SQL은 오직 Update SQL만 실행할 수 있다. Select 문
 
 
 <a name="JSON_FILE"></a>
-2. JSON_FILE
--------------
+## 2. JSON_FILE
 
-####2.1. 설명
+#### 2.1. 설명
 
 JSON 파일에서 데이터를 가져와 색인을 진행한다.
 
-####2.2. Edit
+#### 2.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_002.png)
 
@@ -87,14 +85,13 @@ JSONReader는 JSON ARRAY 형식으로 리스트를 가져오기 때문에 array 
 
 
 <a name="JSON_LIST_FILE"></a>
-3. JSON_LIST_FILE
--------------
+## 3. JSON_LIST_FILE
 
-####3.1. 설명
+#### 3.1. 설명
 
 JSON LIST 파일에서 데이터를 가져와 색인을 진행한다.
 
-####3.2. Edit
+#### 3.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_008.png)
 
@@ -119,14 +116,13 @@ JSON 객체는 꼭 한 줄 내에서 표시되어야 한다. JSON 객체를 한 
 
 
 <a name="CSV_FILE"></a>
-4. CSV_FILE
--------------
+## 4. CSV_FILE
 
-####4.1. 설명
+#### 4.1. 설명
 
 CSV 파일에서 데이터를 가져와 색인을 진행한다.
 
-####4.2. Edit
+#### 4.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_007.png)
 
@@ -152,14 +148,13 @@ ID,NAME,AREA,TEL
 
 
 <a name="WEBPAGE"></a>
-5. WEBPAGE
--------------
+## 5. WEBPAGE
 
-####5.1. 설명
+#### 5.1. 설명
 
 웹페이지에 접속한 뒤 해당 페이지의 내용을 가져와 색인을 진행한다.
 
-####5.2. Edit
+#### 5.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_004.png)
 
@@ -176,14 +171,13 @@ ID,NAME,AREA,TEL
 
 
 <a name="WEBPAGE_CONFIG"></a>
-6. WEBPAGE_CONFIG
--------------
+## 6. WEBPAGE_CONFIG
 
-####6.1. 설명
+#### 6.1. 설명
 
 설정 파일에서 웹페이지 리스트를 읽어온 뒤 웹페이지에 접근하여 해당 페이지의 내용을 가져와 색인을 진행한다.
 
-####6.2. Edit
+#### 6.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_011.png)
 
@@ -260,14 +254,13 @@ JSON 파일의 경우 다음과 같이 설정한다.
 JSON LIST와 동일한 형식으로 설정 파일을 작성한다.
 
 <a name="INDEX_CLONE"></a>
-7. INDEX_CLONE
--------------
+## 7. INDEX_CLONE
 
-####6.1. 설명
+#### 7.1. 설명
 
 다른 컬렉션의 색인 데이터를 복사한다.
 
-####6.2. Edit
+#### 7.2. Edit
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/sourcereader-manual/ko/img/sr_manual_006.png)
 
