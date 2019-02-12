@@ -9,12 +9,12 @@ PHP 개발가이드
 4. search_item 페이지 예제
 5. 기타서비스 페이지
 
-##1. 준비사항
+## 1. 준비사항
 
-###하드웨어 요구사항
+### 하드웨어 요구사항
 php 인터페이스를 구성하기 위해 특별히 하드웨어 의존적이지는 않다.
 
-###소프트웨어 요구사항
+### 소프트웨어 요구사항
 php 상에서 fastcatsearch 엔진을 이용하기 위해서는 다음과 같은 소프트웨어 사항이 요구된다.
 
 - php 5.3 이상
@@ -34,20 +34,20 @@ php 상에서 fastcatsearch 엔진을 이용하기 위해서는 다음과 같은
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/img/205.jpg)
 
-##2. 개 요
+## 2. 개 요
 
 php를 이용한 검색은 commons-library 를 거쳐 communicator 를 통해 검색엔진과 소통한다.
 검색되어진 결과는 search_item.php 를 통해 표현되어 진다.
 
 ![](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/img/207.jpg)
 
-##3. API 라이브러리
+## 3. API 라이브러리
 
 fastcat_api.php 는 SearchQueryStringer / FastcatCommunicator / PageNavigator 의 3개 클래스로 이루어진다.
 
 [fastcat_api.php 소스보기](https://raw.githubusercontent.com/fastcat-co/fastcat-manuals/master/fastcatsearch/dev-php/ko/fastcat_api.php)
 
-###SearchQueryStringer
+### SearchQueryStringer
 
 검색엔진 Query 구성을 용이하기 위해 제작된 클래스, 다음과 같이 사용한다.
 
@@ -61,7 +61,7 @@ $query->setFieldList("title,content:50");
 ```
 세부 기능은 다음과 같다.
 
-###FastcatCommunicator
+### FastcatCommunicator
 
 검색엔진과 socket 통신을 수행하는 클래스로, 다음과 같이 사용한다.
 
@@ -74,7 +74,7 @@ $jsonResult = json_decode($fastcat->communicate("/service/search.json",$query->g
 $jsonResult = json_decode($logger->communicate("/service/keyword/popular/rt.json","type=search&siteId=total&categoryId=".$category);
 ```
 
-###PageNavigator
+### PageNavigator
 
 페이징 기능을 구현하기 위해 제작된 클래스로 고유한 페이징 기법이 있다면 사용하지 않아도 무방함. 다음과 같이 사용한다.
 
@@ -93,13 +93,13 @@ $pn->setTotal({총게시물갯수});
 <? } ?>
 ```
 
-##4. 검색페이지
+## 4. 검색페이지
 
-###search 페이지
+### search 페이지
 
 사용자 ui 와 전체 구조를 나열해 놓은 레이아웃 페이지, css와 javascript 등을 이용해 html 을 구성한다.
 
-###공통 라이브러리 예제
+### 공통 라이브러리 예제
 
 검색페이지 작성시 검색에 사용되는 공통적인 함수들을 모아놓고 각 페이지에서 include하여 사용하도록 한다.
 
@@ -191,7 +191,7 @@ function searchBoard($collection,$fastcat,$query,$stype,$keyword,$hkeyword,$otyp
 }
 ``` 
 
-###search_item_xxx 페이지 예제
+### search_item_xxx 페이지 예제
 
 search_item 페이지는 각각 검색 컬렉션 별 로 제작하도록 한다, (search_item_bbs.php / search_item_new.php 등)
 검색엔진과 통신해서 가지고 온 데이터를 이용해 화면에 출력해 주는 역할을 한다. ᅟ
@@ -242,9 +242,9 @@ search 페이지는 전체적인 레이아웃을 출력하며, search_item 페�
 <? } ?>
 ```
 
-##5. 기타서비스 페이지
+## 5. 기타서비스 페이지
 
-###검색어 자동완성
+### 검색어 자동완성
 
 자동완성 구현을 위해서는 하나의 자동완성용 컬렉션을 구성해야 하며, 자소분리 검색과 초성검색이 기능하도록 하기 위해 Source-Modifier 를 이용한다.
 보통은 다음과 같이 keyword 항목과 search 항목으로 검색스키마를 구성한다.
@@ -261,7 +261,7 @@ search 페이지는 전체적인 레이아웃을 출력하며, search_item 페�
 {KEYWORD,SEARCH:ALL({검색키워드}):100:15}
 ```
 
-###인기검색어
+### 인기검색어
 
 인기검색어와 연관키워드는 별도로 추가되는 로그분석기 를 이용하여 다음과 같이 구현한다.
 
@@ -317,7 +317,7 @@ if($keywords) {
 </ul>
 ```
  
-###연관키워드
+### 연관키워드
 
 로그분석기와 통신하여 연관키워드를 추출하는 방법을 기술한다.
 
